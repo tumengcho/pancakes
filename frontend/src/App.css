@@ -57,7 +57,7 @@ nav {
 .section1 {
   height: 620px;
   width: 100%;
-  background-image: url('./Images/section1.jpg');
+  background-image: url('./Images/section1.gif');
   background-size: cover;
   background-position: center;
   color: white;
@@ -96,12 +96,50 @@ nav {
 .element-1 {
   width: 100%;
 }
+
+.desc {
+  color: #999999;
+  font-size: 15px;
+  font-weight: 100;
+}
+
+.desc1 {
+  padding-left: 150px;
+  color: #999999;
+  font-size: 15px;
+  font-weight: 100;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.btn-section {
+  width: fit-content;
+  height: fit-content;
+  font-size: 12px;
+  padding: 12px 25px 12px 25px;
+  text-transform: uppercase;
+  background-color: black;
+  color: white;
+  font-weight: 100;
+}
+
+.img-package {
+  max-width: 80px;
+}
+
 @media screen and (min-width: 0px) {
   .items-mobile {
     display: block;
   }
   .items {
     display: none;
+  }
+
+  .desc1 {
+    padding-left: 0;
   }
 }
 @media screen and (min-width: 576px) {
@@ -121,6 +159,10 @@ nav {
   .desc {
     text-align: start;
     margin: 0;
+  }
+
+  .desc1 {
+    padding-right: 150px;
   }
 
   .items {
