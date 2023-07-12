@@ -31,8 +31,8 @@ export default function HomeScreen() {
       <Container>
         <Row className="align-items-center mb-5">
           <Col md={6} className="order-md-0 order-1">
-            <h1 className="mb-4 px-5">Who am I?</h1>
-            <p className="px-5">
+            <h1 className="mb-4 px-5 pt-md-0 pt-sm-5 title ">Who am I?</h1>
+            <p className="px-5 desc">
               I am a decent/efficient Video Editor with over 2.5+ (2020-now)
               years of experience in video editing , but mostly been inspired
               early on in video editing.
@@ -55,8 +55,8 @@ export default function HomeScreen() {
             ></img>
           </Col>
           <Col md={6} className="order-md-0 order-1 px-5">
-            <h1 className="mb-4 px-5">Why choose me?</h1>
-            <p className="px-5">
+            <h1 className="mb-4 px-5 pt-md-0 pt-sm-5 title">Why choose me?</h1>
+            <p className="px-5 desc">
               I am simple, friendly and professional. If there is any issue i
               deliver quick responses and I will always deliver on time.
             </p>
@@ -64,8 +64,10 @@ export default function HomeScreen() {
         </Row>
         <Row className="align-items-center mt-5">
           <Col md={6} className="order-md-0 order-1">
-            <h1 className="mb-4 px-5">How does the proccess work?</h1>
-            <p className="px-5">
+            <h1 className="mb-4 px-5 pt-md-0 pt-sm-5 title">
+              How does the proccess work?
+            </h1>
+            <p className="px-5 desc">
               <strong>Step 1:</strong> Send your pre-cut videos. <br />
               <br />
               <strong>Step 2:</strong> Logo (optional).

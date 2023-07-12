@@ -49,6 +49,11 @@ nav {
   margin: 0 4% 0 4%;
 }
 
+.items-mobile {
+  display: none;
+  background-color: #00000000;
+}
+
 .section1 {
   height: 620px;
   width: 100%;
@@ -89,5 +94,40 @@ nav {
 }
 
 .element-1 {
-  max-width: 568px;
+  width: 100%;
+}
+@media screen and (min-width: 0px) {
+  .items-mobile {
+    display: block;
+  }
+  .items {
+    display: none;
+  }
+}
+@media screen and (min-width: 576px) {
+  .title {
+    text-align: center;
+  }
+  .desc {
+    text-align: center;
+    margin-bottom: 20%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    text-align: start;
+  }
+  .desc {
+    text-align: start;
+    margin: 0;
+  }
+
+  .items {
+    display: inline-block;
+  }
+
+  .items-mobile {
+    display: none;
+  }
 }
