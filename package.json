@@ -1,11 +1,11 @@
 {
-  "name": "backend",
-  "type": "module",
+  "name": "pancakes",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    
+    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build --force",
+    "start": "node backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
