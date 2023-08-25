@@ -17,12 +17,12 @@ export default function HomeScreen() {
         </div>
       </div>
       
-      <Container className="mb-5" style={{maxWidht:'1200px'}}>
-        <h1 className="fw-light mb-1" >À propos de nous.</h1>
-        <p className="description1 mb-5 fs-5">Nous avons créé Athlima Plug dans un seul et unique but, rendre l'achat des chaussures plus facile</p>
+      <Container className="mb-5" style={{maxWidht:'900px'}}>
+        <h1 className="fw-normal mb-1" >À propos de nous.</h1>
+        <p className="description1 mb-5 fs-5 fw-normal">Nous avons créé Athlima Plug dans un seul et unique but, rendre l'achat des chaussures plus facile</p>
         <hr></hr>
-        <Row>
-          <Col md={6} className='mt-5'>
+        <Row className='mt-5'>
+          <Col md={6} >
             <p className=" description1 fw-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
           </Col>
           <Col md={6}>
