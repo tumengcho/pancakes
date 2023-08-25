@@ -89,7 +89,7 @@ export default function HomeScreen() {
             ></img>
           </Col>
         </Row>
-        <Container className="mt-5">
+        {/* <Container className="mt-5">
           <Row>
             {data.packages.map((product) => (
               <Col md={4} className="text-center">
@@ -107,7 +107,7 @@ export default function HomeScreen() {
               </Col>
             ))}
           </Row>
-        </Container>
+        </Container> */}
       </Container>
     </div>
   );
