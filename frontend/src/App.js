@@ -18,6 +18,11 @@ function App() {
   return (
     <BrowserRouter>
       <div>
+        <div className='annonce'>
+          <Container>
+          <h1 className='pt-2'>Livraison gratuite partout au Canada.</h1>
+          </Container>
+          </div>
         <header>
           <nav className="container-fluid position-relative">
             <Navbar>

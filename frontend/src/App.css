@@ -54,6 +54,13 @@ nav {
   background-color: #00000000;
 }
 
+.annonce{
+  background-color: black;
+  color: white;
+  height: 50px;
+  width: 100%;
+}
+
 .section1 {
   height: 900px;
   width: 100%;
@@ -88,7 +95,7 @@ nav {
 }
 
 .element-1 {
-  width: 100%;
+  width: auto;
 }
 
 .desc {
