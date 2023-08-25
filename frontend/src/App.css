@@ -60,7 +60,11 @@ nav {
   height: 50px;
   width: 100%;
 }
-
+.cat-shoes{
+  width: 90%;
+  height: 100%;
+  background-color: red;
+}
 .section1 {
   height: 900px;
   width: 100%;

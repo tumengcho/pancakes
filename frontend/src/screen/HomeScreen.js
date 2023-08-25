@@ -31,40 +31,43 @@ export default function HomeScreen() {
         </Row>
       </Container>
       
-        <Row className="mt-3 mb-5">
-          <h1 className='fw-normal text-center'>Nos Produit</h1>
-          <p className='description1 fw-normal text-center mb-5'></p>
-          <Col md={4} className="order-md-1 order-0">
-            <div className='cat-shoes align-items-center'>
-              <h1 className='fs-2 fw-bold text-uppercase'></h1>
+        <Row className="mt-3 mb-5 pt-5 container-fluid">
+          <div className='mb-3'>
+          <h1 className='fw-normal pt-5 fs-2 text-center'>Nos Produit</h1>
+          <p className='description1 fw-normal text-center mb-5'>Découvrez les tendances du moment.</p>
+          </div>
+          
+          <Col className="order-md-1 order-0">
+            <div className='cat-shoes'>
+              <h1 className='fs-2 fw-bold text-uppercase'>SHOES</h1>
               <p className='text-muted'>View all</p>
             </div>
           </Col>
-          <Col md={4} className="order-md-1 order-0">
+          <Col className="order-md-1 order-0">
             <img
-              src="/Images/jordan4.jpg"
+              src="/Images/jordan4.png"
               className="element-1"
               alt="who-am-i"
             ></img>
-            <h1 className='mt-2'>Jordan 4s Military</h1>
+            <h1 className='mt-2 fs-2'>Jordan 4s Military</h1>
             <p>450.00$</p>
           </Col>
-          <Col md={4} className="order-md-1 order-0">
+          <Col className="order-md-1 order-0">
             <img
-              src="/Images/jordan4.jpg"
+              src="/Images/jordan4.png"
               className="element-1"
               alt="who-am-i"
             ></img>
-            <h1 className='mt-2'>Jordan 4s Military</h1>
+            <h1 className='mt-2 fs-2'>Jordan 4s Military</h1>
             <p>450.00$</p>
           </Col>
-          <Col md={4} className="order-md-1 order-0">
+          <Col className="order-md-1 order-0">
             <img
-              src="/Images/jordan4.jpg"
+              src="/Images/jordan4.png"
               className="element-1"
               alt="who-am-i"
             ></img>
-            <h1 className='mt-2'>Jordan 4s Military</h1>
+            <h1 className='mt-2 fs-2'>Jordan 4s Military</h1>
             <p>450.00$</p>
           </Col>
         </Row>

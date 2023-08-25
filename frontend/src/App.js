@@ -19,8 +19,9 @@ function App() {
     <BrowserRouter>
       <div>
         <div className='annonce'>
-          <Container>
-          <h1 className='pt-2'>Livraison gratuite partout au Canada.</h1>
+          <Container className='text-center pt-2'>
+          <h1 className='fs-6 d-inline'>Livraison gratuite partout au Canada. 🍁</h1>  <i class="fa-solid fa-truck-fast" style={{Color: 'ffffff'}}></i>
+          
           </Container>
           </div>
         <header>
