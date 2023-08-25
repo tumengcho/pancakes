@@ -23,8 +23,8 @@ function App() {
             <Navbar>
               <Navbar.Brand>
                 <img
-                  src="/Images/pancake.png"
-                  alt="pancake"
+                  src="/Images/athlima_logo.png"
+                  alt="Athlima Plug"
                   className="img-logo"
                 ></img>
               </Navbar.Brand>

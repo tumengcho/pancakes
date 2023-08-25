@@ -9,24 +9,17 @@ export default function HomeScreen() {
     <div>
       <div className="section1">
         <div className="sSection1 align-items-center">
-          <Container style={{ maxWidth: '400px' }}>
-            <h2 className="section1-title mb-4">Edit whatever you need.</h2>
-            <p className="section1-text">Some Text to put here.</p>
-            <button className="btn btn-light">Learn More</button>
+          <Container>
+            <h2 className="section1-title text-uppercase fw-bold mb-4">Par et pour des passionnés.</h2>
+            <p className="section1-text">Commandez maintenant, livraison disponible partout au Canada.</p>
+            <button className="btn btn-light">En savoir plus</button>
           </Container>
         </div>
       </div>
-      <Container
-        className="text-center"
-        style={{ maxWidth: '900px', marginBottom: '10%' }}
-      >
-        <p className="mb-3 tDescription1">WHAT CAN I DO?</p>
-        <h1 className="description1">
-          I edit videos whether its a Tiktok, an Instagram Reel or a Youtube
-          Short.
-        </h1>
-      </Container>
+      
       <Container className="text-center mb-5">
+        <h1 className="fw-normal mb-4" >À propos de nous.</h1>
+        
         <hr></hr>
       </Container>
       <Container>
@@ -43,7 +36,7 @@ export default function HomeScreen() {
           </Col>
           <Col md={6} className="order-md-1 order-0">
             <img
-              src="/Images/who-am-i.jpg"
+              src=""
               className="element-1"
               alt="who-am-i"
             ></img>
@@ -52,7 +45,7 @@ export default function HomeScreen() {
         <Row className="align-items-center mb-3">
           <Col md={6} className="order-md-0 order-0">
             <img
-              src="/Images/why-choose-me (2).jpg"
+              src=""
               className="element-1"
               alt="who-am-i"
             ></img>
@@ -90,7 +83,7 @@ export default function HomeScreen() {
           </Col>
           <Col md={6} className="order-md-1 order-0">
             <img
-              src="/Images/proccess.jpg"
+              src=""
               className="element-1"
               alt="who-am-i"
             ></img>

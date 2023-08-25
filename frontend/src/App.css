@@ -55,9 +55,9 @@ nav {
 }
 
 .section1 {
-  height: 620px;
+  height: 900px;
   width: 100%;
-  background-image: url('./Images/section1.gif');
+  background-image: url('./Images/brand_image.jpg');
   background-size: cover;
   background-position: center;
   color: white;
@@ -65,7 +65,7 @@ nav {
 }
 
 .sSection1 {
-  height: 620px;
+  height: 900px;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.454);
   display: flex;
