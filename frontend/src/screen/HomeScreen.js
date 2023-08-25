@@ -10,17 +10,25 @@ export default function HomeScreen() {
       <div className="section1">
         <div className="sSection1 align-items-center">
           <Container>
-            <h2 className="section1-title text-uppercase fw-bold mb-4">Par et pour des passionnés.</h2>
-            <p className="section1-text">Commandez maintenant, livraison disponible partout au Canada.</p>
+            <h2 className="text-uppercase fw-bold mb-2">Par et pour des passionnés.</h2>
+            <p className="description1 fs-4 mb-3">Commandez maintenant, livraison disponible partout au Canada.</p>
             <button className="btn btn-light">En savoir plus</button>
           </Container>
         </div>
       </div>
       
-      <Container className="text-center mb-5">
-        <h1 className="fw-normal mb-4" >À propos de nous.</h1>
-        
+      <Container className="mb-5">
+        <h1 className="fw-normal" >À propos de nous.</h1>
+        <p className="description1 mb-4 fs-5">Nous avons créé Athlima Plug dans un seul et unique but, rendre l'achat des chaussures plsu facile</p>
         <hr></hr>
+        <Row>
+          <Col md={6}>
+            <p className="description1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+          </Col>
+          <Col md={6}>
+            <p className="description1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+          </Col>
+        </Row>
       </Container>
       <Container>
         <Row className="align-items-center mb-5">

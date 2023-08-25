@@ -75,18 +75,12 @@ nav {
   text-align: center;
 }
 
-.section1-title {
-  font-weight: normal;
-}
 
-.section1-text {
-  color: #bcbcbc;
-  font-size: 1.5dvw;
-}
+
+
 
 .description1 {
-  font-style: italic;
-  font-weight: lighter;
+  color: #bcbcbc;
 }
 .tDescription1 {
   color: #bcbcbc;
