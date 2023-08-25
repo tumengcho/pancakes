@@ -58,13 +58,13 @@ function App() {
                     </Offcanvas.Header>
                     <Offcanvas.Body className="pt-5">
                       <div className="d-block mb-3 border border-2 border-dark border-top-0 border-end-0 border-start-0">
-                        <h1 className="fw-normal">About</h1>
+                        <h1 className="fw-normal">INFOS</h1>
                       </div>
                       <div className="d-block mb-3 border border-2 border-dark border-top-0 border-end-0 border-start-0">
-                        <h1 className="fw-normal">Pricing</h1>
+                        <h1 className="fw-normal">PRODUIT</h1>
                       </div>
                       <div className="d-block">
-                        <h1 className="fw-normal">Contact</h1>
+                        <h1 className="fw-normal">CONTACT</h1>
                       </div>
                     </Offcanvas.Body>
                   </Offcanvas>
@@ -73,13 +73,13 @@ function App() {
               <div className="position-absolute end-0 items">
                 <Navbar>
                   <Nav.Item className="mx-3">
-                    <h5>About</h5>
+                    <h5 >Infos</h5>
                   </Nav.Item>
                   <Nav.Item className="mx-3">
-                    <h5>Pricing</h5>
+                    <h5>Produit</h5>
                   </Nav.Item>
                   <Nav.Item className="mx-3">
-                    <h5>Contact</h5>
+                    <h5 >Contact</h5>
                   </Nav.Item>
                   <Nav.Item className="mx-3">
                     <i

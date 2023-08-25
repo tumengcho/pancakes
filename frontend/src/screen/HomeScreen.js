@@ -19,7 +19,7 @@ export default function HomeScreen() {
       
       <Container className="mb-5" style={{maxWidht:'900px'}}>
         <h1 className="fw-normal fs-1 mb-1" >À propos de nous.</h1>
-        <p className="description1 mb-5 fs-5-sm  fw-normal">Nous avons créé Athlima Plug dans un seul et unique but, rendre l'achat des chaussures plus facile</p>
+        <p className="description1 mb-5 fs-5-sm  fw-normal">Nous avons créé Athlima Plug dans un seul et unique but, rendre l'achat des chaussures plus facile.s</p>
         <hr></hr>
         <Row className='mt-5'>
           <Col md={6} >
@@ -33,41 +33,79 @@ export default function HomeScreen() {
       
         <Row className="mt-3 mb-5 pt-5 container-fluid">
           <div className='mb-3'>
-          <h1 className='fw-normal pt-5 fs-2 text-center'>Nos Produit</h1>
+          <h1 className='fw-normal pt-5 fs-3 text-center'>Nos Produit</h1>
           <p className='description1 fw-normal text-center mb-5'>Découvrez les tendances du moment.</p>
           </div>
           
-          <Col className="order-md-1 order-0">
-            <div className='cat-shoes'>
-              <h1 className='fs-2 fw-bold text-uppercase'>SHOES</h1>
-              <p className='text-muted'>View all</p>
+          <Col md={3} className="order-md-1 order-0">
+            <div className='cat-shoes ps-3 w-100 h-100 pt-md-5'>
+              <h1 className='fs-3 fw-bold text-uppercase text-white'>Souliers</h1>
+              <p className='text-light'>Voir tout</p>
             </div>
           </Col>
-          <Col className="order-md-1 order-0">
+          <Col md={3}  className="order-md-1 order-0">
             <img
               src="/Images/jordan4.png"
               className="element-1"
               alt="who-am-i"
             ></img>
-            <h1 className='mt-2 fs-2'>Jordan 4s Military</h1>
+            <h1 className='mt-2 fs-4'>Jordan 4s Military</h1>
             <p>450.00$</p>
           </Col>
-          <Col className="order-md-1 order-0">
+          <Col md={3}  className="order-md-1 order-0">
             <img
               src="/Images/jordan4.png"
               className="element-1"
               alt="who-am-i"
             ></img>
-            <h1 className='mt-2 fs-2'>Jordan 4s Military</h1>
+            <h1 className='mt-2 fs-4'>Jordan 4s Military</h1>
             <p>450.00$</p>
           </Col>
-          <Col className="order-md-1 order-0">
+          <Col md={3}  className="order-md-1 order-0">
             <img
               src="/Images/jordan4.png"
               className="element-1"
               alt="who-am-i"
             ></img>
-            <h1 className='mt-2 fs-2'>Jordan 4s Military</h1>
+            <h1 className='mt-2 fs-4'>Jordan 4s Military</h1>
+            <p>450.00$</p>
+          </Col>
+        </Row>
+
+        <Row className="mt-3 mb-5 pt-5 container-fluid">
+          
+          
+          <Col md={3} className="order-md-1 order-0">
+            <div className='cat-vetement ps-3 w-100 h-100 pt-md-5'>
+              <h1 className='fs-3 fw-bold text-white text-uppercase'>Vêtements</h1>
+              <p className='text-light'>Voir tout</p>
+            </div>
+          </Col>
+          <Col md={3}  className="order-md-1 order-0">
+            <img
+              src="/Images/jordan4.png"
+              className="element-1"
+              alt="who-am-i"
+            ></img>
+            <h1 className='mt-2 fs-4'>Jordan 4s Military</h1>
+            <p>450.00$</p>
+          </Col>
+          <Col md={3}  className="order-md-1 order-0">
+            <img
+              src="/Images/jordan4.png"
+              className="element-1"
+              alt="who-am-i"
+            ></img>
+            <h1 className='mt-2 fs-4'>Jordan 4s Military</h1>
+            <p>450.00$</p>
+          </Col>
+          <Col md={3}  className="order-md-1 order-0">
+            <img
+              src="/Images/jordan4.png"
+              className="element-1"
+              alt="who-am-i"
+            ></img>
+            <h1 className='mt-2 fs-4'>Jordan 4s Military</h1>
             <p>450.00$</p>
           </Col>
         </Row>
