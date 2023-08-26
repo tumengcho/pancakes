@@ -2,9 +2,17 @@
   text-align: center;
 }
 
+body {
+  font: small-caps 12px/30px Verdana;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -29,9 +37,22 @@
 }
 .img-logo {
   max-width: 100px;
-  min-width: 15%;
+  width: 75px;
 }
+
+.titre {
+  font: small-caps 12px/30px Verdana;
+}
+.titre1 {
+  font: small-caps 12px/30px Arial, Helvetica, sans-serif;
+}
+
+.logo {
+  width: 30px;
+}
+
 .nav-item h5 {
+  text-decoration: none;
   text-transform: uppercase;
   font-size: 1.9dvh;
   margin: 0 2% 0 2%;
@@ -46,8 +67,8 @@
 }
 nav {
   width: auto;
-  height: auto;
-  padding: 30px 0 30px 0;
+  height: 75px;
+  padding: 0 0 30px 0;
   margin: 0 4% 0 4%;
 }
 
@@ -56,29 +77,35 @@ nav {
   background-color: #00000000;
 }
 
-.annonce{
+.annonce {
   background-color: black;
   color: white;
   height: 50px;
   width: 100%;
 }
-.cat-shoes{
-  
-  background: linear-gradient(rgba(0, 0, 0, 0.63),rgba(0, 0, 0,.5)),url('./Images/cat-shoes.jpeg');
+.cat-shoes {
+  height: 150px;
+  background: linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.5)),
+    url('./Images/shoes.jpeg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
 }
 
-.cat-vetement{
-  background: linear-gradient(rgba(0, 0, 0,.63),rgba(0, 0, 0,.5)),url('./Images/cat-vet.jpeg');
+.cat-vetement {
+  height: 200px;
+  background: linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.5)),
+    url('./Images/clothes.jpeg');
 
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
-
 }
+
+.promo {
+  height: 600px;
+}
+
 .section1 {
   height: 900px;
   width: 100%;
@@ -100,10 +127,6 @@ nav {
   text-align: center;
 }
 
-
-
-
-
 .description1 {
   color: #bcbcbc;
 }
@@ -113,7 +136,7 @@ nav {
 }
 
 .element-1 {
-  width: auto;
+  width: 130px;
 }
 
 .desc {
@@ -133,7 +156,24 @@ nav {
   font-size: 40px;
   font-weight: bold;
 }
-
+.owl-carousel {
+  position: relative;
+}
+.owl-next,
+.owl-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+}
+.owl-next {
+  right: 0;
+  display: flex;
+}
+.owl-prev {
+  left: 0;
+  display: flex;
+}
 .btn-section {
   width: fit-content;
   height: fit-content;
