@@ -167,7 +167,7 @@ export default function HomeScreen() {
           <Col md={6}>
             <img
               src="./Images/back2school.jpg"
-              className="promo w-100"
+              className="img-fluid img-rounded"
               alt="Back2School"
             ></img>
           </Col>

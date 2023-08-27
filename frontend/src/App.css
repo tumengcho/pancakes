@@ -79,12 +79,12 @@ nav {
 
 .image-prod-shoes {
   width: 100px;
-  height: 50px;
+  height: 80px;
 }
 
 .image-prod-vet {
   width: 75%;
-  height: 100px;
+  height: 150px;
 }
 
 .img-prod-shoes {
@@ -213,6 +213,15 @@ nav {
 }
 
 @media screen and (min-width: 0px) {
+  .image-prod-shoes {
+    width: 100px;
+    height: 75px;
+  }
+
+  .image-prod-vet {
+    width: 75%;
+    height: 125px;
+  }
   .recherche {
     visibility: hidden;
   }
