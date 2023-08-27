@@ -36,7 +36,7 @@ const data = {
       name: 'Nike Tech Fleece Blanc',
       price: 200.0,
       description: 'The basic package with only 1 video that last 30 - 60secs.',
-      image: '/Images/nt-white.png',
+      image: '/Images/nt-white.jpg',
       category: 'clothes',
       vedette: true,
     },

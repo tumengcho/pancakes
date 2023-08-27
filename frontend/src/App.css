@@ -101,9 +101,12 @@ nav {
   background-size: cover;
   background-repeat: no-repeat;
 }
+.produits {
+  margin-top: 7%;
+}
 
 .promo {
-  height: 600px;
+  height: 500px;
 }
 
 .section1 {
@@ -190,6 +193,9 @@ nav {
 }
 
 @media screen and (min-width: 0px) {
+  .recherche {
+    visibility: hidden;
+  }
   .items-mobile {
     display: block;
   }
@@ -212,6 +218,12 @@ nav {
 }
 
 @media screen and (min-width: 768px) {
+  .recherche {
+    visibility: visible;
+  }
+  .promo {
+    height: 600px;
+  }
   .title {
     text-align: start;
   }

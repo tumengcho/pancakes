@@ -8,6 +8,7 @@ import HomeScreen from './screen/HomeScreen';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import Product from './screen/Product';
 
 function App() {
   const [show, setShow] = useState(false);
@@ -19,10 +20,10 @@ function App() {
     <BrowserRouter>
       <div>
         <div className="annonce">
-          <Container className="text-center pt-2">
-            <h1 className="fs-6 d-inline">
+          <Container className="text-center pt-2 px-3">
+            <p className="fs-md-6 d-inline ">
               Livraison gratuite partout au Canada. 🍁
-            </h1>{' '}
+            </p>{' '}
             <i class="fa-solid fa-truck-fast" style={{ Color: 'ffffff' }}></i>
           </Container>
         </div>
@@ -74,7 +75,7 @@ function App() {
                   </Offcanvas>
                 </>
               </div>
-              <Container className="mx-md-5 me-5">
+              <Container className="mx-md-5 me-5 recherche">
                 <form class="d-flex w-100" role="search">
                   <input
                     class="form-control me-2"
@@ -120,6 +121,7 @@ function App() {
         <div className="">
           <Routes>
             <Route path="/" element={<HomeScreen />}></Route>
+            <Route path="/produits" element={<Product />}></Route>
           </Routes>
         </div>
         <div class="mx-auto container-fluid mt-16 py-16 xl:px-20 lg:px-12 sm:px-6 px-4 bg-black text-white">
