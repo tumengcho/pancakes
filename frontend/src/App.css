@@ -77,6 +77,26 @@ nav {
   background-color: #00000000;
 }
 
+.image-prod-shoes {
+  width: 100px;
+  height: 50px;
+}
+
+.image-prod-vet {
+  width: 75%;
+  height: 100px;
+}
+
+.img-prod-shoes {
+  width: auto;
+  height: 50px;
+}
+
+.img-prod-vet {
+  width: auto;
+  height: 150px;
+}
+
 .annonce {
   background-color: black;
   color: white;
@@ -218,6 +238,17 @@ nav {
 }
 
 @media screen and (min-width: 768px) {
+  .img-prod {
+    height: 100px;
+  }
+  .image-prod-shoes {
+    width: 75%;
+    height: 100px;
+  }
+  .image-prod-vet {
+    width: 75%;
+    height: 200px;
+  }
   .recherche {
     visibility: visible;
   }

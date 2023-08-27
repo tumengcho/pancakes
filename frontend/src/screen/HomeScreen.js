@@ -34,21 +34,26 @@ export default function HomeScreen() {
         <hr></hr>
         <Row className="mt-5">
           <Col md={6}>
-            <p className=" description1 titre fw-light px-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse varius enim in eros elementum tristique. Duis cursus,
-              mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam
-              libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum
-              lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
+            <p className="description1 titre fw-light px-2">
+              Notre parcours a été marqué par la recherche inlassable des
+              chaussures les plus élégantes et durables, reflétant les tendances
+              les plus actuelles. Chaque paire que nous proposons raconte une
+              histoire de qualité et de style. Nous comprenons l'importance de
+              se sentir bien dans ses chaussures, c'est pourquoi nous mettons
+              tout en œuvre pour que chaque achat soit une expérience
+              satisfaisante. Rejoignez-nous dans cette aventure de la mode
+              responsable et de l'élégance intemporelle.
             </p>
           </Col>
           <Col md={6}>
-            <p className="description1 titre fw-light px-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse varius enim in eros elementum tristique. Duis cursus,
-              mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam
-              libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum
-              lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
+            <p className=" description1 titre fw-light px-2">
+              Fondée avec passion, notre entreprise de revente de chaussures
+              puise son inspiration dans l'amour du style individuel. Chaque
+              paire de chaussures raconte une histoire, façonnée par des
+              tendances et des aventures uniques. Notre engagement envers la
+              qualité, l'authenticité et la satisfaction du client nous guide
+              dans la création d'une expérience de shopping qui célèbre
+              l'unicité à chaque pas.
             </p>
           </Col>
         </Row>
@@ -73,11 +78,11 @@ export default function HomeScreen() {
           </Col>
           <Col md={9}>
             <OwlCarousel
-              className=" owl-carousel mt-3 px-5 container-fluid"
+              className=" owl-carousel mt-3 px-md-5 px-3 container-fluid"
               loop
               nav
               dots={false}
-              margin={0}
+              margin={30}
               padding={0}
               autoPlay
               autoplayTimeout={6000}
@@ -99,7 +104,7 @@ export default function HomeScreen() {
                   <div>
                     <img
                       src={produit.image}
-                      className="w-50"
+                      className="image-prod-shoes "
                       alt={produit.name}
                     ></img>
                     <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
@@ -120,7 +125,7 @@ export default function HomeScreen() {
           </Col>
           <Col md={9}>
             <OwlCarousel
-              className=" owl-carousel mt-3 px-5 container-fluid"
+              className=" owl-carousel mt-3 px-md-5 px-3 container-fluid"
               loop
               nav
               dots={false}
@@ -146,7 +151,7 @@ export default function HomeScreen() {
                   <div>
                     <img
                       src={produit.image}
-                      className="w-50"
+                      className="image-prod-vet"
                       alt={produit.name}
                     ></img>
                     <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
