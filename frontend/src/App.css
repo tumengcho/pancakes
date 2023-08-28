@@ -106,7 +106,7 @@ nav {
 .cat-shoes {
   height: 150px;
   background: linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.5)),
-    url('./Images/shoes.jpeg');
+    url('./Images/shoes.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -115,7 +115,7 @@ nav {
 .cat-vetement {
   height: 200px;
   background: linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.5)),
-    url('./Images/clothes.jpeg');
+    url('./Images/clothes.jpg');
 
   background-position: top;
   background-size: cover;
