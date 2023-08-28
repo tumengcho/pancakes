@@ -104,11 +104,11 @@ export default function HomeScreen() {
                   <div>
                     <img
                       loading="lazy"
-                      srcset={`${produit.image + '-small.jpg'} 200w, ${
-                        produit.image + '-large.jpg'
+                      srcset={`${produit.image + '-small.webp'} 200w, ${
+                        produit.image + '-large.webp'
                       } 469w`}
                       style={{ maxHeight: '125px', minHeight: '100%' }}
-                      src={produit.image + '.jpg'}
+                      src={produit.image + '.webp'}
                       alt={produit.name}
                     ></img>
                     <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
@@ -155,7 +155,7 @@ export default function HomeScreen() {
                   <div>
                     <img
                       loading="lazy"
-                      src={produit.image + '.jpg'}
+                      src={produit.image + '.webp'}
                       alt={produit.name}
                       style={{ maxHeight: '175px' }}
                     ></img>
