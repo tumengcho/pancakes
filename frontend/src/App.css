@@ -183,6 +183,10 @@ nav {
 .owl-carousel {
   position: relative;
 }
+.owl-item {
+  padding: 20px;
+  width: 136px;
+}
 .owl-next,
 .owl-prev {
   position: absolute;

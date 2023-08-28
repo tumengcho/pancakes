@@ -79,7 +79,7 @@ export default function HomeScreen() {
           <Col md={9}>
             <OwlCarousel
               className=" owl-carousel mt-3 px-md-5 px-3 container-fluid"
-              loop
+              
               nav
               dots={false}
               margin={30}
@@ -104,10 +104,10 @@ export default function HomeScreen() {
                   <div>
                     <img
                       loading="lazy"
-                      srcset={`${produit.image + '-small.webp'} 200w, ${
-                        produit.image + '-large.webp'
-                      } 469w`}
-                      style={{ maxHeight: '125px', minHeight: '100%' }}
+                      srcset={`${produit.image + '.webp'} 1x, ${
+                        produit.image + '.webp'
+                      } 2x`}
+                      style={{ maxHeight: '120px',gridRow:'image', height:'auto', }}
                       src={produit.image + '.webp'}
                       alt={produit.name}
                     ></img>
@@ -133,7 +133,7 @@ export default function HomeScreen() {
               loop
               nav
               dots={false}
-              margin={0}
+              margin={30}
               padding={0}
               autoPlay
               autoplayTimeout={6000}
@@ -143,7 +143,7 @@ export default function HomeScreen() {
                 "<i class='fa fa-angle-right' style='background-color:white;'></i>",
               ]}
               responsive={{
-                0: { items: 2 },
+                0: { items: 2.7 },
                 576: { items: 3, margin: 50 },
               }}
             >

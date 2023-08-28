@@ -20,7 +20,7 @@ export default function Product() {
                 <div className="card-img" style={{ height: 'auto' }}>
                   <img
                     src={produit.image + '.webp'}
-                    className="img-prod-shoes"
+                    className=""
                     alt={produit.name}
                   ></img>
                 </div>
