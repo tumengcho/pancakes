@@ -172,7 +172,7 @@ export default function HomeScreen() {
           <Col md={6}>
             <img
               loading="lazy"
-              srcSet="./Images/back2school-small.jpg 200w, ./Images/back2school-medium.jpg 763w,./Images/back2school-large.jpg 1126w,./Images/back2school-xlarge.jpg 1400w,"
+              srcSet="./Images/back2school-small.webp 200w, ./Images/back2school-medium.webp 763w,./Images/back2school-large.webp 1126w,./Images/back2school-xlarge.webp 1400w,"
               className="img-rounded"
               alt="Back2School"
             ></img>

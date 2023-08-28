@@ -55,27 +55,41 @@ function App() {
                     style={{ color: '#000000' }}
                   ></i>
 
-                  <Offcanvas show={show} onHide={handleClose} placement="end">
+                  <Offcanvas className='text-light' show={show} onHide={handleClose} placement="end">
                     <Offcanvas.Header closeButton>
                       <Offcanvas.Title className="d-flex position-relative w-100">
+                    <Link to="/signup" className='text-black' style={{ textDecoration: 'none' }}>
+                        
                         <h1>SIGN UP</h1>{' '}
+                        </Link>
+
                         <h1 className="position-absolute end-0">
                           <i
                             class="fa-solid fa-circle-user fa-lg"
                             style={{ color: '#000000' }}
                           ></i>
                         </h1>
+
                       </Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body className="pt-5">
                       <div className="d-block mb-3 border border-2 border-dark border-top-0 border-end-0 border-start-0">
+                    <Link to="/infos" className='text-black' style={{ textDecoration: 'none' }}>
+                        
                         <h1 className="fw-normal">INFOS</h1>
+                        </Link>
                       </div>
                       <div className="d-block mb-3 border border-2 border-dark border-top-0 border-end-0 border-start-0">
+                    <Link to="/produits" className='text-black' style={{ textDecoration: 'none' }}>
+
                         <h1 className="fw-normal">PRODUIT</h1>
+                        </Link>
                       </div>
                       <div className="d-block">
+                    <Link to="/contact" className='text-black' style={{ textDecoration: 'none' }}>
+
                         <h1 className="fw-normal">CONTACT</h1>
+                        </Link>
                       </div>
                     </Offcanvas.Body>
                   </Offcanvas>

@@ -19,7 +19,7 @@ export default function Product() {
               <Col xs={6} sm={4} md={3} className="mt-5">
                 <div className="card-img" style={{ height: 'auto' }}>
                   <img
-                    src={produit.image}
+                    src={produit.image + '.webp'}
                     className="img-prod-shoes"
                     alt={produit.name}
                   ></img>
@@ -39,7 +39,7 @@ export default function Product() {
             .map((produit) => (
               <Col xs={6} sm={4} md={3} className="mt-5">
                 <img
-                  src={produit.image}
+                  src={produit.image + '.webp'}
                   className="img-prod-vet"
                   alt={produit.name}
                 ></img>
