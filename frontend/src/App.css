@@ -4,6 +4,7 @@
 
 body {
   font: small-caps 12px/30px Verdana;
+  font-display: swap;
 }
 
 .App-logo {

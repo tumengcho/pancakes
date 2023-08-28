@@ -157,6 +157,7 @@ export default function HomeScreen() {
                       loading="lazy"
                       src={produit.image + '.jpg'}
                       alt={produit.name}
+                      style={{ maxHeight: '175px' }}
                     ></img>
                     <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
                     <p>{produit.price}$</p>
