@@ -92,7 +92,7 @@ export default function HomeScreen() {
                 "<i class='fa fa-angle-right' style='background-color:white;'></i>",
               ]}
               responsive={{
-                0: { items: 2 },
+                0: { items: 2.7 },
                 576: { items: 3, margin: 50 },
               }}
             >
@@ -103,8 +103,12 @@ export default function HomeScreen() {
                 .map((produit) => (
                   <div>
                     <img
-                      src={produit.image}
-                      className="image-prod-shoes "
+                      loading="lazy"
+                      srcset={`${produit.image + '-small.jpg'} 200w, ${
+                        produit.image + '-large.jpg'
+                      } 469w`}
+                      style={{ maxHeight: '125px', minHeight: '100%' }}
+                      src={produit.image + '.jpg'}
                       alt={produit.name}
                     ></img>
                     <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
@@ -150,8 +154,8 @@ export default function HomeScreen() {
                 .map((produit) => (
                   <div>
                     <img
-                      src={produit.image}
-                      className="image-prod-vet"
+                      loading="lazy"
+                      src={produit.image + '.jpg'}
                       alt={produit.name}
                     ></img>
                     <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
@@ -166,8 +170,9 @@ export default function HomeScreen() {
         <Row className="my-5 px-4 py-5 align-items-center bg-light text-white container-fluid">
           <Col md={6}>
             <img
-              src="./Images/back2school.jpg"
-              className="img-fluid img-rounded"
+              loading="lazy"
+              srcSet="./Images/back2school-small.jpg 200w, ./Images/back2school-medium.jpg 763w,./Images/back2school-large.jpg 1126w,./Images/back2school-xlarge.jpg 1400w,"
+              className="img-rounded"
               alt="Back2School"
             ></img>
           </Col>
@@ -200,13 +205,21 @@ export default function HomeScreen() {
             className="d-inline me-2 mt-3"
             href="https://www.instagram.com/athlima_plug/"
           >
-            <img className="logo d-inline" src="./Images/insta.svg"></img>
+            <img
+              loading="lazy"
+              className="logo d-inline"
+              src="./Images/insta.svg"
+            ></img>
           </a>
           <a
             className="d-inline px-2"
             href="https://www.tiktok.com/@athlima_plug?_t=8f4J3qw27hm&_r=1"
           >
-            <img className="logo d-inline" src="./Images/tiktok.svg"></img>
+            <img
+              loading="lazy"
+              className="logo d-inline"
+              src="./Images/tiktok.svg"
+            ></img>
           </a>
         </div>
       </Container>

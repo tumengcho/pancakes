@@ -38,6 +38,7 @@ function App() {
               <Navbar.Brand>
                 <Link to="/">
                   <img
+                    loading="lazy"
                     src="/Images/athlima_logo.png"
                     alt="Athlima Plug"
                     className="img-logo"
@@ -134,6 +135,7 @@ function App() {
             <div class="flex flex-col flex-shrink-0">
               <div class="dark:text-white">
                 <img
+                  loading="lazy"
                   src="/Images/athlima_logo2.jpg"
                   alt="Athlima Plug"
                   className="img-logo"
