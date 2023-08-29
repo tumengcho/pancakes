@@ -126,6 +126,12 @@ nav {
   margin-top: 7%;
 }
 
+.btn-submit {
+  font: small-caps 13px/30px monospace;
+
+  letter-spacing: 2px;
+}
+
 .promo {
   height: 500px;
 }
@@ -134,6 +140,16 @@ nav {
   height: 900px;
   width: 100%;
   background-image: url('./Images/brand_image.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  margin-bottom: 100px;
+}
+
+.section2 {
+  height: 900px;
+  width: 100%;
+  background-image: url('./Images/about-image.jpg');
   background-size: cover;
   background-position: center;
   color: white;
@@ -149,6 +165,41 @@ nav {
   align-content: center;
   flex-direction: column;
   text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  row-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+}
+
+.grid-item1 {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  height: 460px;
+  width: auto;
+  background-image: url('./Images/grid-item1.jpg');
+  background-position: center;
+  background-size: cover;
+}
+.grid-item2 {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  height: 620px;
+  width: auto;
+  background-image: url('./Images/grid-item2.jpg');
+  background-position: center;
+  background-size: cover;
+}
+.grid-item3 {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  height: 460px;
+  width: auto;
+  background-image: url('./Images/grid-item3.jpg');
+  background-position: 50% 30%;
+  background-size: cover;
 }
 
 .description1 {
@@ -252,6 +303,18 @@ nav {
 }
 
 @media screen and (min-width: 768px) {
+  .grid-item1 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  .grid-item2 {
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+  .grid-item3 {
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
   .img-prod {
     height: 100px;
   }

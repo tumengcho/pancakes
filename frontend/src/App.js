@@ -9,6 +9,8 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Product from './screen/Product';
+import Contact from './screen/Contact';
+import Infos from './screen/Infos';
 
 function App() {
   const [show, setShow] = useState(false);
@@ -55,12 +57,21 @@ function App() {
                     style={{ color: '#000000' }}
                   ></i>
 
-                  <Offcanvas className='text-light' show={show} onHide={handleClose} placement="end">
+                  <Offcanvas
+                    className="text-light"
+                    show={show}
+                    onHide={handleClose}
+                    placement="end"
+                  >
                     <Offcanvas.Header closeButton>
                       <Offcanvas.Title className="d-flex position-relative w-100">
-                    <Link to="/signup" className='text-black' style={{ textDecoration: 'none' }}>
-                        
-                        <h1>SIGN UP</h1>{' '}
+                        <Link
+                          onClick={handleClose}
+                          to="/signup"
+                          className="text-black"
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <h1>SIGN UP</h1>{' '}
                         </Link>
 
                         <h1 className="position-absolute end-0">
@@ -69,26 +80,37 @@ function App() {
                             style={{ color: '#000000' }}
                           ></i>
                         </h1>
-
                       </Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body className="pt-5">
                       <div className="d-block mb-3 border border-2 border-dark border-top-0 border-end-0 border-start-0">
-                    <Link to="/infos" className='text-black' style={{ textDecoration: 'none' }}>
-                        
-                        <h1 className="fw-normal">INFOS</h1>
+                        <Link
+                          onClick={handleClose}
+                          to="/infos"
+                          className="text-black"
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <h1 className="fw-normal">INFOS</h1>
                         </Link>
                       </div>
                       <div className="d-block mb-3 border border-2 border-dark border-top-0 border-end-0 border-start-0">
-                    <Link to="/produits" className='text-black' style={{ textDecoration: 'none' }}>
-
-                        <h1 className="fw-normal">PRODUIT</h1>
+                        <Link
+                          onClick={handleClose}
+                          to="/produits"
+                          className="text-black"
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <h1 className="fw-normal">PRODUIT</h1>
                         </Link>
                       </div>
                       <div className="d-block">
-                    <Link to="/contact" className='text-black' style={{ textDecoration: 'none' }}>
-
-                        <h1 className="fw-normal">CONTACT</h1>
+                        <Link
+                          onClick={handleClose}
+                          to="/contact"
+                          className="text-black"
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <h1 className="fw-normal">CONTACT</h1>
                         </Link>
                       </div>
                     </Offcanvas.Body>
@@ -142,15 +164,18 @@ function App() {
           <Routes>
             <Route path="/" element={<HomeScreen />}></Route>
             <Route path="/produits" element={<Product />}></Route>
+            <Route path="/contact" element={<Contact />}></Route>
+            <Route path="/infos" element={<Infos />}></Route>
           </Routes>
         </div>
+
         <div class="mx-auto container-fluid mt-16 py-16 xl:px-20 lg:px-12 sm:px-6 px-4 bg-black text-white">
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 gap-4">
             <div class="flex flex-col flex-shrink-0">
               <div class="dark:text-white">
                 <img
                   loading="lazy"
-                  src="/Images/athlima_logo2.jpg"
+                  src="/Images/athlima_logo2.webp"
                   alt="Athlima Plug"
                   className="img-logo"
                 ></img>

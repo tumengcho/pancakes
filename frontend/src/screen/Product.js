@@ -40,7 +40,7 @@ export default function Product() {
               <Col xs={6} sm={4} md={3} className="mt-5">
                 <img
                   src={produit.image + '.webp'}
-                  className="img-prod-vet"
+                  className=""
                   alt={produit.name}
                 ></img>
                 <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
