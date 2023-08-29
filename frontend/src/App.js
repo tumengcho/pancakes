@@ -1,22 +1,38 @@
 import logo from './logo.svg';
-import './App.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import HomeScreen from './screen/HomeScreen';
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import { useContext, useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import Product from './screen/Product';
+import CartScreen from './screen/CartScreen';
+import SignInScreen from './screen/SignInScreen';
+import SignUpScreen from './screen/SignUpScreen';
+import ProductScreen from './screen/ProductScreen';
+import Product from './screen/ProductScreen';
 import Contact from './screen/Contact';
 import Infos from './screen/Infos';
+import './App.css';
+import { Store } from './Store';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { LinkContainer } from 'react-router-bootstrap';
 
 function App() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart, userInfo } = state;
+
+  const signoutHandler = () => {
+    ctxDispatch({ type: 'USER_SIGNOUT' });
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('shippingAddress');
+    localStorage.removeItem('paymentMethod');
+  };
 
   return (
     <BrowserRouter>
@@ -155,6 +171,31 @@ function App() {
                       ></i>
                     </Link>
                   </Nav.Item>
+                  <Nav.Item>
+                    {userInfo ? (
+                      <NavDropdown
+                        title={userInfo.name}
+                        id="basic-nav-dropdown"
+                      >
+                        <LinkContainer to="/profile">
+                          <NavDropdown.Item>User Profile</NavDropdown.Item>
+                        </LinkContainer>
+                        <LinkContainer to="/orderhistory">
+                          <NavDropdown.Item>Order History</NavDropdown.Item>
+                        </LinkContainer>
+                        <NavDropdown.Divider />
+                        <Link
+                          className="dropdown-item"
+                          to="#signout"
+                          onClick={signoutHandler}
+                        >
+                          Sign Out
+                        </Link>
+                      </NavDropdown>
+                    ) : (
+                      <></>
+                    )}
+                  </Nav.Item>
                 </Navbar>
               </div>
             </Navbar>
@@ -166,6 +207,10 @@ function App() {
             <Route path="/produits" element={<Product />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/infos" element={<Infos />}></Route>
+            <Route path="/cart" element={<CartScreen />} />
+            <Route path="/signin" element={<SignInScreen />} />
+            <Route path="/signup" element={<SignUpScreen />} />
+            <Route path="/products/:slug" element={<ProductScreen />} />
           </Routes>
         </div>
 

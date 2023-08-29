@@ -265,6 +265,13 @@ nav {
   max-width: 80px;
 }
 
+.signin-image {
+  height: 600px;
+  background-image: url('Images/sign-image.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
 @media screen and (min-width: 0px) {
   .image-prod-shoes {
     width: 100px;

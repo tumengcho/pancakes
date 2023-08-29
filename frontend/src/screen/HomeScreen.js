@@ -1,13 +1,47 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import data from '../data';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import 'owl.carousel/dist/owl.carousel.min.js';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import logger from 'use-reducer-logger';
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'FETCH_REQUEST':
+      return { ...state, loading: true };
+    case 'FETCH_SUCCESS':
+      return { ...state, products: action.payload, loading: false };
+    case 'FETCH_FAIL':
+      return { ...state, loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 export default function HomeScreen() {
+  const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
+    products: [],
+    loading: true,
+    error: '',
+  });
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch({ type: 'FETCH_REQUEST' });
+      try {
+        const result = await axios.get('/api/products');
+        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: err.message });
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <div>
       <div className="section1">
@@ -96,28 +130,34 @@ export default function HomeScreen() {
                 576: { items: 3, margin: 50 },
               }}
             >
-              {data.products
+              {products
                 .filter(
                   (produit) => produit.category === 'shoes' && produit.vedette
                 )
                 .map((produit) => (
-                  <div>
-                    <img
-                      loading="lazy"
-                      srcset={`${produit.image + '.webp'} 1x, ${
-                        produit.image + '.webp'
-                      } 2x`}
-                      style={{
-                        maxHeight: '120px',
-                        gridRow: 'image',
-                        height: 'auto',
-                      }}
-                      src={produit.image + '.webp'}
-                      alt={produit.name}
-                    ></img>
-                    <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
-                    <p>{produit.price}$</p>
-                  </div>
+                  <Link
+                    to={`/products/${produit.slug}`}
+                    className="text-black"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <div>
+                      <img
+                        loading="lazy"
+                        srcset={`${produit.image + '.webp'} 1x, ${
+                          produit.image + '.webp'
+                        } 2x`}
+                        style={{
+                          maxHeight: '120px',
+                          gridRow: 'image',
+                          height: 'auto',
+                        }}
+                        src={produit.image + '.webp'}
+                        alt={produit.name}
+                      ></img>
+                      <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
+                      <p>{produit.price}$</p>
+                    </div>
+                  </Link>
                 ))}
             </OwlCarousel>
           </Col>
@@ -151,21 +191,27 @@ export default function HomeScreen() {
                 576: { items: 3, margin: 50 },
               }}
             >
-              {data.products
+              {products
                 .filter(
                   (produit) => produit.category === 'clothes' && produit.vedette
                 )
                 .map((produit) => (
-                  <div>
-                    <img
-                      loading="lazy"
-                      src={produit.image + '.webp'}
-                      alt={produit.name}
-                      style={{ maxHeight: '175px' }}
-                    ></img>
-                    <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
-                    <p>{produit.price}$</p>
-                  </div>
+                  <Link
+                    to={`/products/${produit.slug}`}
+                    className="text-black"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <div>
+                      <img
+                        loading="lazy"
+                        src={produit.image + '.webp'}
+                        alt={produit.name}
+                        style={{ maxHeight: '175px' }}
+                      ></img>
+                      <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
+                      <p>{produit.price}$</p>
+                    </div>
+                  </Link>
                 ))}
             </OwlCarousel>
           </Col>
