@@ -78,7 +78,7 @@ export default function HomeScreen() {
           </Col>
           <Col md={9}>
             <OwlCarousel
-              className=" owl-carousel mt-3 px-md-5 px-3 container-fluid"
+              className=" owl-carousel mt-3 px-md-5  container-fluid"
               nav
               loop
               dots={false}
@@ -133,7 +133,7 @@ export default function HomeScreen() {
           </Col>
           <Col md={9}>
             <OwlCarousel
-              className=" owl-carousel mt-3 px-md-5 px-3 container-fluid"
+              className=" owl-carousel mt-3 px-md-5 px-md-3 container-fluid"
               loop
               nav
               dots={false}
@@ -147,7 +147,7 @@ export default function HomeScreen() {
                 "<i class='fa fa-angle-right' style='background-color:white;'></i>",
               ]}
               responsive={{
-                0: { items: 2.7 },
+                0: { items: 2 },
                 576: { items: 3, margin: 50 },
               }}
             >

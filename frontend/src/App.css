@@ -234,10 +234,7 @@ nav {
 .owl-carousel {
   position: relative;
 }
-.owl-item {
-  padding: 20px;
-  width: 136px;
-}
+
 .owl-next,
 .owl-prev {
   position: absolute;
@@ -303,6 +300,9 @@ nav {
 }
 
 @media screen and (min-width: 768px) {
+  .owl-item {
+    padding: 20px;
+  }
   .grid-item1 {
     grid-column-start: 1;
     grid-column-end: 3;
