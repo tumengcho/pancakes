@@ -10,45 +10,42 @@ export default function Infos() {
         <div className="sSection1 align-items-center">
           <Container>
             <h1 className="text-uppercase fs-1 fw-bold mb-2">
-              Par et pour des passionnés.
+              À propos de nous.
             </h1>
             <p className="description1 fs-sm-5  mb-3">
-              Commandez maintenant, livraison disponible partout au Canada.
+              D'un besoin à une nécessité.
             </p>
           </Container>
         </div>
       </div>
       <Container className="mb-5" style={{ maxWidth: '1000px' }}>
         <h1 className="fw-bold text-uppercase text-md-start text-sm-center fs-3 titre mb-1">
-          À propos de nous.
+          Notre Histoire
         </h1>
         <p className="description1 titre mb-5 fs-5-sm  fw-normal">
-          Nous avons créé Athlima Plug dans un seul et unique but, rendre
-          l'achat des chaussures plus facile
+          Découvrez nos motivations ainsi que l'histoire de notre entreprise.
         </p>
         <hr></hr>
         <Row className="mt-5">
           <Col md={6}>
             <p className="description1 titre fw-light px-2">
-              Notre parcours a été marqué par la recherche inlassable des
-              chaussures les plus élégantes et durables, reflétant les tendances
-              les plus actuelles. Chaque paire que nous proposons raconte une
-              histoire de qualité et de style. Nous comprenons l'importance de
-              se sentir bien dans ses chaussures, c'est pourquoi nous mettons
-              tout en œuvre pour que chaque achat soit une expérience
-              satisfaisante. Rejoignez-nous dans cette aventure de la mode
-              responsable et de l'élégance intemporelle.
+              Notre entreprise est née de la passion pour la chaussure et d'une
+              vision : offrir à chacun la chance de posséder des chaussures de
+              qualité exceptionnelle sans compromis. Nous croyons en la joie
+              d'une paire de chaussures parfaite et nous nous engageons à rendre
+              nos clients heureux en leur offrant des choix variés, un service
+              attentionné et une expérience de satisfaction inégalée.
             </p>
           </Col>
           <Col md={6}>
             <p className=" description1 titre fw-light px-2">
-              Fondée avec passion, notre entreprise de revente de chaussures
-              puise son inspiration dans l'amour du style individuel. Chaque
-              paire de chaussures raconte une histoire, façonnée par des
-              tendances et des aventures uniques. Notre engagement envers la
-              qualité, l'authenticité et la satisfaction du client nous guide
-              dans la création d'une expérience de shopping qui célèbre
-              l'unicité à chaque pas.
+              Chaque sourire sur le visage de nos clients est une récompense.
+              Nous comprenons que les chaussures ne sont pas seulement des
+              accessoires, mais des compagnons de chaque pas. C'est pourquoi
+              nous nous efforçons de dépasser les attentes, en offrant des
+              produits authentiques, des conseils avisés et un service
+              personnalisé. Votre bonheur est notre succès et nous sommes fiers
+              de vous accompagner à chaque pas de votre voyage.
             </p>
           </Col>
         </Row>

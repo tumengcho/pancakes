@@ -92,7 +92,7 @@ export default function HomeScreen() {
                 "<i class='fa fa-angle-right' style='background-color:white;'></i>",
               ]}
               responsive={{
-                0: { items: 2.5 },
+                0: { items: 2 },
                 576: { items: 3, margin: 50 },
               }}
             >
