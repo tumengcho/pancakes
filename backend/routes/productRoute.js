@@ -36,7 +36,7 @@ producRouter.post(
       name: req.body.name,
       slug: req.body.slug,
       description: req.body.description,
-      image: req.body.image,
+      image: req.body.Image,
       vedette: req.body.vedette,
       category: req.body.category,
       price: req.body.price,
