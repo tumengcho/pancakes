@@ -54,7 +54,7 @@ export default function SignInScreen() {
         <title>Sign In</title>
       </Helmet>
       <Row>
-        <Col md={5} className="signin-image d-md-grid d-sm-none"></Col>
+        <Col md={5} className="signin-image d-md-grid d-xs-none"></Col>
         <Col md={7} className="p-5">
           <h1 className="py-5 mt-5">Sign In</h1>
           <Form onSubmit={submitHandler}>

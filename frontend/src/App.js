@@ -10,13 +10,18 @@ import CartScreen from './screen/CartScreen';
 import SignInScreen from './screen/SignInScreen';
 import SignUpScreen from './screen/SignUpScreen';
 import ProductScreen from './screen/ProductScreen';
-import Product from './screen/ProductScreen';
+import Product from './screen/Products';
 import Contact from './screen/Contact';
 import Infos from './screen/Infos';
 import './App.css';
 import { Store } from './Store';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { LinkContainer } from 'react-router-bootstrap';
+import { UploadProduct } from './screen/UploadProduct';
+import AdminRoutes from './routes/AdminRoutes';
+import ProtectedRoute from './routes/ProtectedRoute';
+import ShippingScreen from './screen/ShippingScreen';
+import PaymentMethodScreen from './screen/PaymentMethodScreen';
 
 function App() {
   const [show, setShow] = useState(false);
@@ -178,11 +183,46 @@ function App() {
                         id="basic-nav-dropdown"
                       >
                         <LinkContainer to="/profile">
-                          <NavDropdown.Item>User Profile</NavDropdown.Item>
+                          <NavDropdown.Item>Profile</NavDropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to="/orderhistory">
-                          <NavDropdown.Item>Order History</NavDropdown.Item>
-                        </LinkContainer>
+
+                        {userInfo && userInfo.isAdmin ? (
+                          <div>
+                            <LinkContainer to="/admin/add">
+                              <NavDropdown.Item>
+                                Ajout Produits
+                              </NavDropdown.Item>
+                            </LinkContainer>
+
+                            <LinkContainer to="/admin/commandes">
+                              <NavDropdown.Item>
+                                Toutes les Commandes
+                              </NavDropdown.Item>
+                            </LinkContainer>
+
+                            <LinkContainer to="/admin/donnees">
+                              <NavDropdown.Item>Données</NavDropdown.Item>
+                            </LinkContainer>
+
+                            <LinkContainer to="/admin/products">
+                              <NavDropdown.Item>
+                                Tous les Produits
+                              </NavDropdown.Item>
+                            </LinkContainer>
+
+                            <LinkContainer to="/admin/users">
+                              <NavDropdown.Item>
+                                Tous les Clients
+                              </NavDropdown.Item>
+                            </LinkContainer>
+                          </div>
+                        ) : (
+                          <LinkContainer to="/orderhistory">
+                            <NavDropdown.Item>
+                              Historique de commandes
+                            </NavDropdown.Item>
+                          </LinkContainer>
+                        )}
                         <NavDropdown.Divider />
                         <Link
                           className="dropdown-item"
@@ -207,10 +247,42 @@ function App() {
             <Route path="/produits" element={<Product />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/infos" element={<Infos />}></Route>
-            <Route path="/cart" element={<CartScreen />} />
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute>
+                  <CartScreen />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/shipping"
+              element={
+                <ProtectedRoute>
+                  <ShippingScreen />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/payment"
+              element={
+                <ProtectedRoute>
+                  <PaymentMethodScreen />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/signin" element={<SignInScreen />} />
             <Route path="/signup" element={<SignUpScreen />} />
             <Route path="/products/:slug" element={<ProductScreen />} />
+            <Route
+              path="/admin/add"
+              element={
+                <AdminRoutes>
+                  <UploadProduct></UploadProduct>
+                </AdminRoutes>
+              }
+            ></Route>
           </Routes>
         </div>
 

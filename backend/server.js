@@ -8,7 +8,7 @@ import producRouter from './routes/productRoute.js';
 import userRouter from './routes/userRoutes.js';
 import expressAsyncHandler from 'express-async-handler';
 import orderRouter from './routes/orderRoutes.js';
-
+import fileUpload from 'express-fileupload';
 dotenv.config();
 
 mongoose
@@ -20,7 +20,7 @@ mongoose
     console.log(err.message);
   });
 const app = express();
-
+app.use(fileUpload());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -41,6 +41,23 @@ app.get('*', (req, res) =>
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
+});
+
+app.post('/upload', (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: 'No file uploaded' });
+  }
+
+  const file = req.files.file;
+
+  file.mv(`../frontend/public/Images/${file.name}`, (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+
+    res.json({ image: `/Images/${file.name}` });
+  });
 });
 
 const port = process.env.PORT || 5000;

@@ -35,7 +35,9 @@ export default function CartScreen() {
       <Helmet>
         <title>Shopping Cart</title>
       </Helmet>
-      <h1 className="text-center py-5 text-uppercase">Shopping Cart</h1>
+      <h1 className="text-center py-5 fs-4 titre text-uppercase">
+        Revue des articles
+      </h1>
       <Row style={{ paddingTop: '5%' }}>
         <Col md={8} className="mb-4">
           {cartItems.length === 0 ? (
@@ -51,9 +53,13 @@ export default function CartScreen() {
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="img-fluid rounded img-thumbnail"
+                        className="img-fluid rounded img-thumbnail pb-1 border-0"
                       />
-                      <Link className="lien" to={`/products/${item.slug}`}>
+                      <Link
+                        className="lien text-black fw-semibold"
+                        to={`/products/${item.slug}`}
+                        style={{ textDecoration: 'none' }}
+                      >
                         {item.name}
                       </Link>
                     </Col>
@@ -117,15 +123,15 @@ export default function CartScreen() {
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button
-                        style={{ backgroundColor: ' #adeb13' }}
+                      <button
                         type="button"
+                        className="btn-black bg-black text-white"
                         variant="primary"
                         disabled={cartItems.length === 0}
                         onClick={checkoutHandler}
                       >
-                        Proceed to Checkout
-                      </Button>
+                        <p className="btn-submit pt-1 fs-4">Continuer</p>
+                      </button>
                     </div>
                   </ListGroup.Item>
                 </ListGroup>

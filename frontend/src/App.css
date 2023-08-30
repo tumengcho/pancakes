@@ -265,6 +265,10 @@ nav {
   max-width: 80px;
 }
 
+.active {
+  border-bottom: black;
+}
+
 .signin-image {
   height: 600px;
   background-image: url('Images/sign-image.jpg');

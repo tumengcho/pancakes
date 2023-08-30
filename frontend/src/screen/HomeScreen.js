@@ -143,15 +143,13 @@ export default function HomeScreen() {
                     <div>
                       <img
                         loading="lazy"
-                        srcset={`${produit.image + '.webp'} 1x, ${
-                          produit.image + '.webp'
-                        } 2x`}
+                        srcset={`${produit.image} 1x, ${produit.image} 2x`}
                         style={{
                           maxHeight: '120px',
                           gridRow: 'image',
                           height: 'auto',
                         }}
-                        src={produit.image + '.webp'}
+                        src={produit.image}
                         alt={produit.name}
                       ></img>
                       <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
@@ -204,9 +202,10 @@ export default function HomeScreen() {
                     <div>
                       <img
                         loading="lazy"
-                        src={produit.image + '.webp'}
+                        srcset={`${produit.image} 1x, ${produit.image} 2x`}
+                        src={produit.image}
                         alt={produit.name}
-                        style={{ maxHeight: '175px' }}
+                        style={{ maxHeight: '200px' }}
                       ></img>
                       <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
                       <p>{produit.price}$</p>
@@ -222,7 +221,7 @@ export default function HomeScreen() {
           <Col md={6}>
             <img
               loading="lazy"
-              srcSet="./Images/back2school-small.webp 200w, ./Images/back2school-medium.webp 763w,./Images/back2school-large.webp 1126w,./Images/back2school-xlarge.webp 1400w,"
+              srcSet="./Images/back2school-small 200w, ./Images/back2school-medium 763w,./Images/back2school-large 1126w,./Images/back2school-xlarge 1400w,"
               className="img-rounded"
               alt="Back2School"
             ></img>

@@ -62,7 +62,7 @@ export default function SignUpScreen() {
         <title>Sign Up</title>
       </Helmet>
       <Row>
-        <Col md={5} className="signin-image d-md-grid d-sm-none"></Col>
+        <Col md={5} className="signin-image d-md-grid d-xs-none"></Col>
         <Col md={7} className="p-5">
           <Helmet>
             <title>Sign Up</title>

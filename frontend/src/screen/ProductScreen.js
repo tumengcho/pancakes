@@ -79,7 +79,7 @@ function ProductScreen() {
         <Col md={6}>
           <Card.Img
             variant="top"
-            src={product.image + '.webp'}
+            src={product.image}
             className="img-fluid rounded img-thumbnail border-0"
           />
         </Col>
