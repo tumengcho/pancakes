@@ -2,6 +2,7 @@ import express from 'express';
 import Product from '../models/productModel.js';
 import expressAsyncHandler from 'express-async-handler';
 import { v2 as cloudinary } from 'cloudinary';
+import { isAdmin, isAuth } from '../utils.js';
 
 const producRouter = express.Router();
 
@@ -9,6 +10,30 @@ producRouter.get('/', async (req, res) => {
   const burgers = await Product.find();
   res.send(burgers);
 });
+
+const PAGE_SIZE = 5;
+
+producRouter.get(
+  '/admin',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const { query } = req;
+    const page = query.page || 1;
+    const pageSize = query.pageSize || PAGE_SIZE;
+
+    const products = await Product.find()
+      .skip(pageSize * (page - 1))
+      .limit(pageSize);
+    const countProducts = await Product.countDocuments();
+    res.send({
+      products,
+      countProducts,
+      page,
+      pages: Math.ceil(countProducts / pageSize),
+    });
+  })
+);
 
 producRouter.get('/slug/:slug', async (req, res) => {
   if (req.params.slug) {

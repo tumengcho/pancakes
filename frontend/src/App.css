@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+html {
+  width: 100%;
+}
+
 body {
   font: small-caps 12px/30px Verdana;
   font-display: swap;

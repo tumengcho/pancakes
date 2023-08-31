@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,6 +12,8 @@ import ProductScreen from './screen/ProductScreen';
 import Product from './screen/Products';
 import Contact from './screen/Contact';
 import Infos from './screen/Infos';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import { Store } from './Store';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -22,6 +23,13 @@ import AdminRoutes from './routes/AdminRoutes';
 import ProtectedRoute from './routes/ProtectedRoute';
 import ShippingScreen from './screen/ShippingScreen';
 import PaymentMethodScreen from './screen/PaymentMethodScreen';
+import DataScreen from './screen/DataScreen';
+import PlaceOrderScreen from './screen/PlaceOrder';
+import ProductListScreen from './screen/ProductListItem';
+import UserListScreen from './screen/UserList';
+import OrderListScreen from './screen/OrderItemList';
+import ProfileScreen from './screen/UserProfileScreen';
+import OrderHistoryScreen from './screen/OrderHistory';
 
 function App() {
   const [show, setShow] = useState(false);
@@ -42,6 +50,8 @@ function App() {
   return (
     <BrowserRouter>
       <div>
+        <ToastContainer position="bottom-center" limit={1} />
+
         <div className="annonce">
           <Container className="text-center pt-md-2 pt-0 px-3 ">
             <div>
@@ -86,21 +96,74 @@ function App() {
                   >
                     <Offcanvas.Header closeButton>
                       <Offcanvas.Title className="d-flex position-relative w-100">
-                        <Link
-                          onClick={handleClose}
-                          to="/signup"
-                          className="text-black"
-                          style={{ textDecoration: 'none' }}
-                        >
-                          <h1>SIGN UP</h1>{' '}
-                        </Link>
+                        {userInfo ? (
+                          <NavDropdown
+                            className="text-black"
+                            title={userInfo.name}
+                            id="basic-nav-dropdown"
+                          >
+                            <LinkContainer to="/profile">
+                              <NavDropdown.Item>Profile</NavDropdown.Item>
+                            </LinkContainer>
 
-                        <h1 className="position-absolute end-0">
-                          <i
-                            class="fa-solid fa-circle-user fa-lg"
-                            style={{ color: '#000000' }}
-                          ></i>
-                        </h1>
+                            {userInfo && userInfo.isAdmin ? (
+                              <div>
+                                <LinkContainer to="/admin/add">
+                                  <NavDropdown.Item>
+                                    Ajout Produits
+                                  </NavDropdown.Item>
+                                </LinkContainer>
+
+                                <LinkContainer to="/admin/commandes">
+                                  <NavDropdown.Item>
+                                    Toutes les Commandes
+                                  </NavDropdown.Item>
+                                </LinkContainer>
+
+                                <LinkContainer to="/admin/donnees">
+                                  <NavDropdown.Item>Données</NavDropdown.Item>
+                                </LinkContainer>
+
+                                <LinkContainer to="/admin/products">
+                                  <NavDropdown.Item>
+                                    Tous les Produits
+                                  </NavDropdown.Item>
+                                </LinkContainer>
+
+                                <LinkContainer to="/admin/users">
+                                  <NavDropdown.Item>
+                                    Tous les Clients
+                                  </NavDropdown.Item>
+                                </LinkContainer>
+                              </div>
+                            ) : (
+                              <LinkContainer to="/orderhistory">
+                                <NavDropdown.Item>
+                                  Historique de commandes
+                                </NavDropdown.Item>
+                              </LinkContainer>
+                            )}
+                          </NavDropdown>
+                        ) : (
+                          <>
+                            <NavDropdown.Divider />
+                            <Link
+                              onClick={handleClose}
+                              to="/signin"
+                              className="text-black"
+                              style={{ textDecoration: 'none' }}
+                            >
+                              <h1>SIGN UP</h1>{' '}
+                            </Link>
+
+                            <h1 className="position-absolute end-0">
+                              <i
+                                class="fa-solid fa-circle-user fa-lg"
+                                style={{ color: '#000000' }}
+                              ></i>
+                            </h1>
+                          </>
+                        )}
                       </Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body className="pt-5">
@@ -256,10 +319,27 @@ function App() {
               }
             />
             <Route
+              path="/placeorder"
+              element={
+                <ProtectedRoute>
+                  <PlaceOrderScreen />
+                </ProtectedRoute>
+              }
+            />
+            <Route
               path="/shipping"
               element={
                 <ProtectedRoute>
                   <ShippingScreen />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/orderhistory"
+              element={
+                <ProtectedRoute>
+                  <OrderHistoryScreen />
                 </ProtectedRoute>
               }
             />
@@ -272,6 +352,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <ProfileScreen />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/signin" element={<SignInScreen />} />
             <Route path="/signup" element={<SignUpScreen />} />
             <Route path="/products/:slug" element={<ProductScreen />} />
@@ -280,6 +368,38 @@ function App() {
               element={
                 <AdminRoutes>
                   <UploadProduct></UploadProduct>
+                </AdminRoutes>
+              }
+            ></Route>
+            <Route
+              path="/admin/products"
+              element={
+                <AdminRoutes>
+                  <ProductListScreen />
+                </AdminRoutes>
+              }
+            ></Route>
+            <Route
+              path="/admin/users"
+              element={
+                <AdminRoutes>
+                  <UserListScreen />
+                </AdminRoutes>
+              }
+            ></Route>
+            <Route
+              path="/admin/commandes"
+              element={
+                <AdminRoutes>
+                  <OrderListScreen />
+                </AdminRoutes>
+              }
+            ></Route>
+            <Route
+              path="/admin/donnees"
+              element={
+                <AdminRoutes>
+                  <DataScreen></DataScreen>
                 </AdminRoutes>
               }
             ></Route>
