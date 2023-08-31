@@ -46,9 +46,7 @@ export default function Products() {
         <Row className="mb-5">
           <h2 className="titre fs-6 fw-semibold">Souliers</h2>
           {products
-            .filter(
-              (produit) => produit.category === 'shoes' && produit.vedette
-            )
+            .filter((produit) => produit.category === 'shoes')
             .map((produit) => (
               <Col xs={6} sm={4} md={3} className="mt-5">
                 {loading ? (
@@ -83,9 +81,7 @@ export default function Products() {
         <Row className="mt-5">
           <h2 className="titre fs-6 fw-semibold ">Vétements</h2>
           {products
-            .filter(
-              (produit) => produit.category === 'clothes' && produit.vedette
-            )
+            .filter((produit) => produit.category === 'clothes')
             .map((produit) => (
               <Col xs={6} sm={4} md={3} className="mt-5">
                 {loading ? (

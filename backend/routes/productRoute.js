@@ -1,6 +1,7 @@
 import express from 'express';
 import Product from '../models/productModel.js';
 import expressAsyncHandler from 'express-async-handler';
+import { v2 as cloudinary } from 'cloudinary';
 
 const producRouter = express.Router();
 
@@ -32,18 +33,38 @@ producRouter.get('/:id', async (req, res) => {
 producRouter.post(
   '/add',
   expressAsyncHandler(async (req, res) => {
-    const newProduct = new Product({
-      name: req.body.name,
-      slug: req.body.slug,
-      description: req.body.description,
-      image: req.body.Image,
-      vedette: req.body.vedette,
-      category: req.body.category,
-      price: req.body.price,
-    });
-    const product = await newProduct.save();
+    const { image, name, description, slug, vedette, category, price } =
+      req.body;
 
-    res.send('bien');
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+    try {
+      const cloudImage = cloudinary.uploader.upload(image, {
+        public_id: slug,
+        upload_preset: 'ml_default',
+      });
+
+      console.log((await cloudImage).secure_url);
+
+      const newProduct = new Product({
+        name: name,
+        slug: slug,
+        description: description,
+        image: `${(await cloudImage).secure_url}`,
+        vedette: vedette,
+        category: category,
+        price: price,
+      });
+
+      const product = await newProduct.save();
+
+      console.log(cloudImage);
+    } catch (error) {
+      console.log(error);
+    }
   })
 );
 

@@ -17,22 +17,21 @@ export const UploadProduct = () => {
   const onChange = (e) => {
     setFile(e.target.files[0]);
     setImage(e.target.files[0].name);
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      setImage(reader.result);
+    };
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('file', file);
+    if (!image) {
+      console.log('noo');
+      return;
+    }
+
     try {
-      const res = await axios.post('/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      const { image } = res.data;
-
-      setUploadedFile({ image });
-
       const test = await axios.post('/api/products/add', {
         name,
         slug,
@@ -126,14 +125,8 @@ export const UploadProduct = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="customFile">
           <Form.Label>Image</Form.Label>
-          <Form.Control
-            type="file"
-            required
-            onChange={(e) => {
-              setFile(e.target.files[0]);
-              setImage(e.target.files[0].name);
-            }}
-          />
+          <Form.Control type="file" required onChange={onChange} />
+          <img src={image}></img>
         </Form.Group>
         <input
           type="submit"
@@ -141,7 +134,6 @@ export const UploadProduct = () => {
           className="btn btn-primary btn-block mt-4"
         />
       </Form>
-      {console.log(category)}
     </Container>
   );
 };

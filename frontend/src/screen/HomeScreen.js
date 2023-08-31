@@ -24,7 +24,6 @@ const reducer = (state, action) => {
 };
 
 export default function HomeScreen() {
-  console.log(__dirname);
   const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
     products: [],
     loading: true,
