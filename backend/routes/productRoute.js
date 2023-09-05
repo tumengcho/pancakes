@@ -35,6 +35,149 @@ producRouter.get(
   })
 );
 
+producRouter.post(
+  '/add',
+  expressAsyncHandler(async (req, res) => {
+    const { image, images, name, description, slug, vedette, category, price } =
+      req.body;
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+    try {
+      const cloudImage = cloudinary.uploader.upload(image, {
+        public_id: slug,
+        upload_preset: 'ml_default',
+      });
+
+      let id = 0;
+      const Images = [];
+      if (images.length !== 0) {
+        for (let index = 0; index < images.length; index++) {
+          const element = images[index];
+          const upload = async () => {
+            try {
+              const img = cloudinary.uploader.upload(element, {
+                public_id: id + 1,
+                upload_preset: 'ml_default',
+              });
+              id = id + 1;
+              Images.push((await img).secure_url);
+              if (Images.length === images.length) {
+                const newProduct = new Product({
+                  name: name,
+                  slug: slug,
+                  description: description,
+                  image: `${(await cloudImage).secure_url}`,
+                  images: Images,
+                  vedette: vedette,
+                  category: category,
+                  price: price,
+                });
+
+                const product = await newProduct.save();
+              }
+            } catch (error) {}
+          };
+          upload();
+        }
+        res.send({ message: 'success' });
+      } else {
+        const newProduct = new Product({
+          name: name,
+          slug: slug,
+          description: description,
+          image: `${(await cloudImage).secure_url}`,
+          images: Images,
+          vedette: vedette,
+          category: category,
+          price: price,
+        });
+
+        const product = await newProduct.save();
+        res.send({ message: 'Product creation success' });
+      }
+
+      console.log(cloudImage);
+    } catch (error) {
+      console.log(error);
+    }
+  })
+);
+producRouter.put(
+  '/:id',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const productId = req.params.id;
+    const product = await Product.findById(productId);
+    const {
+      name,
+      images,
+      image,
+      newImages,
+      category,
+      slug,
+      price,
+      description,
+    } = req.body;
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+    if (product) {
+      const cloudImage = cloudinary.uploader.upload(image, {
+        public_id: slug,
+        upload_preset: 'ml_default',
+      });
+      const Images = [];
+      if (newImages.length !== 0) {
+        for (let index = 0; index < newImages.length; index++) {
+          const element = newImages[index];
+          const upload = async () => {
+            try {
+              const img = cloudinary.uploader.upload(element, {
+                public_id: slug + `${Math.round(Math.random() * 100)}`,
+                upload_preset: 'ml_default',
+              });
+              Images.push((await img).secure_url);
+              if (Images.length === newImages.length) {
+                const images1 = [...images, ...Images];
+                product.name = name;
+                product.slug = slug;
+                product.price = price;
+                product.image = `${(await cloudImage).secure_url}`;
+                product.images = images1;
+                product.category = category;
+                product.description = description;
+                await product.save();
+                res.send({ message: 'Product Updated' });
+              }
+            } catch (error) {
+              console.log(error);
+            }
+          };
+          upload();
+        }
+      } else {
+        product.name = name;
+        product.slug = slug;
+        product.price = price;
+        product.image = `${(await cloudImage).secure_url}`;
+        product.images = images;
+        product.category = category;
+        product.description = description;
+        await product.save();
+        res.send({ message: 'Product Updated' });
+      }
+    } else {
+      res.status(404).send({ message: 'Product Not Found' });
+    }
+  })
+);
+
 producRouter.get('/slug/:slug', async (req, res) => {
   if (req.params.slug) {
     const burger = await Product.findOne({ slug: req.params.slug });
@@ -54,43 +197,5 @@ producRouter.get('/:id', async (req, res) => {
     res.status(404).send({ message: 'Product not Found' });
   }
 });
-
-producRouter.post(
-  '/add',
-  expressAsyncHandler(async (req, res) => {
-    const { image, name, description, slug, vedette, category, price } =
-      req.body;
-
-    cloudinary.config({
-      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-      api_key: process.env.CLOUDINARY_API_KEY,
-      api_secret: process.env.CLOUDINARY_API_SECRET,
-    });
-    try {
-      const cloudImage = cloudinary.uploader.upload(image, {
-        public_id: slug,
-        upload_preset: 'ml_default',
-      });
-
-      console.log((await cloudImage).secure_url);
-
-      const newProduct = new Product({
-        name: name,
-        slug: slug,
-        description: description,
-        image: `${(await cloudImage).secure_url}`,
-        vedette: vedette,
-        category: category,
-        price: price,
-      });
-
-      const product = await newProduct.save();
-
-      console.log(cloudImage);
-    } catch (error) {
-      console.log(error);
-    }
-  })
-);
 
 export default producRouter;

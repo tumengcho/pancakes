@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Store } from '../Store';
 import CheckoutSteps from '../components/CheckoutSteps';
+import Container from 'react-bootstrap/esm/Container';
 
 export default function ShippingScreen() {
   const navigate = useNavigate();
@@ -54,66 +55,169 @@ export default function ShippingScreen() {
   };
 
   return (
-    <div>
+    <div className="mb-5 pb-5">
       <Helmet>
         <title>Shipping Adress</title>
       </Helmet>
       <div className="container pt-5">
         <CheckoutSteps step1 step2></CheckoutSteps>
       </div>
-      <div className="container" style={{ maxWidth: '600px' }}>
-        <h1 className="py-5">Shipping Address</h1>
-        <Form onSubmit={submitHandler}>
-          <Form.Group className="mb-3" controlId="fullName">
-            <Form.Label>Full Name</Form.Label>
-            <Form.Control
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="address">
-            <Form.Label>Address</Form.Label>
-            <Form.Control
-              value={address}
-              onChange={(e) => setAdress(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="city">
-            <Form.Label>City</Form.Label>
-            <Form.Control
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="postalCode">
-            <Form.Label>Postal Code</Form.Label>
-            <Form.Control
-              value={postalCode}
-              onChange={(e) => setPostalCode(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="country">
-            <Form.Label>Country</Form.Label>
-            <Form.Control
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <div className="mt-3">
-            <button
-              className="w-100 mt-4 bg-black text-white"
-              variant="primary"
-              type="submit"
-            >
-              <p className="btn-submit fs-5 pt-1">Continue</p>
-            </button>
+
+      <h1 className="py-5 text-center">Shipping Address</h1>
+      <div
+        class="row mt-3  py-5 w-100 gradient-custom"
+        style={{ marginTop: '25px' }}
+      >
+        <div class="col-md-3">
+          <div
+            style={{ marginTop: '50px', marginLeft: '10px;' }}
+            class="text-center"
+          >
+            <i
+              id="animationDemo"
+              data-mdb-animation="slide-right"
+              data-mdb-toggle="animation"
+              data-mdb-animation-reset="true"
+              data-mdb-animation-start="onScroll"
+              data-mdb-animation-on-scroll="repeat"
+              class="fas fa-3x fa-shipping-fast text-white"
+            ></i>
+            <h3 class="mt-3 text-white">Welcome</h3>
+            <p class="white-text">
+              You are 30 seconds away from compleating your order!
+            </p>
           </div>
-        </Form>
+          <div class="text-center mb-4">
+            <Link to="/produits">
+              <button
+                type="submit"
+                class="btn btn-white btn-rounded text-white back-button"
+              >
+                Go back
+              </button>
+            </Link>
+          </div>
+        </div>
+        <div class="col-md-9 justify-content-center">
+          <div
+            class="card pb-4"
+            style={{
+              borderBottomLeftRadius: '10% 50%',
+              borderTopLeftRadius: '10% 50%',
+            }}
+          >
+            <div class="card-body mt-0 mx-5">
+              <div class="text-center mb-3 pb-2 mt-3">
+                <h4>Delivery Details</h4>
+              </div>
+
+              <form class="mb-0" onSubmit={submitHandler}>
+                <div class="row mb-4">
+                  <div class="col">
+                    <div class="form-outline">
+                      <input
+                        type="text"
+                        id="FirstName"
+                        class="form-control input-custom"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        required
+                      />
+                      <label class="form-label" for="FirstName">
+                        Full Name
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-outline">
+                      <input
+                        type="text"
+                        id="Country"
+                        class="form-control input-custom"
+                        value={address}
+                        onChange={(e) => setAdress(e.target.value)}
+                        required
+                      />
+                      <label class="form-label" for="Country">
+                        Country
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <div class="col">
+                    <div class="form-outline">
+                      <input
+                        type="text"
+                        id="city"
+                        class="form-control input-custom"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        required
+                      />
+                      <label class="form-label" for="city">
+                        City
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-outline">
+                      <input
+                        type="text"
+                        id="postalCode"
+                        class="form-control input-custom"
+                        value={postalCode}
+                        onChange={(e) => setPostalCode(e.target.value)}
+                        required
+                      />
+                      <label class="form-label" for="postalCode">
+                        Postal Code
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <div class="col">
+                    <div class="form-outline">
+                      <input
+                        type="text"
+                        id="address"
+                        class="form-control input-custom"
+                        value={address}
+                        onChange={(e) => setAdress(e.target.value)}
+                        required
+                      />
+                      <label class="form-label" for="address">
+                        Address
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-outline">
+                      <input
+                        type="email"
+                        id="typeEmail"
+                        class="form-control input-custom"
+                        placeholder="Optionnal"
+                      />
+                      <label class="form-label" for="typeEmail">
+                        Email
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="w-100 ">
+                  <button type="submit" class="p-0 w-100  bg-black">
+                    <p className="btn-submit text-white fs-6 pt-2">
+                      Place Order
+                    </p>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -30,6 +30,7 @@ import UserListScreen from './screen/UserList';
 import OrderListScreen from './screen/OrderItemList';
 import ProfileScreen from './screen/UserProfileScreen';
 import OrderHistoryScreen from './screen/OrderHistory';
+import ProductEditScreen from './screen/ProductEdit';
 
 function App() {
   const [show, setShow] = useState(false);
@@ -400,6 +401,14 @@ function App() {
               element={
                 <AdminRoutes>
                   <DataScreen></DataScreen>
+                </AdminRoutes>
+              }
+            ></Route>
+            <Route
+              path="/admin/product/:id"
+              element={
+                <AdminRoutes>
+                  <ProductEditScreen></ProductEditScreen>
                 </AdminRoutes>
               }
             ></Route>

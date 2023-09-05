@@ -12,6 +12,7 @@ import { getError } from '../utils';
 import { Store } from '../Store';
 import CheckoutSteps from '../components/CheckoutSteps';
 import LoadingBox from '../components/LoadingBox';
+import Container from 'react-bootstrap/esm/Container';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -82,12 +83,12 @@ export default function PlaceOrderScreen() {
   }, [cart, navigate]);
 
   return (
-    <div>
+    <Container className="my-5 pb-5">
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
       <Helmet>
         <title>Preview Order</title>
       </Helmet>
-      <h1 className="my-3">Preview Order</h1>
+      <h1 className="my-5">Preview Order</h1>
       <Row>
         <Col md={8}>
           <Card className="mb-3">
@@ -116,7 +117,7 @@ export default function PlaceOrderScreen() {
           <Card className="mb-3">
             <Card.Body>
               <Card.Title>Items</Card.Title>
-              <ListGroup variant="flush">
+              <ListGroup className="mb-3" variant="flush">
                 {cart.cartItems.map((item) => (
                   <ListGroup.Item key={item._id}>
                     <Row className="align-items-center">
@@ -124,14 +125,24 @@ export default function PlaceOrderScreen() {
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="img-fluid rounded img-thumbnail"
+                          className="img-fluid border border-0 rounded img-thumbnail"
                         ></img>{' '}
-                        <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                        <Link
+                          to={`/product/${item.slug}`}
+                          className="text-black"
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <p className="fw-normal">{item.name}</p>
+                        </Link>
                       </Col>
                       <Col md={3}>
-                        <span>{item.quantity}</span>
+                        <span>
+                          <b>Quantité: </b> {item.quantity}
+                        </span>
                       </Col>
-                      <Col md={3}>${item.price}</Col>
+                      <Col md={3}>
+                        <b>Prix: </b> {item.price}$
+                      </Col>
                     </Row>
                   </ListGroup.Item>
                 ))}
@@ -175,13 +186,14 @@ export default function PlaceOrderScreen() {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <div className="d-grid">
-                    <Button
+                    <button
                       type="button"
+                      className="text-white bg-black"
                       onClick={placeOrderHandler}
                       disabled={cart.cartItems.length === 0}
                     >
-                      Place Order
-                    </Button>
+                      <p className="btn-submit mt-2 ">Commander</p>
+                    </button>
                   </div>
                   {loading && <LoadingBox></LoadingBox>}
                 </ListGroup.Item>
@@ -190,6 +202,6 @@ export default function PlaceOrderScreen() {
           </Card>
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 }

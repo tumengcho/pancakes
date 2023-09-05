@@ -9,6 +9,7 @@ import userRouter from './routes/userRoutes.js';
 import expressAsyncHandler from 'express-async-handler';
 import orderRouter from './routes/orderRoutes.js';
 import fileUpload from 'express-fileupload';
+import uploadRouter from './routes/uploadRoute.js';
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use('/api/seed', seedRouter);
 app.use('/api/products', producRouter);
 app.use('/api/users', userRouter);
 app.use('/api/orders', orderRouter);
+app.use('/api/upload', uploadRouter);
 
 const _dirname = path.resolve();
 app.use(express.static(path.join(_dirname, '/frontend/build')));

@@ -48,8 +48,8 @@ export default function CartScreen() {
             <ListGroup>
               {cartItems.map((item) => (
                 <ListGroup.Item className="py-5 my-1" key={item._id}>
-                  <Row className="align-items-center">
-                    <Col className="text-center" md={4}>
+                  <Row className="align-items-center ps-4">
+                    <Col className="text-center mb-md-0 mb-sm-3" md={3}>
                       <img
                         src={item.image}
                         alt={item.name}
@@ -63,41 +63,48 @@ export default function CartScreen() {
                         {item.name}
                       </Link>
                     </Col>
-                    <Col xs={3}>
+                    <Col xs={2}>
                       <div className="row align-items-center">
-                        <Button
-                          className="col-4"
-                          variant="light"
+                        <button
+                          disabled={item.quantity === 1}
                           onClick={() =>
                             updateCartHandler(item, item.quantity - 1)
                           }
-                          disabled={item.quantity === 1}
+                          className="p-0"
+                          style={{ width: 'fit-content' }}
                         >
-                          <i class="fa-solid fa-circle-minus"></i>
-                        </Button>
-                        <span className="col-4">{item.quantity}</span>
-                        <Button
-                          className="col-4"
-                          variant="light"
+                          <i class="col-4 fa-solid fa-circle-minus"></i>
+                        </button>
+
+                        <span className="col-4 text-center">
+                          {item.quantity}
+                        </span>
+
+                        <button
+                          disabled={item.quantity === 10}
                           onClick={() =>
                             updateCartHandler(item, item.quantity + 1)
                           }
-                          disabled={item.quantity === 10}
+                          className="p-0"
+                          style={{ width: 'fit-content' }}
                         >
-                          <i class="fa-solid fa-circle-plus"></i>
-                        </Button>
+                          <i class="col-4 fa-solid fa-circle-plus"></i>
+                        </button>
                       </div>
                     </Col>
-                    <Col md={3} xs={6} className="text-center">
+                    <Col xs={3} className="text-center">
+                      Taille: {item.taille}
+                    </Col>
+                    <Col md={2} xs={4} className="text-center">
                       {item.price}$
                     </Col>
                     <Col xs={2}>
-                      <Button
-                        variant="light"
-                        onClick={() => removeItemHandler(item)}
-                      >
-                        <i className="fas fa-trash"></i>
-                      </Button>
+                      <button className="p-0">
+                        <i
+                          className="fas fa-trash"
+                          onClick={() => removeItemHandler(item)}
+                        ></i>
+                      </button>
                     </Col>
                   </Row>
                 </ListGroup.Item>

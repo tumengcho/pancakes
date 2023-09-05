@@ -1,12 +1,16 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useReducer, useState } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
+import Row from 'react-bootstrap/esm/Row';
+import { getError } from '../utils';
+import logger from 'use-reducer-logger';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export const UploadProduct = () => {
-  const [file, setFile] = useState('');
-  const [image, setImage] = useState('Choose file');
-  const [uploadedFile, setUploadedFile] = useState({});
+  const [image, setImage] = useState('');
+  const [images, setImages] = useState([]);
   const [name, setName] = useState('');
   const [slug, setSlug] = useState('');
   const [description, setDescription] = useState('');
@@ -14,14 +18,49 @@ export const UploadProduct = () => {
   const [category, setCategory] = useState('');
   const [vedette, setVedette] = useState(false);
 
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+  const navigate = useNavigate();
+
+  const uploadImage = async (file) => {
+    const base64 = await convertBase64(file);
+
+    document.getElementById('product_photo_1_result').innerHTML +=
+      '<div class="col-3"><img src="' +
+      base64 +
+      '" id="product_photo_1[]" /></div>';
+  };
+
   const onChange = (e) => {
-    setFile(e.target.files[0]);
-    setImage(e.target.files[0].name);
     const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {
       setImage(reader.result);
     };
+    let files = e.target.files;
+    const Images = [];
+    for (let index = 1; index < files.length; index++) {
+      uploadImage(files[index]);
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[index]);
+      reader.onload = () => {
+        Images.push(reader.result);
+      };
+    }
+    setImages(Images);
   };
 
   const onSubmit = async (e) => {
@@ -38,9 +77,12 @@ export const UploadProduct = () => {
         description,
         price,
         image,
+        images,
         vedette,
         category,
       });
+      toast.success('Produit créé avec succés');
+      navigate('/produits');
 
       console.log(test);
     } catch (err) {
@@ -107,9 +149,12 @@ export const UploadProduct = () => {
             aria-label="Default select example"
             onChange={(e) => {
               setCategory(e.target.value);
+              console.log(category);
             }}
           >
-            <option value="">Choisis une Category</option>
+            <option value="" selected>
+              Choisis une Category
+            </option>
             <option value="shoes">Souliers</option>
             <option value="clothes">Vetement</option>
           </Form.Select>
@@ -125,8 +170,15 @@ export const UploadProduct = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="customFile">
           <Form.Label>Image</Form.Label>
-          <Form.Control type="file" required onChange={onChange} />
+          <Form.Control
+            type="file"
+            multiple="multiple"
+            required
+            onChange={onChange}
+          />
           <img src={image}></img>
+          <div className="row" id="product_photo_1_result"></div>
+          {console.log(images)}
         </Form.Group>
         <input
           type="submit"

@@ -11,19 +11,8 @@ body {
   font-display: swap;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 a {
   text-decoration: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -254,6 +243,10 @@ nav {
   left: 0;
   display: flex;
 }
+.owl-stage {
+  display: flex;
+  align-items: center;
+}
 .btn-section {
   width: fit-content;
   height: fit-content;
@@ -280,6 +273,45 @@ nav {
   background-size: cover;
 }
 
+.size {
+  width: 100%;
+  max-height: 400px;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  column-gap: 5px;
+  row-gap: 10px;
+}
+
+.size input {
+  border: black 1px solid;
+  height: 100%;
+}
+.gradient-custom {
+  background: -webkit-linear-gradient(left, #12100e, #2b4162);
+}
+
+.card-custom {
+  border-bottom-left-radius: 50%;
+  border-top-left-radius: 50%;
+  background-color: #f8f9fa;
+}
+
+.input-custom {
+  background-color: white;
+}
+
+.white-text {
+  color: hsl(52, 0%, 98%);
+  font-weight: 100;
+  font-size: 14px;
+}
+
+.back-button {
+  background-color: hsl(52, 0%, 98%);
+  font-weight: 700;
+  color: black;
+  margin-top: 50px;
+}
 @media screen and (min-width: 0px) {
   .image-prod-shoes {
     width: 100px;
