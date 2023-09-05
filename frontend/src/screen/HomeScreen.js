@@ -9,7 +9,7 @@ import 'owl.carousel/dist/owl.carousel.min.js';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import logger from 'use-reducer-logger';
-
+import LoadingBox from '../components/LoadingBox';
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
@@ -111,7 +111,8 @@ export default function HomeScreen() {
             </div>
           </Col>
           <Col md={9}>
-            <OwlCarousel
+            {loading?(<LoadingBox></LoadingBox>):(
+              <OwlCarousel
               className=" owl-carousel mt-3 px-md-5  container-fluid"
               nav
               loop
@@ -158,6 +159,7 @@ export default function HomeScreen() {
                   </Link>
                 ))}
             </OwlCarousel>
+            )}
           </Col>
         </Row>
         <Row>
@@ -170,7 +172,7 @@ export default function HomeScreen() {
             </div>
           </Col>
           <Col md={9}>
-            <OwlCarousel
+            {loading?<LoadingBox></LoadingBox>:(<OwlCarousel
               className=" owl-carousel mt-3 px-md-5 px-md-3 container-fluid"
               loop
               nav
@@ -212,7 +214,7 @@ export default function HomeScreen() {
                     </div>
                   </Link>
                 ))}
-            </OwlCarousel>
+            </OwlCarousel>)}
           </Col>
         </Row>
       </Container>
