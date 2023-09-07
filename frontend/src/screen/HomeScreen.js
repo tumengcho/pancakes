@@ -103,7 +103,7 @@ export default function HomeScreen() {
       <Container>
         <Row className="mb-5 w-100" style={{ minHeight: '150px' }}>
           <Col md={3} className="d-flex text-center align-items-center">
-            <div>
+            <div className="w-100">
               <h1 className="fs-3 btn-submit fw-bold text-black text-uppercase">
                 Souliers
               </h1>
@@ -168,7 +168,7 @@ export default function HomeScreen() {
         </Row>
         <Row>
           <Col md={3} className="d-flex text-center align-items-center ">
-            <div>
+            <div className="w-100">
               <h1 className="fs-3 btn-submit fw-bold text-black text-uppercase">
                 Vêtements
               </h1>
