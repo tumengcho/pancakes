@@ -64,19 +64,19 @@ export default function CartScreen() {
                       </Link>
                     </Col>
                     <Col xs={2}>
-                      <div className="row align-items-center">
+                      <div className="row  align-items-center ">
                         <button
                           disabled={item.quantity === 1}
                           onClick={() =>
                             updateCartHandler(item, item.quantity - 1)
                           }
-                          className="p-0"
+                          className="p-0 col-4"
                           style={{ width: 'fit-content' }}
                         >
-                          <i class="col-4 fa-solid fa-circle-minus"></i>
+                          <i class="fa-solid fa-circle-minus"></i>
                         </button>
 
-                        <span className="col-4 text-center">
+                        <span className="col-4 p-0 text-center">
                           {item.quantity}
                         </span>
 
@@ -85,10 +85,10 @@ export default function CartScreen() {
                           onClick={() =>
                             updateCartHandler(item, item.quantity + 1)
                           }
-                          className="p-0"
+                          className="p-0 col-4"
                           style={{ width: 'fit-content' }}
                         >
-                          <i class="col-4 fa-solid fa-circle-plus"></i>
+                          <i class="fa-solid fa-circle-plus"></i>
                         </button>
                       </div>
                     </Col>

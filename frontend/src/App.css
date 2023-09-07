@@ -97,17 +97,12 @@ nav {
   height: 50px;
   width: 100%;
 }
-.cat-shoes {
-  height: 150px;
-  background: linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.5)),
-    url('./Images/shoes.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+
+.backdrop {
+  background-color: black;
 }
 
 .cat-vetement {
-  height: 200px;
   background: linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.5)),
     url('./Images/clothes.jpg');
 
@@ -245,7 +240,6 @@ nav {
 }
 .owl-stage {
   display: flex;
-  align-items: center;
 }
 .btn-section {
   width: fit-content;
@@ -265,14 +259,10 @@ nav {
 .active {
   border-bottom: black;
 }
-
-.signin-image {
-  height: 600px;
-  background-image: url('Images/sign-image.jpg');
-  background-position: center;
-  background-size: cover;
+.recherche {
+  position: relative;
+  width: 100%;
 }
-
 .size {
   width: 100%;
   max-height: 400px;
@@ -323,7 +313,7 @@ nav {
     height: 125px;
   }
   .recherche {
-    visibility: hidden;
+    display: none;
   }
   .items-mobile {
     display: block;
@@ -374,7 +364,7 @@ nav {
     height: 200px;
   }
   .recherche {
-    visibility: visible;
+    display: block;
   }
   .promo {
     height: 600px;

@@ -125,7 +125,8 @@ export default function PlaceOrderScreen() {
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="img-fluid border border-0 rounded img-thumbnail"
+                          className="img-fluid  rounded img-thumbnail border border-0"
+                          style={{ maxWidth: '100px' }}
                         ></img>{' '}
                         <Link
                           to={`/product/${item.slug}`}

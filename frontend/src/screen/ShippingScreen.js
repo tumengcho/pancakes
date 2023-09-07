@@ -65,7 +65,7 @@ export default function ShippingScreen() {
 
       <h1 className="py-5 text-center">Shipping Address</h1>
       <div
-        class="row mt-3  py-5 w-100 gradient-custom"
+        class="row mt-3 mx-0 py-5 w-100 gradient-custom"
         style={{ marginTop: '25px' }}
       >
         <div class="col-md-3">
@@ -113,8 +113,11 @@ export default function ShippingScreen() {
 
               <form class="mb-0" onSubmit={submitHandler}>
                 <div class="row mb-4">
-                  <div class="col">
+                  <div class="col-12 col-md-6">
                     <div class="form-outline">
+                      <label class="form-label" for="FirstName">
+                        Full Name
+                      </label>
                       <input
                         type="text"
                         id="FirstName"
@@ -123,30 +126,30 @@ export default function ShippingScreen() {
                         onChange={(e) => setFullName(e.target.value)}
                         required
                       />
-                      <label class="form-label" for="FirstName">
-                        Full Name
-                      </label>
                     </div>
                   </div>
-                  <div class="col">
+                  <div class="col-12 col-md-6">
                     <div class="form-outline">
+                      <label class="form-label" for="Country">
+                        Country
+                      </label>
                       <input
                         type="text"
                         id="Country"
                         class="form-control input-custom"
-                        value={address}
-                        onChange={(e) => setAdress(e.target.value)}
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
                         required
                       />
-                      <label class="form-label" for="Country">
-                        Country
-                      </label>
                     </div>
                   </div>
                 </div>
                 <div class="row mb-4">
-                  <div class="col">
+                  <div class="col-12 col-md-6">
                     <div class="form-outline">
+                      <label class="form-label" for="city">
+                        City
+                      </label>
                       <input
                         type="text"
                         id="city"
@@ -155,13 +158,13 @@ export default function ShippingScreen() {
                         onChange={(e) => setCity(e.target.value)}
                         required
                       />
-                      <label class="form-label" for="city">
-                        City
-                      </label>
                     </div>
                   </div>
-                  <div class="col">
+                  <div class="col-12 col-md-6">
                     <div class="form-outline">
+                      <label class="form-label" for="postalCode">
+                        Postal Code
+                      </label>
                       <input
                         type="text"
                         id="postalCode"
@@ -170,15 +173,15 @@ export default function ShippingScreen() {
                         onChange={(e) => setPostalCode(e.target.value)}
                         required
                       />
-                      <label class="form-label" for="postalCode">
-                        Postal Code
-                      </label>
                     </div>
                   </div>
                 </div>
                 <div class="row mb-4">
-                  <div class="col">
+                  <div class="col-12 col-md-6">
                     <div class="form-outline">
+                      <label class="form-label" for="address">
+                        Address
+                      </label>
                       <input
                         type="text"
                         id="address"
@@ -187,22 +190,19 @@ export default function ShippingScreen() {
                         onChange={(e) => setAdress(e.target.value)}
                         required
                       />
-                      <label class="form-label" for="address">
-                        Address
-                      </label>
                     </div>
                   </div>
-                  <div class="col">
+                  <div class="col-12 col-md-6">
                     <div class="form-outline">
+                      <label class="form-label" for="typeEmail">
+                        Email
+                      </label>
                       <input
                         type="email"
                         id="typeEmail"
                         class="form-control input-custom"
                         placeholder="Optionnal"
                       />
-                      <label class="form-label" for="typeEmail">
-                        Email
-                      </label>
                     </div>
                   </div>
                 </div>

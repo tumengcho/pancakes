@@ -15,3 +15,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.signin-image {
+  display: none;
+  height: 600px;
+  background-image: url('Images/sign-image.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+@media screen and (min-width: 768px) {
+  .signin-image {
+    display: block;
+  }
+}

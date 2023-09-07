@@ -100,6 +100,38 @@ export default function Products() {
                       src={produit.image}
                       className=""
                       alt={produit.name}
+                      style={{ width: '300px', height: '350px' }}
+                    ></img>
+                    <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
+                    <p>{produit.price}$</p>
+                  </Link>
+                )}
+              </Col>
+            ))}
+        </Row>
+        <Row className="mt-5">
+          <h2 className="titre fs-6 fw-semibold ">Vétements</h2>
+          {products
+            .filter((produit) => produit.category === 'jersey')
+            .map((produit) => (
+              <Col xs={6} sm={4} md={3} className="mt-5">
+                {loading ? (
+                  <div className="text-black">
+                    <h1>Loading...</h1>
+                  </div>
+                ) : error ? (
+                  <MessageBox variant="danger">{error}</MessageBox>
+                ) : (
+                  <Link
+                    to={`/products/${produit.slug}`}
+                    className="text-black"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <img
+                      src={produit.image}
+                      className=""
+                      alt={produit.name}
+                      style={{ width: '300px', height: '300px' }}
                     ></img>
                     <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
                     <p>{produit.price}$</p>

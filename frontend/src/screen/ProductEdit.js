@@ -264,12 +264,21 @@ export default function ProductEditScreen() {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="category">
-            <Form.Label>Category</Form.Label>
-            <Form.Control
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
+            <Form.Select
               required
-            />
+              aria-label="Default select example"
+              onChange={(e) => {
+                setCategory(e.target.value);
+                console.log(category);
+              }}
+            >
+              <option value="" selected>
+                Choisis une Category
+              </option>
+              <option value="shoes">Souliers</option>
+              <option value="clothes">Vetement</option>
+              <option value="jersey">Maillot</option>
+            </Form.Select>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">

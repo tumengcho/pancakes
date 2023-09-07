@@ -11,7 +11,7 @@ import Container from 'react-bootstrap/esm/Container';
 import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/esm/Button';
+import '../product.css';
 import { toast } from 'react-toastify';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
@@ -87,9 +87,7 @@ function ProductScreen() {
       navigate('/shipping');
     }
   };
-  const ChangerImage = (image) => {
-    setImage(image);
-  };
+
   console.log(image);
   return loading ? (
     <div class="produit text-center">
@@ -119,6 +117,8 @@ function ProductScreen() {
             <OwlCarousel
               className=" owl-carousel  container-fluid"
               dots={false}
+              center
+              rewind={false}
               responsive={{
                 0: { items: 3 },
               }}
@@ -134,7 +134,7 @@ function ProductScreen() {
               ))}
             </OwlCarousel>
           ) : (
-            <div className="row">
+            <div className="mt-3">
               {product.images.length === 0 && <MessageBox>No image</MessageBox>}
               <div variant="flush" className="row">
                 <OwlCarousel
@@ -274,13 +274,13 @@ function ProductScreen() {
                     className="w-100 pt-3 text-white btn bg-black"
                     onClick={addToCartHandler}
                   >
-                    <p className="btn-submit text-uppercase">Add to cart</p>
+                    <p className="btn-submit  text-uppercase">Add to cart</p>
                   </button>
                 </Col>
                 <Col>
                   <button
                     type="button"
-                    className="w-100 pt-3 btn btn-outline-dark "
+                    className="w-100 h-100 pt-3 btn btn-outline-dark "
                     onClick={buyNowHandler}
                   >
                     <p className="btn-submit text-uppercase">Buy Now</p>

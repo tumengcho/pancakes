@@ -157,6 +157,7 @@ export const UploadProduct = () => {
             </option>
             <option value="shoes">Souliers</option>
             <option value="clothes">Vetement</option>
+            <option value="jersey">Maillot</option>
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3" controlId="vedette">

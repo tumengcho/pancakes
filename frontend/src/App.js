@@ -31,13 +31,16 @@ import OrderListScreen from './screen/OrderItemList';
 import ProfileScreen from './screen/UserProfileScreen';
 import OrderHistoryScreen from './screen/OrderHistory';
 import ProductEditScreen from './screen/ProductEdit';
+import { SearchBar } from './components/SearchBar';
+import { SearchResultsList } from './components/SearchResultsList';
 
 function App() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const [results, setResults] = useState([]);
+  const [value, setValue] = useState('');
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
 
@@ -57,18 +60,18 @@ function App() {
           <Container className="text-center pt-md-2 pt-0 px-3 ">
             <div>
               <p className="fs-md-6 fs-7 d-inline ">
-                Livraison gratuite partout au Canada. 🍁
+                Livraison gratuite partout au Canada. 🍁{' '}
+                <i
+                  class="fa-solid d-inline fa-truck-fast"
+                  style={{ Color: 'ffffff' }}
+                ></i>
               </p>{' '}
-              <i
-                class="fa-solid d-inline fa-truck-fast"
-                style={{ Color: 'ffffff' }}
-              ></i>
             </div>
           </Container>
         </div>
         <header>
-          <nav className="container-fluid position-relative">
-            <Navbar>
+          <nav className="container-fluid position-relative ">
+            <nav className="navbar navbar-expand navbar-light d flex justify-content-between">
               <Navbar.Brand>
                 <Link to="/">
                   <img
@@ -202,19 +205,15 @@ function App() {
                   </Offcanvas>
                 </>
               </div>
-              <Container className="mx-md-5 me-5 recherche">
-                <form class="d-flex w-100" role="search">
-                  <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                  <button class="btn btn-outline-dark" type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </button>
-                </form>
-              </Container>
+              <div className="mx-md-5 me-5 d-flex recherche flex-column">
+                <div className="col-12">
+                  <SearchBar setResults={setResults} setValue={setValue} />
+                </div>
+                {results && results.length > 0 && (
+                  <SearchResultsList results={results} value={value} />
+                )}
+              </div>
+
               <div className="end-0 items">
                 <Navbar>
                   <Nav.Item className="mx-3">
@@ -302,9 +301,10 @@ function App() {
                   </Nav.Item>
                 </Navbar>
               </div>
-            </Navbar>
+            </nav>
           </nav>
         </header>
+
         <div className="">
           <Routes>
             <Route path="/" element={<HomeScreen />}></Route>

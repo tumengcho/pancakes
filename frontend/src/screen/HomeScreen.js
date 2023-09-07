@@ -9,7 +9,7 @@ import 'owl.carousel/dist/owl.carousel.min.js';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import logger from 'use-reducer-logger';
-import LoadingBox from '../components/LoadingBox';
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
@@ -102,17 +102,22 @@ export default function HomeScreen() {
       </div>
       <Container>
         <Row className="mb-5 w-100" style={{ minHeight: '150px' }}>
-          <Col md={3}>
-            <div className="cat-shoes ps-3 pt-md-5">
-              <h1 className="fs-3 fw-bold text-white text-uppercase">
+          <Col md={3} className="d-flex text-center align-items-center">
+            <div>
+              <h1 className="fs-3 btn-submit fw-bold text-black text-uppercase">
                 Souliers
               </h1>
-              <p className="text-light">Voir tout</p>
+
+              <Link
+                to="/produits"
+                className="decoration1 text-black btn-submit"
+              >
+                Voir tout
+              </Link>
             </div>
           </Col>
           <Col md={9}>
-            {loading?(<LoadingBox></LoadingBox>):(
-              <OwlCarousel
+            <OwlCarousel
               className=" owl-carousel mt-3 px-md-5  container-fluid"
               nav
               loop
@@ -128,7 +133,7 @@ export default function HomeScreen() {
               ]}
               responsive={{
                 0: { items: 2 },
-                576: { items: 3, margin: 50 },
+                576: { items: 3, margin: 50, center: true },
               }}
             >
               {products
@@ -159,20 +164,22 @@ export default function HomeScreen() {
                   </Link>
                 ))}
             </OwlCarousel>
-            )}
           </Col>
         </Row>
         <Row>
-          <Col md={3}>
-            <div className="cat-vetement ps-3  pt-md-5">
-              <h1 className="fs-3 fw-bold text-white text-uppercase">
+          <Col md={3} className="d-flex text-center align-items-center ">
+            <div>
+              <h1 className="fs-3 btn-submit fw-bold text-black text-uppercase">
                 Vêtements
               </h1>
-              <p className="text-light">Voir tout</p>
+
+              <Link to="/produits" className="btn-submit text-black">
+                Voir tout
+              </Link>
             </div>
           </Col>
           <Col md={9}>
-            {loading?<LoadingBox></LoadingBox>:(<OwlCarousel
+            <OwlCarousel
               className=" owl-carousel mt-3 px-md-5 px-md-3 container-fluid"
               loop
               nav
@@ -214,7 +221,7 @@ export default function HomeScreen() {
                     </div>
                   </Link>
                 ))}
-            </OwlCarousel>)}
+            </OwlCarousel>
           </Col>
         </Row>
       </Container>
@@ -223,7 +230,7 @@ export default function HomeScreen() {
           <Col md={6}>
             <img
               loading="lazy"
-              srcSet="./Images/back2school-small 200w, ./Images/back2school-medium 763w,./Images/back2school-large 1126w,./Images/back2school-xlarge 1400w,"
+              srcSet="./Images/back2school-small.webp 200w, ./Images/back2school-medium.webp 763w,./Images/back2school-large.webp 1126w,./Images/back2school-xlarge.webp 1400w,"
               className="img-rounded"
               alt="Back2School"
             ></img>
