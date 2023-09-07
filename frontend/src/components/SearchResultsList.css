@@ -7,7 +7,9 @@
   margin-top: 50px;
   overflow-y: auto;
   position: absolute;
-  left: -70%;
+  left: -30px;
+  right: auto;
+  z-index: 100;
   bottom: 100;
 }
 
