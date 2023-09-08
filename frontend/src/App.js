@@ -44,8 +44,10 @@ function App() {
   const [value, setValue] = useState('');
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
+  const [image, setImage] = useState(userInfo ? userInfo.image : '');
 
   const signoutHandler = () => {
+    setImage('');
     ctxDispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
     localStorage.removeItem('shippingAddress');
@@ -103,9 +105,9 @@ function App() {
                       <Offcanvas.Title className="d-flex position-relative w-100">
                         {userInfo ? (
                           <div className="d-flex flex-row align-items-center gap-3">
-                            {userInfo.image ? (
+                            {image !== '' ? (
                               <img
-                                src={userInfo.image}
+                                src={image}
                                 alt={userInfo.name}
                                 className="img-logo rounded-circle"
                                 style={{ width: '60px', height: '60px' }}
@@ -167,6 +169,13 @@ function App() {
                                   </NavDropdown.Item>
                                 </LinkContainer>
                               )}
+                              <Link
+                                className="dropdown-item"
+                                to="#signout"
+                                onClick={signoutHandler}
+                              >
+                                Sign Out
+                              </Link>
                             </NavDropdown>
                           </div>
                         ) : (
@@ -253,9 +262,9 @@ function App() {
                     </Link>
                   </Nav.Item>
                   <Nav.Item className="mx-3">
-                    {userInfo.image ? (
+                    {image !== '' ? (
                       <img
-                        src={userInfo.image}
+                        src={image}
                         alt={userInfo.name}
                         className="img-logo rounded-circle"
                         style={{ width: '32px', height: '32px' }}
@@ -308,6 +317,14 @@ function App() {
                                 Tous les Clients
                               </NavDropdown.Item>
                             </LinkContainer>
+                            <NavDropdown.Divider />
+                            <Link
+                              className="dropdown-item"
+                              to="#signout"
+                              onClick={signoutHandler}
+                            >
+                              Sign Out
+                            </Link>
                           </div>
                         ) : (
                           <LinkContainer to="/orderhistory">
