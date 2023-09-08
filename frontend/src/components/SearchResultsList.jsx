@@ -22,6 +22,7 @@ export const SearchResultsList = ({ results, value }) => {
               key={id}
             />
           );
+          console.log(result);
         })}
       </div>
     );

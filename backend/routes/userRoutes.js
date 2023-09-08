@@ -3,6 +3,7 @@ import User from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
 import expressAsyncHandler from 'express-async-handler';
 import { generateToken, isAdmin, isAuth } from '../utils.js';
+import { v2 as cloudinary } from 'cloudinary';
 
 const userRouter = express.Router();
 
@@ -20,6 +21,11 @@ userRouter.put(
   '/profile',
   isAuth,
   expressAsyncHandler(async (req, res) => {
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
     const user = await User.findById(req.user._id);
     if (user) {
       user.name = req.body.name || user.name;
@@ -27,12 +33,27 @@ userRouter.put(
       if (req.body.password) {
         user.password = bcrypt.hashSync(req.body.password, 8);
       }
+      if (req.body.image) {
+        try {
+          const cloudImage = cloudinary.uploader.upload(req.body.image, {
+            public_id: user.name,
+            upload_preset: 'users',
+          });
+          user.image = (await cloudImage).secure_url;
+        } catch (error) {
+          res.send({ message: 'Erreur' });
+        }
+      }
+      user.mobile = req.body.mobile || '';
+      console.log(user.image, user.mobile);
 
       const updatedUser = await user.save();
       res.send({
         _id: updatedUser._id,
         name: updatedUser.name,
         email: updatedUser.email,
+        image: updatedUser.image,
+        mobile: updatedUser.mobile,
         isAdmin: updatedUser.isAdmin,
         token: generateToken(updatedUser),
       });

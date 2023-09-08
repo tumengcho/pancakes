@@ -33,6 +33,7 @@ import OrderHistoryScreen from './screen/OrderHistory';
 import ProductEditScreen from './screen/ProductEdit';
 import { SearchBar } from './components/SearchBar';
 import { SearchResultsList } from './components/SearchResultsList';
+import OrderScreen from './screen/OrderScreen';
 
 function App() {
   const [show, setShow] = useState(false);
@@ -101,53 +102,73 @@ function App() {
                     <Offcanvas.Header closeButton>
                       <Offcanvas.Title className="d-flex position-relative w-100">
                         {userInfo ? (
-                          <NavDropdown
-                            className="text-black"
-                            title={userInfo.name}
-                            id="basic-nav-dropdown"
-                          >
-                            <LinkContainer to="/profile">
-                              <NavDropdown.Item>Profile</NavDropdown.Item>
-                            </LinkContainer>
-
-                            {userInfo && userInfo.isAdmin ? (
-                              <div>
-                                <LinkContainer to="/admin/add">
-                                  <NavDropdown.Item>
-                                    Ajout Produits
-                                  </NavDropdown.Item>
-                                </LinkContainer>
-
-                                <LinkContainer to="/admin/commandes">
-                                  <NavDropdown.Item>
-                                    Toutes les Commandes
-                                  </NavDropdown.Item>
-                                </LinkContainer>
-
-                                <LinkContainer to="/admin/donnees">
-                                  <NavDropdown.Item>Données</NavDropdown.Item>
-                                </LinkContainer>
-
-                                <LinkContainer to="/admin/products">
-                                  <NavDropdown.Item>
-                                    Tous les Produits
-                                  </NavDropdown.Item>
-                                </LinkContainer>
-
-                                <LinkContainer to="/admin/users">
-                                  <NavDropdown.Item>
-                                    Tous les Clients
-                                  </NavDropdown.Item>
-                                </LinkContainer>
-                              </div>
+                          <div className="d-flex flex-row align-items-center gap-3">
+                            {userInfo.image ? (
+                              <img
+                                src={userInfo.image}
+                                alt={userInfo.name}
+                                className="img-logo rounded-circle"
+                                style={{ width: '60px', height: '60px' }}
+                              ></img>
                             ) : (
-                              <LinkContainer to="/orderhistory">
-                                <NavDropdown.Item>
-                                  Historique de commandes
-                                </NavDropdown.Item>
-                              </LinkContainer>
+                              <Link
+                                to="/signin"
+                                style={{ textDecoration: 'none' }}
+                              >
+                                <i
+                                  class="fa-solid fa-circle-user fa-2xl"
+                                  style={{ color: '#000000' }}
+                                ></i>
+                              </Link>
                             )}
-                          </NavDropdown>
+                            <NavDropdown
+                              className="text-black"
+                              title={userInfo.name}
+                              id="basic-nav-dropdown"
+                            >
+                              <LinkContainer to="/profile">
+                                <NavDropdown.Item>Profile</NavDropdown.Item>
+                              </LinkContainer>
+
+                              {userInfo && userInfo.isAdmin ? (
+                                <div>
+                                  <LinkContainer to="/admin/add">
+                                    <NavDropdown.Item>
+                                      Ajout Produits
+                                    </NavDropdown.Item>
+                                  </LinkContainer>
+
+                                  <LinkContainer to="/admin/commandes">
+                                    <NavDropdown.Item>
+                                      Toutes les Commandes
+                                    </NavDropdown.Item>
+                                  </LinkContainer>
+
+                                  <LinkContainer to="/admin/donnees">
+                                    <NavDropdown.Item>Données</NavDropdown.Item>
+                                  </LinkContainer>
+
+                                  <LinkContainer to="/admin/products">
+                                    <NavDropdown.Item>
+                                      Tous les Produits
+                                    </NavDropdown.Item>
+                                  </LinkContainer>
+
+                                  <LinkContainer to="/admin/users">
+                                    <NavDropdown.Item>
+                                      Tous les Clients
+                                    </NavDropdown.Item>
+                                  </LinkContainer>
+                                </div>
+                              ) : (
+                                <LinkContainer to="/orderhistory">
+                                  <NavDropdown.Item>
+                                    Historique de commandes
+                                  </NavDropdown.Item>
+                                </LinkContainer>
+                              )}
+                            </NavDropdown>
+                          </div>
                         ) : (
                           <>
                             <NavDropdown.Divider />
@@ -232,12 +253,21 @@ function App() {
                     </Link>
                   </Nav.Item>
                   <Nav.Item className="mx-3">
-                    <Link to="/signin" style={{ textDecoration: 'none' }}>
-                      <i
-                        class="fa-solid fa-circle-user fa-2xl"
-                        style={{ color: '#000000' }}
-                      ></i>
-                    </Link>
+                    {userInfo.image ? (
+                      <img
+                        src={userInfo.image}
+                        alt={userInfo.name}
+                        className="img-logo rounded-circle"
+                        style={{ width: '32px', height: '32px' }}
+                      ></img>
+                    ) : (
+                      <Link to="/signin" style={{ textDecoration: 'none' }}>
+                        <i
+                          class="fa-solid fa-circle-user fa-2xl"
+                          style={{ color: '#000000' }}
+                        ></i>
+                      </Link>
+                    )}
                   </Nav.Item>
                   <Nav.Item>
                     {userInfo ? (
@@ -358,6 +388,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ProfileScreen />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/order/:id"
+              element={
+                <ProtectedRoute>
+                  <OrderScreen />
                 </ProtectedRoute>
               }
             />
