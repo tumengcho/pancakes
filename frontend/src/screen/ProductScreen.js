@@ -17,6 +17,7 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import 'owl.carousel/dist/owl.carousel.min.js';
+import Recommendation from '../components/Recommendation';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -56,6 +57,7 @@ function ProductScreen() {
     fetchData();
   }, [slug]);
   const [image, setImage] = useState('');
+  const [slugP, setSlug] = useState('');
   const [taille, setTaille] = useState('');
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
@@ -114,28 +116,9 @@ function ProductScreen() {
           />
 
           {product.images.length === 0 ? (
-            <OwlCarousel
-              className=" owl-carousel  container-fluid"
-              dots={false}
-              center
-              rewind={false}
-              responsive={{
-                0: { items: 3 },
-              }}
-            >
-              {[product.image, ...product.images].map((x) => (
-                <button
-                  onClick={() => {
-                    setImage(x);
-                  }}
-                >
-                  <img src={x} key={x}></img>
-                </button>
-              ))}
-            </OwlCarousel>
+            ''
           ) : (
             <div className="mt-3">
-              {product.images.length === 0 && <MessageBox>No image</MessageBox>}
               <div variant="flush" className="row">
                 <OwlCarousel
                   className=" owl-carousel  container-fluid"
@@ -148,14 +131,19 @@ function ProductScreen() {
                   responsive={{
                     0: { items: 3 },
                   }}
+                  onLoad={() => {
+                    slugP !== slug ? setImage('') : setImage(image);
+                  }}
                 >
                   {[product.image, ...product.images].map((x) => (
                     <button
                       onClick={() => {
+                        setSlug(product.slug);
                         setImage(x);
                       }}
                     >
                       <img src={x} key={x}></img>
+                      {console.log(slugP, slug)}
                     </button>
                   ))}
                 </OwlCarousel>
@@ -180,50 +168,50 @@ function ProductScreen() {
                   <input
                     name="7"
                     value="7"
-                    style={{ caretColor: 'transparent' }}
                     className="btn btn-outline-dark"
                     onClick={(e) => setTaille(e.target.value)}
                     id="7"
+                    readOnly
                   ></input>
                   <input
                     name="8"
                     value="8"
-                    style={{ caretColor: 'transparent' }}
                     className="btn btn-outline-dark"
                     onClick={(e) => setTaille(e.target.value)}
                     id="8"
+                    readOnly
                   ></input>
                   <input
                     name="9"
                     value="9"
-                    style={{ caretColor: 'transparent' }}
                     className="btn btn-outline-dark"
                     onClick={(e) => setTaille(e.target.value)}
                     id="9"
+                    readOnly
                   ></input>
                   <input
                     name="10"
                     value="10"
-                    style={{ caretColor: 'transparent' }}
                     className="btn btn-outline-dark"
                     onClick={(e) => setTaille(e.target.value)}
                     id="10"
+                    readOnly
                   ></input>
                   <input
                     name="11"
                     value="11"
-                    style={{ caretColor: 'transparent' }}
                     className="btn btn-outline-dark"
                     onClick={(e) => setTaille(e.target.value)}
                     id="11"
+                    readOnly
                   ></input>
                   <input
                     name="12"
                     value="12"
-                    style={{ caretColor: 'transparent' }}
                     className="btn btn-outline-dark"
                     onClick={(e) => setTaille(e.target.value)}
                     id="12"
+                    readOnly
                   ></input>
                   {console.log(taille)}
                 </div>
@@ -232,34 +220,34 @@ function ProductScreen() {
                   <input
                     name="S"
                     value="S"
-                    style={{ caretColor: 'transparent' }}
                     className="btn btn-outline-dark"
                     onClick={(e) => setTaille(e.target.value)}
                     id="S"
+                    readOnly
                   ></input>
                   <input
                     name="M"
                     value="M"
-                    style={{ caretColor: 'transparent' }}
                     className="btn btn-outline-dark"
                     onClick={(e) => setTaille(e.target.value)}
                     id="M"
+                    readOnly
                   ></input>
                   <input
                     name="L"
                     value="L"
-                    style={{ caretColor: 'transparent' }}
                     className="btn btn-outline-dark"
                     onClick={(e) => setTaille(e.target.value)}
                     id="L"
+                    readOnly
                   ></input>
                   <input
                     name="XL"
                     value="XL"
-                    style={{ caretColor: 'transparent' }}
                     className="btn btn-outline-dark"
                     onClick={(e) => setTaille(e.target.value)}
                     id="XL"
+                    readOnly
                   ></input>
 
                   {console.log(taille)}
@@ -291,6 +279,7 @@ function ProductScreen() {
           </ListGroup>
         </Col>
       </Row>
+      <Recommendation description={product.description} id={product._id} />
     </Container>
   );
 }

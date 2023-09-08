@@ -162,15 +162,19 @@ producRouter.put(
           upload();
         }
       } else {
-        product.name = name;
-        product.slug = slug;
-        product.price = price;
-        product.image = `${(await cloudImage).secure_url}`;
-        product.images = images;
-        product.category = category;
-        product.description = description;
-        await product.save();
-        res.send({ message: 'Product Updated' });
+        try {
+          product.name = name;
+          product.slug = slug;
+          product.price = price;
+          product.image = `${(await cloudImage).secure_url}`;
+          product.images = images;
+          product.category = category;
+          product.description = description;
+          await product.save();
+          res.send({ message: 'Product Updated' });
+        } catch (error) {
+          console.log(error);
+        }
       }
     } else {
       res.status(404).send({ message: 'Product Not Found' });

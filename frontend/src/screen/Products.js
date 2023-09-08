@@ -100,7 +100,7 @@ export default function Products() {
                       src={produit.image}
                       className=""
                       alt={produit.name}
-                      style={{ maxWidth: '300px', maxHeight: '300px' }}
+                      style={{ maxHeight: '300px' }}
                     ></img>
                     <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
                     <p>{produit.price}$</p>
@@ -131,7 +131,7 @@ export default function Products() {
                       src={produit.image}
                       className=""
                       alt={produit.name}
-                      style={{ maxWidth: '300px', maxHeight: '300px' }}
+                      style={{ maxHeight: '300px' }}
                     ></img>
                     <h1 className="mt-2  fs-sm-4 fs-6">{produit.name}</h1>
                     <p>{produit.price}$</p>
