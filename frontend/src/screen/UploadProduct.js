@@ -1,22 +1,25 @@
-import React, { Fragment, useEffect, useReducer, useState } from 'react';
-import axios from 'axios';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/esm/Container';
-import Row from 'react-bootstrap/esm/Row';
-import { getError } from '../utils';
-import logger from 'use-reducer-logger';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import React, { Fragment, useEffect, useReducer, useState } from "react";
+import axios from "axios";
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/esm/Row";
+import { getError } from "../utils";
+import logger from "use-reducer-logger";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const UploadProduct = () => {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
   const [images, setImages] = useState([]);
-  const [name, setName] = useState('');
-  const [slug, setSlug] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState("");
+  const [slug, setSlug] = useState("");
+  const [description, setDescription] = useState("");
+  const [brand, setBrand] = useState("");
   const [price, setPrice] = useState(0);
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState("");
   const [vedette, setVedette] = useState(false);
+  const [promo, setPromo] = useState(false);
+  const [New, setNew] = useState(false);
 
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -38,7 +41,7 @@ export const UploadProduct = () => {
   const uploadImage = async (file) => {
     const base64 = await convertBase64(file);
 
-    document.getElementById('product_photo_1_result').innerHTML +=
+    document.getElementById("product_photo_1_result").innerHTML +=
       '<div class="col-3"><img src="' +
       base64 +
       '" id="product_photo_1[]" /></div>';
@@ -66,12 +69,16 @@ export const UploadProduct = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!image) {
-      console.log('noo');
+      console.log("noo");
       return;
     }
 
     try {
-      const test = await axios.post('/api/products/add', {
+      console.log(brand);
+      console.log(New);
+      console.log(promo);
+
+      const test = await axios.post("/api/products/add", {
         name,
         slug,
         description,
@@ -79,22 +86,25 @@ export const UploadProduct = () => {
         image,
         images,
         vedette,
+        brand,
+        New,
+        promo,
         category,
       });
-      toast.success('Produit créé avec succés');
-      navigate('/produits');
+      toast.success("Produit créé avec succés");
+      navigate("/produits");
 
       console.log(test);
     } catch (err) {
       if (err.response.status === 500) {
-        console.log('There was a problem with the server');
+        console.log("There was a problem with the server");
       } else {
         console.log(err.response.data.msg);
       }
     }
   };
   return (
-    <Container className="mt-5 pt-5" style={{ maxWidth: '800px' }}>
+    <Container className="mt-5 text-white pt-5" style={{ maxWidth: "800px" }}>
       <Form onSubmit={onSubmit}>
         <div>
           <input type="text" />
@@ -132,6 +142,17 @@ export const UploadProduct = () => {
             }}
           />
         </Form.Group>
+        <Form.Group className="mb-3" controlId="brand">
+          <Form.Label>La Marque</Form.Label>
+          <Form.Control
+            type="text"
+            required
+            autoComplete="off"
+            onChange={(e) => {
+              setBrand(e.target.value);
+            }}
+          />
+        </Form.Group>
         <Form.Group className="mb-3" controlId="price">
           <Form.Label>Price</Form.Label>
           <Form.Control
@@ -160,6 +181,7 @@ export const UploadProduct = () => {
             <option value="jersey">Maillot</option>
           </Form.Select>
         </Form.Group>
+
         <Form.Group className="mb-3" controlId="vedette">
           <Form.Check
             type="checkbox"
@@ -169,6 +191,25 @@ export const UploadProduct = () => {
             }}
           />
         </Form.Group>
+        <Form.Group className="mb-3" controlId="New">
+          <Form.Check
+            type="checkbox"
+            label="Nouveaute"
+            onChange={() => {
+              setNew((current) => !current);
+            }}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="Promo">
+          <Form.Check
+            type="checkbox"
+            label="Promotion"
+            onChange={() => {
+              setPromo((current) => !current);
+            }}
+          />
+        </Form.Group>
+
         <Form.Group className="mb-3" controlId="customFile">
           <Form.Label>Image</Form.Label>
           <Form.Control

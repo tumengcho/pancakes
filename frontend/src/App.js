@@ -1,39 +1,45 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import HomeScreen from './screen/HomeScreen';
-import { useContext, useState } from 'react';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import CartScreen from './screen/CartScreen';
-import SignInScreen from './screen/SignInScreen';
-import SignUpScreen from './screen/SignUpScreen';
-import ProductScreen from './screen/ProductScreen';
-import Product from './screen/Products';
-import Contact from './screen/Contact';
-import Infos from './screen/Infos';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import './App.css';
-import { Store } from './Store';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { LinkContainer } from 'react-router-bootstrap';
-import { UploadProduct } from './screen/UploadProduct';
-import AdminRoutes from './routes/AdminRoutes';
-import ProtectedRoute from './routes/ProtectedRoute';
-import ShippingScreen from './screen/ShippingScreen';
-import PaymentMethodScreen from './screen/PaymentMethodScreen';
-import DataScreen from './screen/DataScreen';
-import PlaceOrderScreen from './screen/PlaceOrder';
-import ProductListScreen from './screen/ProductListItem';
-import UserListScreen from './screen/UserList';
-import OrderListScreen from './screen/OrderItemList';
-import ProfileScreen from './screen/UserProfileScreen';
-import OrderHistoryScreen from './screen/OrderHistory';
-import ProductEditScreen from './screen/ProductEdit';
-import { SearchBar } from './components/SearchBar';
-import { SearchResultsList } from './components/SearchResultsList';
-import OrderScreen from './screen/OrderScreen';
+import "./design-home.css";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import HomeScreen from "./screen/HomeScreen";
+import { useContext, useState } from "react";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import CartScreen from "./screen/CartScreen";
+import SignInScreen from "./screen/SignInScreen";
+import SignUpScreen from "./screen/SignUpScreen";
+import ProductScreen from "./screen/ProductScreen";
+import Product from "./screen/Products";
+import Contact from "./screen/Contact";
+import Infos from "./screen/Infos";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
+import { Store } from "./Store";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { LinkContainer } from "react-router-bootstrap";
+import { UploadProduct } from "./screen/UploadProduct";
+import AdminRoutes from "./routes/AdminRoutes";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import ShippingScreen from "./screen/ShippingScreen";
+import PaymentMethodScreen from "./screen/PaymentMethodScreen";
+import DataScreen from "./screen/DataScreen";
+import PlaceOrderScreen from "./screen/PlaceOrder";
+import ProductListScreen from "./screen/ProductListItem";
+import UserListScreen from "./screen/UserList";
+import OrderListScreen from "./screen/OrderItemList";
+import ProfileScreen from "./screen/UserProfileScreen";
+import OrderHistoryScreen from "./screen/OrderHistory";
+import ProductEditScreen from "./screen/ProductEdit";
+import { SearchBar } from "./components/SearchBar";
+import { SearchResultsList } from "./components/SearchResultsList";
+import OrderScreen from "./screen/OrderScreen";
+import Button from "react-bootstrap/esm/Button";
+
+window.onload = function () {
+  window.scrollTo(0, 0);
+};
 
 function App() {
   const [show, setShow] = useState(false);
@@ -41,17 +47,17 @@ function App() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [results, setResults] = useState([]);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
-  const [image, setImage] = useState(userInfo ? userInfo.image : '');
+  const [image, setImage] = useState(userInfo ? userInfo.image : "");
 
   const signoutHandler = () => {
-    setImage('');
-    ctxDispatch({ type: 'USER_SIGNOUT' });
-    localStorage.removeItem('userInfo');
-    localStorage.removeItem('shippingAddress');
-    localStorage.removeItem('paymentMethod');
+    setImage("");
+    ctxDispatch({ type: "USER_SIGNOUT" });
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("shippingAddress");
+    localStorage.removeItem("paymentMethod");
   };
 
   return (
@@ -59,20 +65,195 @@ function App() {
       <div>
         <ToastContainer position="bottom-center" limit={1} />
 
-        <div className="annonce">
-          <Container className="text-center pt-md-2 pt-0 px-3 ">
-            <div>
-              <p className="fs-md-6 fs-7 d-inline ">
-                Livraison gratuite partout au Canada. 🍁{' '}
-                <i
-                  class="fa-solid d-inline fa-truck-fast"
-                  style={{ Color: 'ffffff' }}
-                ></i>
-              </p>{' '}
+        <nav class="d-flex flex-row align-items-center">
+          <li class="nav-mobile">
+            <i
+              onClick={handleShow}
+              class="fa-solid fa-bars-staggered"
+              style={{ color: "#ffffff;" }}
+            ></i>
+          </li>
+          <li class="nav-item align-middle">
+            <Link class="nav-link" to="/">
+              Home
+            </Link>
+          </li>
+          <li class="nav-item" tabIndex={0}>
+            <Link class="nav-link" to="/produits">
+              Products
+            </Link>
+          </li>
+          <li class="m-0">
+            <Link to="/">
+              <img class="w-50" src="Images/logo_athlima.png" alt="logo" />
+            </Link>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              Infos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              Contact
+            </a>
+          </li>
+          <li class="">
+            <i class="fa-solid fa-user fa-xs" style={{ Color: "#ffffff;" }}></i>
+          </li>
+          <li class="">
+            <i
+              class="fa-solid fa-cart-shopping fa-xs"
+              style={{ Color: "#ffffff;" }}
+            ></i>
+          </li>
+        </nav>
+
+        <Offcanvas
+          className="text-white bg-black"
+          show={show}
+          onHide={handleClose}
+          placement="start"
+        >
+          <Offcanvas.Header
+            className="text-white flex-row justify-content-between text-center"
+            color="white"
+          >
+            <Offcanvas.Title className="d-flex position-relative w-100">
+              {userInfo ? (
+                <div className="d-flex flex-row align-items-center gap-3">
+                  {image !== "" ? (
+                    <img
+                      src={image}
+                      alt={userInfo.name}
+                      className="img-logo rounded-circle"
+                      style={{ width: "60px", height: "60px" }}
+                    ></img>
+                  ) : (
+                    <Link to="/signin" style={{ textDecoration: "none" }}>
+                      <i
+                        class="fa-solid fa-circle-user fa-2xl"
+                        style={{ color: "#000000" }}
+                      ></i>
+                    </Link>
+                  )}
+                  <p></p>
+                  <NavDropdown
+                    className="bg-black"
+                    color="white"
+                    title={userInfo.name}
+                    id="basic-nav-dropdown"
+                  >
+                    <LinkContainer to="/profile">
+                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+
+                    {userInfo && userInfo.isAdmin ? (
+                      <div>
+                        <LinkContainer to="/admin/add">
+                          <NavDropdown.Item>Ajout Produits</NavDropdown.Item>
+                        </LinkContainer>
+
+                        <LinkContainer to="/admin/commandes">
+                          <NavDropdown.Item>
+                            Toutes les Commandes
+                          </NavDropdown.Item>
+                        </LinkContainer>
+
+                        <LinkContainer to="/admin/donnees">
+                          <NavDropdown.Item>Données</NavDropdown.Item>
+                        </LinkContainer>
+
+                        <LinkContainer to="/admin/products">
+                          <NavDropdown.Item>Tous les Produits</NavDropdown.Item>
+                        </LinkContainer>
+
+                        <LinkContainer to="/admin/users">
+                          <NavDropdown.Item>Tous les Clients</NavDropdown.Item>
+                        </LinkContainer>
+                      </div>
+                    ) : (
+                      <LinkContainer to="/orderhistory">
+                        <NavDropdown.Item>
+                          Historique de commandes
+                        </NavDropdown.Item>
+                      </LinkContainer>
+                    )}
+                    <Link
+                      className="dropdown-item"
+                      to="#signout"
+                      onClick={signoutHandler}
+                    >
+                      Sign Out
+                    </Link>
+                  </NavDropdown>
+                </div>
+              ) : (
+                <>
+                  <NavDropdown.Divider />
+                  <Link
+                    onClick={handleClose}
+                    to="/signin"
+                    className="text-black"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <h1>SIGN UP</h1>{" "}
+                  </Link>
+
+                  <h1 className="position-absolute end-0">
+                    <i
+                      class="fa-solid fa-circle-user fa-lg"
+                      style={{ color: "#000000" }}
+                    ></i>
+                  </h1>
+                </>
+              )}
+            </Offcanvas.Title>
+            <Button
+              onClick={() => {
+                setShow(!show);
+                console.log(2);
+              }}
+              className="position-absolute z-0 right-0 bg-black border-white me-2"
+            >
+              X
+            </Button>
+          </Offcanvas.Header>
+          <Offcanvas.Body className="pt-5 text-center">
+            <div className="d-block mb-3 border border-2 border-dark border-top-0 border-end-0 border-start-0">
+              <Link
+                onClick={handleClose}
+                to="/infos"
+                className="text-white"
+                style={{ textDecoration: "none" }}
+              >
+                <h1 className="fw-normal">INFOS</h1>
+              </Link>
             </div>
-          </Container>
-        </div>
-        <header>
+            <div className="d-block mb-3 border border-2 border-dark border-top-0 border-end-0 border-start-0">
+              <Link
+                onClick={handleClose}
+                to="/produits"
+                className="text-white"
+                style={{ textDecoration: "none" }}
+              >
+                <h1 className="fw-normal">PRODUIT</h1>
+              </Link>
+            </div>
+            <div className="d-block">
+              <Link
+                onClick={handleClose}
+                to="/contact"
+                className="text-white"
+                style={{ textDecoration: "none" }}
+              >
+                <h1 className="fw-normal">CONTACT</h1>
+              </Link>
+            </div>
+          </Offcanvas.Body>
+        </Offcanvas>
+
+        {/* <header>
           <nav className="container-fluid position-relative ">
             <nav className="navbar navbar-expand navbar-light d flex justify-content-between">
               <Navbar.Brand>
@@ -92,147 +273,10 @@ function App() {
                     className="me-2"
                     variant=""
                     class="fa-solid fa-bars fa-2xl"
-                    style={{ color: '#000000' }}
+                    style={{ color: "#000000" }}
                   ></i>
 
-                  <Offcanvas
-                    className="text-light"
-                    show={show}
-                    onHide={handleClose}
-                    placement="end"
-                  >
-                    <Offcanvas.Header closeButton>
-                      <Offcanvas.Title className="d-flex position-relative w-100">
-                        {userInfo ? (
-                          <div className="d-flex flex-row align-items-center gap-3">
-                            {image !== '' ? (
-                              <img
-                                src={image}
-                                alt={userInfo.name}
-                                className="img-logo rounded-circle"
-                                style={{ width: '60px', height: '60px' }}
-                              ></img>
-                            ) : (
-                              <Link
-                                to="/signin"
-                                style={{ textDecoration: 'none' }}
-                              >
-                                <i
-                                  class="fa-solid fa-circle-user fa-2xl"
-                                  style={{ color: '#000000' }}
-                                ></i>
-                              </Link>
-                            )}
-                            <NavDropdown
-                              className="text-black"
-                              title={userInfo.name}
-                              id="basic-nav-dropdown"
-                            >
-                              <LinkContainer to="/profile">
-                                <NavDropdown.Item>Profile</NavDropdown.Item>
-                              </LinkContainer>
-
-                              {userInfo && userInfo.isAdmin ? (
-                                <div>
-                                  <LinkContainer to="/admin/add">
-                                    <NavDropdown.Item>
-                                      Ajout Produits
-                                    </NavDropdown.Item>
-                                  </LinkContainer>
-
-                                  <LinkContainer to="/admin/commandes">
-                                    <NavDropdown.Item>
-                                      Toutes les Commandes
-                                    </NavDropdown.Item>
-                                  </LinkContainer>
-
-                                  <LinkContainer to="/admin/donnees">
-                                    <NavDropdown.Item>Données</NavDropdown.Item>
-                                  </LinkContainer>
-
-                                  <LinkContainer to="/admin/products">
-                                    <NavDropdown.Item>
-                                      Tous les Produits
-                                    </NavDropdown.Item>
-                                  </LinkContainer>
-
-                                  <LinkContainer to="/admin/users">
-                                    <NavDropdown.Item>
-                                      Tous les Clients
-                                    </NavDropdown.Item>
-                                  </LinkContainer>
-                                </div>
-                              ) : (
-                                <LinkContainer to="/orderhistory">
-                                  <NavDropdown.Item>
-                                    Historique de commandes
-                                  </NavDropdown.Item>
-                                </LinkContainer>
-                              )}
-                              <Link
-                                className="dropdown-item"
-                                to="#signout"
-                                onClick={signoutHandler}
-                              >
-                                Sign Out
-                              </Link>
-                            </NavDropdown>
-                          </div>
-                        ) : (
-                          <>
-                            <NavDropdown.Divider />
-                            <Link
-                              onClick={handleClose}
-                              to="/signin"
-                              className="text-black"
-                              style={{ textDecoration: 'none' }}
-                            >
-                              <h1>SIGN UP</h1>{' '}
-                            </Link>
-
-                            <h1 className="position-absolute end-0">
-                              <i
-                                class="fa-solid fa-circle-user fa-lg"
-                                style={{ color: '#000000' }}
-                              ></i>
-                            </h1>
-                          </>
-                        )}
-                      </Offcanvas.Title>
-                    </Offcanvas.Header>
-                    <Offcanvas.Body className="pt-5">
-                      <div className="d-block mb-3 border border-2 border-dark border-top-0 border-end-0 border-start-0">
-                        <Link
-                          onClick={handleClose}
-                          to="/infos"
-                          className="text-black"
-                          style={{ textDecoration: 'none' }}
-                        >
-                          <h1 className="fw-normal">INFOS</h1>
-                        </Link>
-                      </div>
-                      <div className="d-block mb-3 border border-2 border-dark border-top-0 border-end-0 border-start-0">
-                        <Link
-                          onClick={handleClose}
-                          to="/produits"
-                          className="text-black"
-                          style={{ textDecoration: 'none' }}
-                        >
-                          <h1 className="fw-normal">PRODUIT</h1>
-                        </Link>
-                      </div>
-                      <div className="d-block">
-                        <Link
-                          onClick={handleClose}
-                          to="/contact"
-                          className="text-black"
-                          style={{ textDecoration: 'none' }}
-                        >
-                          <h1 className="fw-normal">CONTACT</h1>
-                        </Link>
-                      </div>
-                    </Offcanvas.Body>
-                  </Offcanvas>
+                  
                 </>
               </div>
               <div className="mx-md-5 me-5 d-flex recherche flex-column">
@@ -247,33 +291,33 @@ function App() {
               <div className="end-0 items">
                 <Navbar>
                   <Nav.Item className="mx-3">
-                    <Link to="/infos" style={{ textDecoration: 'none' }}>
+                    <Link to="/infos" style={{ textDecoration: "none" }}>
                       <h5>Infos</h5>
                     </Link>
                   </Nav.Item>
                   <Nav.Item className="mx-3">
-                    <Link to="/produits" style={{ textDecoration: 'none' }}>
+                    <Link to="/produits" style={{ textDecoration: "none" }}>
                       <h5>Produit</h5>
                     </Link>
                   </Nav.Item>
                   <Nav.Item className="mx-3">
-                    <Link to="/contact" style={{ textDecoration: 'none' }}>
+                    <Link to="/contact" style={{ textDecoration: "none" }}>
                       <h5>Contact</h5>
                     </Link>
                   </Nav.Item>
                   <Nav.Item className="mx-3">
-                    {image !== '' ? (
+                    {image !== "" ? (
                       <img
                         src={image}
                         alt={userInfo.name}
                         className="img-logo rounded-circle"
-                        style={{ width: '32px', height: '32px' }}
+                        style={{ width: "32px", height: "32px" }}
                       ></img>
                     ) : (
-                      <Link to="/signin" style={{ textDecoration: 'none' }}>
+                      <Link to="/signin" style={{ textDecoration: "none" }}>
                         <i
                           class="fa-solid fa-circle-user fa-2xl"
-                          style={{ color: '#000000' }}
+                          style={{ color: "#000000" }}
                         ></i>
                       </Link>
                     )}
@@ -350,7 +394,7 @@ function App() {
               </div>
             </nav>
           </nav>
-        </header>
+        </header> */}
 
         <div className="">
           <Routes>
@@ -470,7 +514,7 @@ function App() {
           </Routes>
         </div>
 
-        <div class="mx-auto container-fluid mt-16 py-16 xl:px-20 lg:px-12 sm:px-6 px-4 bg-black text-white">
+        <div class=" footer mx-auto container-fluid mt-16 py-16 xl:px-20 lg:px-12 sm:px-6 px-4 bg-black text-white">
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 gap-4">
             <div class="flex flex-col flex-shrink-0">
               <div class="dark:text-white">

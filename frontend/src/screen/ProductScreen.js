@@ -1,31 +1,34 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useContext, useEffect, useReducer, useState } from 'react';
-import logger from 'use-reducer-logger';
-import axios from 'axios';
-import { Helmet } from 'react-helmet-async';
-import MessageBox from '../components/MessageBox';
-import { getError } from '../utils.js';
-import { Store } from '../Store';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/esm/Container';
-import Row from 'react-bootstrap/esm/Row';
-import Col from 'react-bootstrap/esm/Col';
-import ListGroup from 'react-bootstrap/ListGroup';
-import '../product.css';
-import { toast } from 'react-toastify';
-import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
-import 'owl.carousel/dist/owl.carousel.min.js';
-import Recommendation from '../components/Recommendation';
-
+import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useReducer, useState } from "react";
+import logger from "use-reducer-logger";
+import axios from "axios";
+import { Helmet } from "react-helmet-async";
+import MessageBox from "../components/MessageBox";
+import { getError } from "../utils.js";
+import { Store } from "../Store";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/esm/Row";
+import Badge from "react-bootstrap/esm/Badge.js";
+import Col from "react-bootstrap/esm/Col";
+import ListGroup from "react-bootstrap/ListGroup";
+import "../product.css";
+import { toast } from "react-toastify";
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import "owl.carousel/dist/owl.carousel.min.js";
+import Recommendation from "../components/Recommendation";
+window.onload = function () {
+  window.scrollTo(0, 0);
+};
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'FETCH_REQUEST':
+    case "FETCH_REQUEST":
       return { ...state, loading: true };
-    case 'FETCH_SUCCESS':
+    case "FETCH_SUCCESS":
       return { ...state, product: action.payload, loading: false };
-    case 'FETCH_FAIL':
+    case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
     default:
       return state;
@@ -40,57 +43,56 @@ function ProductScreen() {
   const [{ loading, error, product }, dispatch] = useReducer(logger(reducer), {
     product: [],
     loading: true,
-    error: '',
+    error: "",
   });
 
   useEffect(() => {
     const fetchData = async () => {
-      dispatch({ type: 'FETCH_REQUEST' });
+      dispatch({ type: "FETCH_REQUEST" });
       try {
         const result = await axios.get(`/api/products/slug/${slug}`);
-        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+        dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
-        dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
     };
 
     fetchData();
   }, [slug]);
-  const [image, setImage] = useState('');
-  const [slugP, setSlug] = useState('');
-  const [taille, setTaille] = useState('');
+  const [image, setImage] = useState("");
+  const [slugP, setSlug] = useState("");
+  const [taille, setTaille] = useState("");
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
   const addToCartHandler = async () => {
     if (!taille && userInfo) {
-      toast.error('Veuillez choisir une taille.');
+      toast.error("Veuillez choisir une taille.");
     } else {
       const existItems = cart.cartItems.find((x) => x._id === product._id);
       const quantity = existItems ? existItems.quantity + 1 : 1;
 
       ctxDispatch({
-        type: 'CART_ADD_ITEM',
+        type: "CART_ADD_ITEM",
         payload: { ...product, quantity, taille },
       });
-      navigate('/cart');
+      navigate("/cart");
     }
   };
   const buyNowHandler = async () => {
     if (!taille && userInfo) {
-      toast.error('Veuillez choisir une taille.');
+      toast.error("Veuillez choisir une taille.");
     } else {
       const existItems = cart.cartItems.find((x) => x._id === product._id);
       const quantity = 1;
 
       ctxDispatch({
-        type: 'CART_ADD_ITEM',
+        type: "CART_ADD_ITEM",
         payload: { ...product, quantity, taille },
       });
-      navigate('/shipping');
+      navigate("/shipping");
     }
   };
 
-  console.log(image);
   return loading ? (
     <div class="produit text-center">
       <Helmet>{product.name}</Helmet>
@@ -101,22 +103,34 @@ function ProductScreen() {
   ) : error ? (
     <div class="produit text-center">
       <div class="intProduit container">
-        <MessageBox variant={'danger'}>{error}</MessageBox>
+        <MessageBox variant={"danger"}>{error}</MessageBox>
       </div>
     </div>
   ) : (
     <Container className="pt-md-5">
       <Helmet>{product.name}</Helmet>
-      <Row className="align-items-center text-md-start text-center pt-5">
-        <Col md={6}>
+      <p className="text-white">
+        {product.category} {">"} {product.description} {"> "}
+        {product.name}
+      </p>
+      <Row className=" text-md-start border border-3 border-danger rounded-4 bg-white text-center pt-5">
+        <Col md={6} className="bg-white">
+          {product.new ? <Badge>NEW</Badge> : ""}
+          {product.promo ? (
+            <Badge pill bg="danger">
+              Promo
+            </Badge>
+          ) : (
+            ""
+          )}
+
           <Card.Img
             variant="top"
             src={image || product.image}
             className="img-fluid rounded img-thumbnail border-0"
           />
-
           {product.images.length === 0 ? (
-            ''
+            ""
           ) : (
             <div className="mt-3">
               <div variant="flush" className="row">
@@ -125,14 +139,14 @@ function ProductScreen() {
                   nav
                   dots={false}
                   navText={[
-                    "<i class='fa fa-angle-left' style='background-color:white;'></i>",
-                    "<i class='fa fa-angle-right' style='background-color:white;'></i>",
+                    "<i class='fa fa-angle-left' style='color:black;'></i>",
+                    "<i class='fa fa-angle-right' style='color:black;'></i>",
                   ]}
                   responsive={{
                     0: { items: 3 },
                   }}
                   onLoad={() => {
-                    slugP !== slug ? setImage('') : setImage(image);
+                    slugP !== slug ? setImage("") : setImage(image);
                   }}
                 >
                   {[product.image, ...product.images].map((x) => (
@@ -151,11 +165,11 @@ function ProductScreen() {
             </div>
           )}
         </Col>
-        <Col md={6} className="px-5">
-          <ListGroup variant="flush">
-            <ListGroup.Item className="py-3 border-0">
+        <Col md={6} className="bg-white row align-items-center pt-5 px-md-5">
+          <ListGroup variant="flush h-100">
+            <ListGroup.Item className="py-3 px-0 border-0">
               <Card.Title>
-                <h1 className="">{product.name}</h1>{' '}
+                <h1 className="">{product.name}</h1>{" "}
               </Card.Title>
             </ListGroup.Item>
             <ListGroup.Item className="border-0">
@@ -163,7 +177,7 @@ function ProductScreen() {
             </ListGroup.Item>
             <ListGroup.Item className="my-2">
               <p>select size:</p>
-              {product.category === 'shoes' ? (
+              {product.category === "shoes" ? (
                 <div className="size">
                   <input
                     name="7"

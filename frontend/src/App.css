@@ -9,6 +9,7 @@ html {
 body {
   font: small-caps 12px/30px Verdana;
   font-display: swap;
+  background-color: #12100e;
 }
 
 a {
@@ -104,7 +105,7 @@ nav {
 
 .cat-vetement {
   background: linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.5)),
-    url('./Images/clothes.jpg');
+    url("./Images/clothes.jpg");
 
   background-position: top;
   background-size: cover;
@@ -127,7 +128,7 @@ nav {
 .section1 {
   height: 900px;
   width: 100%;
-  background-image: url('./Images/brand_image.jpg');
+  background-image: url("./Images/brand_image.jpg");
   background-size: cover;
   background-position: center;
   color: white;
@@ -137,7 +138,7 @@ nav {
 .section2 {
   height: 900px;
   width: 100%;
-  background-image: url('./Images/about-image.jpg');
+  background-image: url("./Images/about-image.jpg");
   background-size: cover;
   background-position: center;
   color: white;
@@ -167,7 +168,7 @@ nav {
   grid-column-end: 4;
   height: 460px;
   width: auto;
-  background-image: url('./Images/grid-item1.jpg');
+  background-image: url("./Images/grid-item1.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -176,7 +177,7 @@ nav {
   grid-column-end: 4;
   height: 620px;
   width: auto;
-  background-image: url('./Images/grid-item2.jpg');
+  background-image: url("./Images/grid-item2.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -185,7 +186,7 @@ nav {
   grid-column-end: 4;
   height: 460px;
   width: auto;
-  background-image: url('./Images/grid-item3.jpg');
+  background-image: url("./Images/grid-item3.jpg");
   background-position: 50% 30%;
   background-size: cover;
 }
@@ -670,6 +671,45 @@ ul.summary-list > li:last-child {
 
 .activity-desk .album a:last-child {
   margin-right: 0px;
+}
+
+.owl-carousel span {
+  width: 10px;
+  height: 10px;
+  margin: 5px 7px;
+  background: grey !important;
+  display: block;
+  -webkit-backface-visibility: visible;
+  -webkit-transition: opacity 200ms ease;
+  -moz-transition: opacity 200ms ease;
+  -ms-transition: opacity 200ms ease;
+  -o-transition: opacity 200ms ease;
+  transition: opacity 200ms ease;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+}
+
+.owl-carousel .active span {
+  width: 10px;
+  height: 10px;
+  margin: 5px 7px;
+  background: black !important;
+  display: block;
+  -webkit-backface-visibility: visible;
+  -webkit-transition: opacity 200ms ease;
+  -moz-transition: opacity 200ms ease;
+  -ms-transition: opacity 200ms ease;
+  -o-transition: opacity 200ms ease;
+  transition: opacity 200ms ease;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+}
+
+.centered {
+  position: absolute;
+  top: 30%;
 }
 @media screen and (min-width: 0px) {
   .image-prod-shoes {

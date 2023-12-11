@@ -1,0 +1,235 @@
+:root {
+  --primary-color: black;
+}
+
+html {
+  width: 100%;
+}
+
+@font-face {
+  font-family: Ropa;
+  src: url(/src/fonts/RopaSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: HighLand;
+  src: url(/src/fonts/HighlandGothicFLF.ttf);
+}
+
+@font-face {
+  font-family: LightHighLand;
+  src: url(/src/fonts/HighlandGothicLightFLF.ttf);
+}
+
+@font-face {
+  font-family: Quropa;
+  src: url(/src/fonts/quropa__.ttf);
+}
+
+body {
+  background-color: var(--primary-color);
+  margin: 0 3% 0 3%;
+  width: 100%;
+}
+
+i {
+  color: white;
+}
+
+nav {
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.titre {
+  font-family: Quropa;
+}
+
+.titre-prod {
+  font-family: HighLand;
+}
+
+.price {
+  font-family: Ropa;
+}
+
+nav li {
+  display: inline-block;
+  margin: 10px;
+}
+
+.img-load {
+  animation: 2s fadein;
+}
+
+nav li img {
+  width: 55%;
+  display: inline-block;
+  margin: 10px;
+}
+
+nav .nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+  text-transform: uppercase;
+  font-family: Ropa;
+}
+
+.nav-item {
+  display: none;
+}
+
+nav li img {
+  width: 35%;
+  padding-left: 10%;
+}
+
+.nav-mobile {
+  display: inline-block;
+}
+
+.card {
+  border: 0;
+  background-color: black;
+  color: white;
+  margin: 10% 0 10% 0;
+  margin-top: 9%;
+}
+
+.card a.btn {
+  width: 100%;
+  background-color: white;
+  color: black;
+}
+
+.card-title {
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-bottom: 3%;
+  font-family: Quropa;
+}
+
+.card-img-top {
+  border-radius: 3%;
+}
+
+.card-text {
+  padding-bottom: 3%;
+}
+
+.section-one {
+  height: 500px;
+  margin-bottom: 25%;
+  background-image: url(/public/Images/section1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.section-one h1 {
+  font-family: HighLand;
+  text-transform: uppercase;
+}
+
+.section-one p.lead {
+  font-family: Rosa;
+  text-transform: uppercase;
+  margin: 7% 0 3% 0;
+  color: gray;
+  font-size: 0.6em;
+}
+
+.section-two {
+  background-color: black;
+}
+
+.section-two .row {
+  padding-top: 8%;
+}
+
+.section-video {
+  margin-top: 7%;
+  padding: 0;
+  color: white;
+  text-align: center;
+  border-radius: 5%;
+}
+
+.section-video > video {
+  border-radius: 5%;
+}
+
+.section-video h1 {
+  font-family: HighLand;
+}
+
+.shadow {
+  background-color: rgba(0, 0, 0, 0.274);
+}
+
+.content {
+  text-transform: uppercase;
+  font-size: smaller;
+}
+
+.footer {
+  margin-top: 15%;
+  border-top: 1px white solid;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .section-one {
+    height: 800px;
+  }
+
+  .section-one p.lead {
+    font-family: Rosa;
+    text-transform: uppercase;
+    margin: 2% 0 3% 0;
+    color: gray;
+    font-size: 1em;
+  }
+
+  .card {
+    margin: 0;
+  }
+
+  .nav-item {
+    display: inline-block;
+  }
+
+  .nav-item:focus {
+    color: red;
+  }
+
+  nav {
+    height: 100px;
+  }
+
+  nav li img {
+    width: 55%;
+    padding: 0;
+  }
+
+  .nav-mobile {
+    display: none;
+  }
+}

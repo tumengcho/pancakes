@@ -1,20 +1,20 @@
-import React, { useContext, useEffect, useReducer } from 'react';
-import axios from 'axios';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import { toast } from 'react-toastify';
-import { Store } from '../Store';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import { getError } from '../utils';
+import React, { useContext, useEffect, useReducer } from "react";
+import axios from "axios";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import { toast } from "react-toastify";
+import { Store } from "../Store";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { getError } from "../utils";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'FETCH_REQUEST':
+    case "FETCH_REQUEST":
       return { ...state, loading: true };
-    case 'FETCH_SUCCESS':
+    case "FETCH_SUCCESS":
       return {
         ...state,
         products: action.payload.products,
@@ -22,30 +22,30 @@ const reducer = (state, action) => {
         pages: action.payload.pages,
         loading: false,
       };
-    case 'FETCH_FAIL':
+    case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
-    case 'CREATE_REQUEST':
+    case "CREATE_REQUEST":
       return { ...state, loadingCreate: true };
-    case 'CREATE_SUCCESS':
+    case "CREATE_SUCCESS":
       return {
         ...state,
         loadingCreate: false,
       };
-    case 'CREATE_FAIL':
+    case "CREATE_FAIL":
       return { ...state, loadingCreate: false };
 
-    case 'DELETE_REQUEST':
+    case "DELETE_REQUEST":
       return { ...state, loadingDelete: true, successDelete: false };
-    case 'DELETE_SUCCESS':
+    case "DELETE_SUCCESS":
       return {
         ...state,
         loadingDelete: false,
         successDelete: true,
       };
-    case 'DELETE_FAIL':
+    case "DELETE_FAIL":
       return { ...state, loadingDelete: false, successDelete: false };
 
-    case 'DELETE_RESET':
+    case "DELETE_RESET":
       return { ...state, loadingDelete: false, successDelete: false };
     default:
       return state;
@@ -66,13 +66,13 @@ export default function ProductListScreen() {
     dispatch,
   ] = useReducer(reducer, {
     loading: true,
-    error: '',
+    error: "",
   });
 
   const navigate = useNavigate();
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
-  const page = sp.get('page') || 1;
+  const page = sp.get("page") || 1;
 
   const { state } = useContext(Store);
   const { userInfo } = state;
@@ -84,40 +84,40 @@ export default function ProductListScreen() {
           headers: { Authorization: `Bearer ${userInfo.tokken}` },
         });
 
-        dispatch({ type: 'FETCH_SUCCESS', payload: data });
+        dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (err) {}
     };
 
     if (successDelete) {
-      dispatch({ type: 'DELETE_RESET' });
+      dispatch({ type: "DELETE_RESET" });
     } else {
       fetchData();
     }
   }, [page, userInfo, successDelete]);
 
   const createHandler = async () => {
-    navigate('/admin/add');
+    navigate("/admin/add");
   };
 
   const deleteHandler = async (product) => {
-    if (window.confirm('Are you sure to delete?')) {
+    if (window.confirm("Are you sure to delete?")) {
       try {
         await axios.delete(`/api/products/${product._id}`, {
           headers: { Authorization: `Bearer ${userInfo.tokken}` },
         });
-        toast.success('product deleted successfully');
-        dispatch({ type: 'DELETE_SUCCESS' });
+        toast.success("product deleted successfully");
+        dispatch({ type: "DELETE_SUCCESS" });
       } catch (err) {
         toast.error(getError(error));
         dispatch({
-          type: 'DELETE_FAIL',
+          type: "DELETE_FAIL",
         });
       }
     }
   };
 
   return (
-    <div>
+    <div className="text-white">
       <Row className="w-100">
         <Col>
           <h1>Products</h1>
@@ -140,7 +140,7 @@ export default function ProductListScreen() {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <>
-          <div className="container-fluid" style={{ overflowX: 'auto' }}>
+          <div className="container-fluid" style={{ overflowX: "auto" }}>
             <table className="w-100">
               <thead>
                 <tr>
@@ -159,7 +159,7 @@ export default function ProductListScreen() {
                     <td>
                       <img
                         className="img-thumbnail border-0"
-                        style={{ maxHeight: '100px', maxWidth: '100px' }}
+                        style={{ maxHeight: "100px", maxWidth: "100px" }}
                         src={product.image}
                         alt={product.name}
                       ></img>
@@ -195,7 +195,7 @@ export default function ProductListScreen() {
             {[...Array(pages).keys()].map((x) => (
               <Link
                 className={
-                  x + 1 === Number(page) ? 'btn text-bold fw-bold' : 'btn'
+                  x + 1 === Number(page) ? "btn text-bold fw-bold" : "btn"
                 }
                 key={x + 1}
                 to={`/admin/products?page=${x + 1}`}

@@ -1,23 +1,23 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/esm/Container';
-import { Helmet } from 'react-helmet-async';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
-import Axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
-import { Store } from '../Store';
-import { toast } from 'react-toastify';
-import Row from 'react-bootstrap/esm/Row';
-import Col from 'react-bootstrap/esm/Col';
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/esm/Container";
+import { Helmet } from "react-helmet-async";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import Axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { Store } from "../Store";
+import { toast } from "react-toastify";
+import Row from "react-bootstrap/esm/Row";
+import Col from "react-bootstrap/esm/Col";
 
 export default function SignInScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const redirectInUrl = new URLSearchParams(search).get('redirect');
-  const redirect = redirectInUrl ? redirectInUrl : '/';
+  const redirectInUrl = new URLSearchParams(search).get("redirect");
+  const redirect = redirectInUrl ? redirectInUrl : "/";
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
@@ -25,15 +25,15 @@ export default function SignInScreen() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await Axios.post('/api/users/signin', {
+      const { data } = await Axios.post("/api/users/signin", {
         email,
         password,
       });
-      ctxDispatch({ type: 'USER_SIGNIN', payload: data });
-      localStorage.setItem('userInfo', JSON.stringify(data));
-      navigate(redirect || '/');
+      ctxDispatch({ type: "USER_SIGNIN", payload: data });
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      navigate(redirect || "/");
     } catch (err) {
-      toast.error('Invalid email or password');
+      toast.error("Invalid email or password");
     }
   };
 
@@ -49,7 +49,7 @@ export default function SignInScreen() {
   );
 
   return (
-    <Container className="small-container my-5 py-5">
+    <Container className="small-container text-white my-5 py-5">
       <Helmet>
         <title>Sign In</title>
       </Helmet>
@@ -80,7 +80,7 @@ export default function SignInScreen() {
               </button>
             </div>
             <div className="mb-3">
-              New Customer?{' '}
+              New Customer?{" "}
               <Link to={`/signup?redirect=${redirect}`}>
                 Create your acount
               </Link>

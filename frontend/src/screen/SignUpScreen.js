@@ -1,26 +1,26 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/esm/Container';
-import { Helmet } from 'react-helmet-async';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
-import Axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
-import { Store } from '../Store';
-import { toast } from 'react-toastify';
-import { getError } from '../utils';
-import Row from 'react-bootstrap/esm/Row';
-import Col from 'react-bootstrap/esm/Col';
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/esm/Container";
+import { Helmet } from "react-helmet-async";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import Axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { Store } from "../Store";
+import { toast } from "react-toastify";
+import { getError } from "../utils";
+import Row from "react-bootstrap/esm/Row";
+import Col from "react-bootstrap/esm/Col";
 
 export default function SignUpScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const redirectInUrl = new URLSearchParams(search).get('redirect');
-  const redirect = redirectInUrl ? redirectInUrl : '/';
+  const redirectInUrl = new URLSearchParams(search).get("redirect");
+  const redirect = redirectInUrl ? redirectInUrl : "/";
 
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
@@ -28,18 +28,18 @@ export default function SignUpScreen() {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
+      toast.error("Passwords do not match");
       return;
     }
     try {
-      const { data } = await Axios.post('/api/users/signup', {
+      const { data } = await Axios.post("/api/users/signup", {
         name,
         email,
         password,
       });
-      ctxDispatch({ type: 'USER_SIGNIN', payload: data });
-      localStorage.setItem('userInfo', JSON.stringify(data));
-      navigate(redirect || '/');
+      ctxDispatch({ type: "USER_SIGNIN", payload: data });
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      navigate(redirect || "/");
     } catch (err) {
       toast.error(getError(err));
     }
@@ -57,7 +57,7 @@ export default function SignUpScreen() {
   );
 
   return (
-    <Container className="small-container mt-1 py-5">
+    <Container className="small-container text-white mt-1 py-5">
       <Helmet>
         <title>Sign Up</title>
       </Helmet>
@@ -103,12 +103,12 @@ export default function SignUpScreen() {
             </Form.Group>
             <button
               type="submit"
-              className="bg-black w-100 pt-1 mb-4 text-white text-center"
+              className="bg-dark w-100 pt-1 mb-4 text-white text-center"
             >
               <p className="btn-submit">Sign Up</p>
             </button>
             <div className="mb-3">
-              Already have an account?{' '}
+              Already have an account?{" "}
               <Link to={`/signin?redirect=${redirect}`}>Sign In</Link>
             </div>
           </Form>

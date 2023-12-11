@@ -1,41 +1,41 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import axios from 'axios';
-import { Store } from '../Store';
-import { getError } from '../utils';
-import Container from 'react-bootstrap/Container';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Form from 'react-bootstrap/Form';
-import { Helmet } from 'react-helmet-async';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import Button from 'react-bootstrap/Button';
-import ListGroupItem from 'react-bootstrap/esm/ListGroupItem';
+import React, { useContext, useEffect, useReducer, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { Store } from "../Store";
+import { getError } from "../utils";
+import Container from "react-bootstrap/Container";
+import ListGroup from "react-bootstrap/ListGroup";
+import Form from "react-bootstrap/Form";
+import { Helmet } from "react-helmet-async";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import Button from "react-bootstrap/Button";
+import ListGroupItem from "react-bootstrap/esm/ListGroupItem";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'FETCH_REQUEST':
+    case "FETCH_REQUEST":
       return { ...state, loading: true };
-    case 'FETCH_SUCCESS':
+    case "FETCH_SUCCESS":
       return { ...state, loading: false };
-    case 'FETCH_FAIL':
+    case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
-    case 'UPDATE_REQUEST':
+    case "UPDATE_REQUEST":
       return { ...state, loadingUpdate: true };
-    case 'UPDATE_SUCCESS':
+    case "UPDATE_SUCCESS":
       return { ...state, loadingUpdate: false };
-    case 'UPDATE_FAIL':
+    case "UPDATE_FAIL":
       return { ...state, loadingUpdate: false };
-    case 'UPLOAD_REQUEST':
-      return { ...state, loadingUpload: true, errorUpload: '' };
-    case 'UPLOAD_SUCCESS':
+    case "UPLOAD_REQUEST":
+      return { ...state, loadingUpload: true, errorUpload: "" };
+    case "UPLOAD_SUCCESS":
       return {
         ...state,
         loadingUpload: false,
-        errorUpload: '',
+        errorUpload: "",
       };
-    case 'UPLOAD_FAIL':
+    case "UPLOAD_FAIL":
       return { ...state, loadingUpload: false, errorUpload: action.payload };
 
     default:
@@ -52,24 +52,27 @@ export default function ProductEditScreen() {
   const [{ loading, error, loadingUpdate, loadingUpload }, dispatch] =
     useReducer(reducer, {
       loading: true,
-      error: '',
+      error: "",
     });
 
-  const [name, setName] = useState('');
-  const [slug, setSlug] = useState('');
-  const [price, setPrice] = useState('');
-  const [image, setImage] = useState('');
+  const [name, setName] = useState("");
+  const [slug, setSlug] = useState("");
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
   const [images, setImages] = useState([]);
   const [newImages, setNewImages] = useState([]);
-  const [category, setCategory] = useState('');
-  const [countInStock, setCountInStock] = useState('');
-  const [brand, setBrand] = useState('');
-  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState("");
+  const [countInStock, setCountInStock] = useState("");
+  const [brand, setBrand] = useState("");
+  const [description, setDescription] = useState("");
+  const [vedette, setVedette] = useState(false);
+  const [promo, setPromo] = useState(false);
+  const [New, setNew] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        dispatch({ type: 'FETCH_REQUEST' });
+        dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(`/api/products/${productId}`);
         setName(data.name);
         setSlug(data.slug);
@@ -80,10 +83,13 @@ export default function ProductEditScreen() {
         setCountInStock(data.countInStock);
         setBrand(data.brand);
         setDescription(data.description);
-        dispatch({ type: 'FETCH_SUCCESS' });
+        setVedette(data.vedette);
+        setPromo(data.promo);
+        setNew(data.new);
+        dispatch({ type: "FETCH_SUCCESS" });
       } catch (err) {
         dispatch({
-          type: 'FETCH_FAIL',
+          type: "FETCH_FAIL",
           payload: getError(err),
         });
       }
@@ -94,7 +100,7 @@ export default function ProductEditScreen() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      dispatch({ type: 'UPDATE_REQUEST' });
+      dispatch({ type: "UPDATE_REQUEST" });
       await axios.put(
         `/api/products/${productId}`,
         {
@@ -107,19 +113,23 @@ export default function ProductEditScreen() {
           newImages,
           category,
           description,
+          brand,
+          New,
+          promo,
+          vedette,
         },
         {
           headers: { Authorization: `Bearer ${userInfo.tokken}` },
         }
       );
       dispatch({
-        type: 'UPDATE_SUCCESS',
+        type: "UPDATE_SUCCESS",
       });
-      toast.success('Product updated successfully');
-      navigate('/admin/products');
+      toast.success("Product updated successfully");
+      navigate("/admin/products");
     } catch (err) {
       toast.error(getError(err));
-      dispatch({ type: 'UPDATE_FAIL' });
+      dispatch({ type: "UPDATE_FAIL" });
     }
   };
 
@@ -142,7 +152,7 @@ export default function ProductEditScreen() {
   const uploadImage = async (file) => {
     const base64 = await convertBase64(file);
 
-    document.getElementById('product_photo_1_result').innerHTML +=
+    document.getElementById("product_photo_1_result").innerHTML +=
       '<div class="list-group-item col-2 mx-3"><button type="button" id="product_photo_1_result" class="float-end btn btn-light" style="background-color: transparent;"><i class="fa fa-times-circle" aria-hidden="true"></i></button><img src="' +
       base64 +
       '" id="product_photo_1[]" style="max-width:100px" /></div>';
@@ -174,7 +184,7 @@ export default function ProductEditScreen() {
       } else {
         setImage(reader.result);
       }
-      toast.success('Image uploaded successfully. click Update to apply it');
+      toast.success("Image uploaded successfully. click Update to apply it");
     };
   };
   const deleteFileHandler = async (fileName, f) => {
@@ -182,10 +192,10 @@ export default function ProductEditScreen() {
     console.log(images);
     console.log(images.filter((x) => x !== fileName));
     setImages(images.filter((x) => x !== fileName));
-    toast.success('Image removed successfully. click Update to apply it');
+    toast.success("Image removed successfully. click Update to apply it");
   };
   return (
-    <Container className="small-container">
+    <Container className=" text-white small-container">
       <Helmet>
         <title>Edit Product ${productId}</title>
       </Helmet>
@@ -221,9 +231,52 @@ export default function ProductEditScreen() {
               required
             />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="brand">
+            <Form.Label>La Marque</Form.Label>
+            <Form.Control
+              type="text"
+              required
+              value={brand}
+              autoComplete="off"
+              onChange={(e) => {
+                setBrand(e.target.value);
+              }}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="vedette">
+            <Form.Check
+              type="checkbox"
+              label="Vedette"
+              checked={vedette}
+              onChange={() => {
+                setVedette((current) => !current);
+              }}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="New">
+            <Form.Check
+              type="checkbox"
+              label="Nouveaute"
+              checked={New}
+              onChange={() => {
+                setNew((current) => !current);
+              }}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="Promo">
+            <Form.Check
+              type="checkbox"
+              label="Promotion"
+              checked={promo}
+              onChange={() => {
+                setPromo((current) => !current);
+              }}
+            />
+          </Form.Group>
           <Form.Group className="mb-3" controlId="image">
             <Form.Label>Image File</Form.Label>
-            <img src={image} alt={image} style={{ maxWidth: '400px' }}></img>
+            <img src={image} alt={image} style={{ maxWidth: "400px" }}></img>
           </Form.Group>
           <Form.Group className="mb-3" controlId="imageFile">
             <Form.Label>Upload Image</Form.Label>
@@ -243,13 +296,13 @@ export default function ProductEditScreen() {
                 <ListGroup.Item key={x} className="col-2 mx-3">
                   <Button
                     variant="light"
-                    style={{ backgroundColor: 'transparent' }}
+                    style={{ backgroundColor: "transparent" }}
                     className="float-end"
                     onClick={() => deleteFileHandler(x)}
                   >
                     <i className="fa fa-times-circle"></i>
                   </Button>
-                  <img src={x} key={x} style={{ maxWidth: '100px' }}></img>
+                  <img src={x} key={x} style={{ maxWidth: "100px" }}></img>
                 </ListGroup.Item>
               ))}
             </div>
@@ -264,6 +317,8 @@ export default function ProductEditScreen() {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="category">
+            <Form.Label>Category</Form.Label>
+
             <Form.Select
               required
               aria-label="Default select example"
