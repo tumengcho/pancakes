@@ -41,7 +41,8 @@ import Badge from "react-bootstrap/esm/Badge";
 window.onload = function () {
   window.scrollTo(0, 0);
 };
-
+var imageBasePath =
+  window.location.protocol + "//" + window.location.host + "/images/";
 function App() {
   const [show, setShow] = useState(false);
 
@@ -92,7 +93,7 @@ function App() {
             <Link to="/">
               <img
                 class="w-50 pe-3 pe-md-1"
-                src="Images/logo_athlima.png"
+                src={`${imageBasePath}logo_athlima.png`}
                 alt="logo"
               />
             </Link>
@@ -491,7 +492,7 @@ function App() {
               <div class="dark:text-white">
                 <img
                   loading="lazy"
-                  src="/Images/logo_athlima.png"
+                  src={`${imageBasePath}logo_athlima.png`}
                   alt="Athlima Plug"
                   className="img-logo"
                 ></img>

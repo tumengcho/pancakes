@@ -24,6 +24,8 @@ const reducer = (state, action) => {
   }
 };
 
+var imageBasePath =
+  window.location.protocol + "//" + window.location.host + "/images/";
 export default function HomeScreen() {
   const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
     products: [],
@@ -62,9 +64,15 @@ export default function HomeScreen() {
             576: { nav: true, items: 1 },
           }}
         >
-          <img src="Images/section1.jpg" className="w-100"></img>
-          <img src="Images/promo_corteiz.webp" className="w-100"></img>
-          <img src="Images/corteiz-promo.webp" className="w-100"></img>
+          <img src={`${imageBasePath}section1.jpg`} className="w-100"></img>
+          <img
+            src={`${imageBasePath}promo_corteiz.webp`}
+            className="w-100"
+          ></img>
+          <img
+            src={`${imageBasePath}corteiz-promo.webp`}
+            className="w-100"
+          ></img>
         </OwlCarousel>
         {/*
         <div class="jumbotron shadow row text-center px-5 align-items-center h-100 w-100 m-0">
@@ -100,7 +108,7 @@ export default function HomeScreen() {
           <div class="card bg-black text-white col-md-4">
             <img
               class="card-img-top"
-              src="Images/clothes_1.jpg"
+              src={`${imageBasePath}clothes_1.jpg`}
               alt="Card image cap"
             />
             <div class="card-body">
@@ -113,7 +121,7 @@ export default function HomeScreen() {
           <div class="card bg-black text-white col-md-4 ">
             <img
               class="card-img-top"
-              src="images/shoes.jpg"
+              src={`${imageBasePath}shoes.jpg`}
               alt="Card image cap"
             />
             <div class="card-body">
@@ -126,7 +134,7 @@ export default function HomeScreen() {
           <div class="card bg-black text-white col-md-4">
             <img
               class="card-img-top"
-              src="Images/pexels-lucas-pezeta-2079149.jpg"
+              src={`${imageBasePath}pexels-lucas-pezeta-2079149.jpg`}
               alt="Card image cap"
             />
             <div class="card-body">
