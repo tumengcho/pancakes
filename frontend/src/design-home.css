@@ -26,10 +26,49 @@ html {
   src: url(/src/fonts/quropa__.ttf);
 }
 
+@keyframes nav-item {
+  from {
+    width: 0%;
+    height: 2px;
+    background-color: white;
+  }
+  to {
+    width: 100%;
+    height: 2px;
+    background-color: white;
+  }
+}
+
 body {
   background-color: var(--primary-color);
   margin: 0 3% 0 3%;
   width: 100%;
+}
+
+.badge-cart {
+  position: absolute;
+  top: -20%;
+  size: 20px;
+  width: 10px;
+}
+
+.badge-cart p {
+  font-size: 0.6em;
+}
+
+.btn-payment {
+  transition: transform 0.5s;
+}
+
+.btn-payment:hover {
+  transform: scale(1.1);
+}
+
+.btn-payment.active {
+  transform: scale(1.1);
+}
+.footer {
+  font-family: Ropa;
 }
 
 i {
@@ -70,7 +109,7 @@ nav li {
 }
 
 nav li img {
-  width: 55%;
+  min-width: 80%;
   display: inline-block;
   margin: 10px;
 }
@@ -83,13 +122,40 @@ nav .nav-link {
   font-family: Ropa;
 }
 
-.nav-item {
+li.nav-item {
+  margin-top: auto;
   display: none;
+}
+.dropdown-menu {
+  position: absolute;
+  font-size: 0.6em;
+}
+#dropdown-basic {
+  font-size: 0.6em;
+  background-color: transparent;
+  border: 0;
+  padding-right: 0%;
+}
+
+li.nav-item:hover {
+  color: white;
+}
+.nav-item:hover hr {
+  animation-name: nav-item;
+  animation-duration: 0.5s;
+}
+
+li.nav-item.active hr {
+  color: white;
+  height: 2px;
+  width: 100%;
+  background-color: white;
 }
 
 nav li img {
-  width: 35%;
+  width: 100%;
   padding-left: 10%;
+  margin-left: 5%;
 }
 
 .nav-mobile {
@@ -126,10 +192,15 @@ nav li img {
   padding-bottom: 3%;
 }
 
+.payment {
+  width: 150px;
+  height: 80px;
+}
+
 .section-one {
-  height: 500px;
+  width: 100%;
+  max-height: 700px;
   margin-bottom: 25%;
-  background-image: url(/public/Images/section1.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;
@@ -146,6 +217,16 @@ nav li img {
   margin: 7% 0 3% 0;
   color: gray;
   font-size: 0.6em;
+}
+
+.section-one .owl-carousel .owl-stage {
+  display: flex;
+  align-items: center;
+}
+
+.section-one .owl-carousel img {
+  max-height: 900px;
+  min-height: 500px;
 }
 
 .section-two {
@@ -174,6 +255,11 @@ nav li img {
 
 .shadow {
   background-color: rgba(0, 0, 0, 0.274);
+  z-index: 10;
+}
+
+.stripe {
+  background-color: #655afe;
 }
 
 .content {
@@ -195,9 +281,27 @@ nav li img {
   }
 }
 
+@media screen and (min-width: 300px) {
+  nav li img {
+    min-width: 55%;
+  }
+}
+
 @media screen and (min-width: 576px) {
+  #dropdown-basic {
+    font-size: 0.6em;
+    background-color: transparent;
+    border: 0;
+    padding-right: 12px;
+  }
+
+  nav li img {
+    min-width: 35%;
+  }
+
   .section-one {
     height: 800px;
+    width: 100%;
   }
 
   .section-one p.lead {
@@ -212,7 +316,7 @@ nav li img {
     margin: 0;
   }
 
-  .nav-item {
+  li.nav-item {
     display: inline-block;
   }
 

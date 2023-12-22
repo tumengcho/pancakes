@@ -19,9 +19,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "owl.carousel/dist/owl.carousel.min.js";
 import Recommendation from "../components/Recommendation";
-window.onload = function () {
-  window.scrollTo(0, 0);
-};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -115,7 +113,7 @@ function ProductScreen() {
       </p>
       <Row className=" text-md-start border border-3 border-danger rounded-4 bg-white text-center pt-5">
         <Col md={6} className="bg-white">
-          {product.new ? <Badge>NEW</Badge> : ""}
+          {product.new ? <Badge pill>NEW</Badge> : ""}
           {product.promo ? (
             <Badge pill bg="danger">
               Promo
@@ -270,19 +268,19 @@ function ProductScreen() {
             </ListGroup.Item>
             <ListGroup.Item className="py-4">
               <Row className="align-items-center text-center ">
-                <Col>
+                <Col md={6}>
                   <button
                     type="button"
                     className="w-100 pt-3 text-white btn bg-black"
                     onClick={addToCartHandler}
                   >
-                    <p className="btn-submit  text-uppercase">Add to cart</p>
+                    <p className="btn-submit text-uppercase">Add cart</p>
                   </button>
                 </Col>
-                <Col>
+                <Col md={6} className="mt-3 mt-md-0">
                   <button
                     type="button"
-                    className="w-100 h-100 pt-3 btn btn-outline-dark "
+                    className="w-100 h-100  pt-3 btn btn-outline-dark "
                     onClick={buyNowHandler}
                   >
                     <p className="btn-submit text-uppercase">Buy Now</p>

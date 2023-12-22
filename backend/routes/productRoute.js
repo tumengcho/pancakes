@@ -269,7 +269,7 @@ producRouter.get("/slug/:slug", async (req, res) => {
     if (burger) {
       res.send(burger);
     } else {
-      res.status(404).send({ message: "Product not Founde" });
+      res.status(404).send({ message: "Product not Found" });
     }
   }
 });

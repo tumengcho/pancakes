@@ -1,14 +1,14 @@
-import { useContext } from 'react';
-import { Store } from '../Store';
-import { Helmet } from 'react-helmet-async';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
-import { Link, useNavigate } from 'react-router-dom';
-import MessageBox from '../components/MessageBox';
-import Container from 'react-bootstrap/esm/Container';
+import { useContext } from "react";
+import { Store } from "../Store";
+import { Helmet } from "react-helmet-async";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
+import { Link, useNavigate } from "react-router-dom";
+import MessageBox from "../components/MessageBox";
+import Container from "react-bootstrap/esm/Container";
 export default function CartScreen() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
@@ -18,27 +18,27 @@ export default function CartScreen() {
 
   const updateCartHandler = (item, quantity) => {
     ctxDispatch({
-      type: 'CART_ADD_ITEM',
+      type: "CART_ADD_ITEM",
       payload: { ...item, quantity },
     });
   };
 
   const removeItemHandler = (item) => {
-    ctxDispatch({ type: 'CART_REMOVE_ITEM', payload: item });
+    ctxDispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
 
   const checkoutHandler = () => {
-    navigate('/signin?redirect=/shipping');
+    navigate("/signin?redirect=/shipping");
   };
   return (
-    <Container>
+    <Container className="text-white">
       <Helmet>
         <title>Shopping Cart</title>
       </Helmet>
       <h1 className="text-center py-5 fs-4 titre text-uppercase">
         Revue des articles
       </h1>
-      <Row style={{ paddingTop: '5%' }}>
+      <Row style={{ paddingTop: "5%" }}>
         <Col md={8} className="mb-4">
           {cartItems.length === 0 ? (
             <MessageBox>
@@ -58,22 +58,22 @@ export default function CartScreen() {
                       <Link
                         className="lien text-black fw-semibold"
                         to={`/products/${item.slug}`}
-                        style={{ textDecoration: 'none' }}
+                        style={{ textDecoration: "none" }}
                       >
                         {item.name}
                       </Link>
                     </Col>
                     <Col xs={2}>
-                      <div className="row  align-items-center ">
+                      <div className="row align-items-center ">
                         <button
                           disabled={item.quantity === 1}
                           onClick={() =>
                             updateCartHandler(item, item.quantity - 1)
                           }
-                          className="p-0 col-4"
-                          style={{ width: 'fit-content' }}
+                          className="p-0 btn border-0 col-4"
+                          style={{ width: "fit-content" }}
                         >
-                          <i class="fa-solid fa-circle-minus"></i>
+                          <i class="fa-solid fa-circle-minus text-black"></i>
                         </button>
 
                         <span className="col-4 p-0 text-center">
@@ -85,10 +85,10 @@ export default function CartScreen() {
                           onClick={() =>
                             updateCartHandler(item, item.quantity + 1)
                           }
-                          className="p-0 col-4"
-                          style={{ width: 'fit-content' }}
+                          className="p-0 btn border-0 col-4"
+                          style={{ width: "fit-content" }}
                         >
-                          <i class="fa-solid fa-circle-plus"></i>
+                          <i class="fa-solid fa-circle-plus text-black"></i>
                         </button>
                       </div>
                     </Col>
@@ -101,7 +101,7 @@ export default function CartScreen() {
                     <Col xs={2}>
                       <button className="p-0">
                         <i
-                          className="fas fa-trash"
+                          className="fas fa-trash text-black"
                           onClick={() => removeItemHandler(item)}
                         ></i>
                       </button>
@@ -120,7 +120,7 @@ export default function CartScreen() {
                   <ListGroup.Item>
                     <h3>
                       Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}
-                      {'  '}
+                      {"  "}
                       items) : <br></br>
                       {cartItems
                         .reduce((a, c) => a + c.price * c.quantity, 0)

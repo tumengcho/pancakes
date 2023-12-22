@@ -17,7 +17,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { Store } from "./Store";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import Dropdown from "react-bootstrap/Dropdown";
 import { LinkContainer } from "react-router-bootstrap";
 import { UploadProduct } from "./screen/UploadProduct";
 import AdminRoutes from "./routes/AdminRoutes";
@@ -36,6 +36,7 @@ import { SearchBar } from "./components/SearchBar";
 import { SearchResultsList } from "./components/SearchResultsList";
 import OrderScreen from "./screen/OrderScreen";
 import Button from "react-bootstrap/esm/Button";
+import Badge from "react-bootstrap/esm/Badge";
 
 window.onload = function () {
   window.scrollTo(0, 0);
@@ -50,7 +51,9 @@ function App() {
   const [value, setValue] = useState("");
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
-  const [image, setImage] = useState(userInfo ? userInfo.image : "");
+  const [image, setImage] = useState(
+    userInfo ? (userInfo.image ? userInfo.image : "") : ""
+  );
 
   const signoutHandler = () => {
     setImage("");
@@ -65,7 +68,7 @@ function App() {
       <div>
         <ToastContainer position="bottom-center" limit={1} />
 
-        <nav class="d-flex flex-row align-items-center">
+        <nav class="d-flex flex-row px-md-4 px-0 ps-2">
           <li class="nav-mobile">
             <i
               onClick={handleShow}
@@ -73,40 +76,149 @@ function App() {
               style={{ color: "#ffffff;" }}
             ></i>
           </li>
-          <li class="nav-item align-middle">
+          <li class="nav-item ml-auto align-middle">
             <Link class="nav-link" to="/">
               Home
             </Link>
+            <hr></hr>
           </li>
           <li class="nav-item" tabIndex={0}>
             <Link class="nav-link" to="/produits">
               Products
             </Link>
+            <hr></hr>
           </li>
-          <li class="m-0">
+          <li className="ps-4">
             <Link to="/">
-              <img class="w-50" src="Images/logo_athlima.png" alt="logo" />
+              <img
+                class="w-50 pe-3 pe-md-1"
+                src="Images/logo_athlima.png"
+                alt="logo"
+              />
             </Link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <Link class="nav-link" to="/infos">
               Infos
-            </a>
+            </Link>
+            <hr></hr>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item  mr-auto">
+            <Link class="nav-link" to="/contact">
               Contact
-            </a>
+            </Link>
+            <hr></hr>
           </li>
-          <li class="">
-            <i class="fa-solid fa-user fa-xs" style={{ Color: "#ffffff;" }}></i>
-          </li>
-          <li class="">
-            <i
-              class="fa-solid fa-cart-shopping fa-xs"
-              style={{ Color: "#ffffff;" }}
-            ></i>
-          </li>
+          <div className="d-flex pe-md-4 text-center pe-2 align-items-center">
+            <>
+              {/* <p
+                  className="w-100 col-3 my-auto text-white"
+                  style={{ width: "50px", fontSize: ".5em" }}
+                >
+                  {userInfo.name}
+                </p> */}
+
+              {userInfo ? (
+                <>
+                  <Dropdown align={"end"}>
+                    <Dropdown.Toggle id="dropdown-basic">
+                      {userInfo.name}
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <LinkContainer to="/profile">
+                        <Dropdown.Item>Profile</Dropdown.Item>
+                      </LinkContainer>
+
+                      {userInfo && userInfo.isAdmin ? (
+                        <div>
+                          <LinkContainer to="/admin/add">
+                            <Dropdown.Item>Ajout Produits</Dropdown.Item>
+                          </LinkContainer>
+
+                          <LinkContainer to="/admin/commandes">
+                            <Dropdown.Item>Toutes les Commandes</Dropdown.Item>
+                          </LinkContainer>
+
+                          <LinkContainer to="/admin/donnees">
+                            <Dropdown.Item>Données</Dropdown.Item>
+                          </LinkContainer>
+
+                          <LinkContainer to="/admin/products">
+                            <Dropdown.Item>Tous les Produits</Dropdown.Item>
+                          </LinkContainer>
+
+                          <LinkContainer to="/admin/users">
+                            <Dropdown.Item>Tous les Clients</Dropdown.Item>
+                          </LinkContainer>
+                          <Dropdown.Divider />
+                        </div>
+                      ) : (
+                        <LinkContainer to="/orderhistory">
+                          <Dropdown.Item>Historique de commandes</Dropdown.Item>
+                        </LinkContainer>
+                      )}
+                      <Dropdown.Divider />
+                      <Link
+                        className="dropdown-item"
+                        to="#signout"
+                        onClick={signoutHandler}
+                      >
+                        Sign Out
+                      </Link>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <Link to={"/cart"} className="position-relative ms-2 me-2">
+                    <li class="d-inline m-0">
+                      <i
+                        class="fa-solid fa-cart-shopping fa-sm"
+                        style={{ Color: "#ffffff;" }}
+                      ></i>
+                    </li>
+                    {cart.cartItems.length === 0 ? (
+                      <></>
+                    ) : (
+                      <Badge
+                        bg="danger"
+                        className="badge-cart text-center pe-2"
+                      >
+                        <p className="m-0 p-0">{cart.cartItems.length}</p>
+                      </Badge>
+                    )}
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <div className="d-flex gap-2">
+                    <Link class="d-inline m-0" to={"/signin"}>
+                      <i
+                        class="fa-solid fa-user fa-sm"
+                        style={{ Color: "#ffffff;" }}
+                      ></i>
+                    </Link>
+                    <Link to={"/cart"} className="position-relative">
+                      <li class="d-inline m-0">
+                        <i
+                          class="fa-solid fa-cart-shopping fa-sm"
+                          style={{ Color: "#ffffff;" }}
+                        ></i>
+                      </li>
+                      {cart.cartItems.length === 0 ? (
+                        <></>
+                      ) : (
+                        <Badge
+                          bg="danger"
+                          className="badge-cart text-center pe-2"
+                        >
+                          <p className="m-0 p-0">{cart.cartItems.length}</p>
+                        </Badge>
+                      )}
+                    </Link>
+                  </div>
+                </>
+              )}
+            </>
+          </div>
         </nav>
 
         <Offcanvas
@@ -122,97 +234,28 @@ function App() {
             <Offcanvas.Title className="d-flex position-relative w-100">
               {userInfo ? (
                 <div className="d-flex flex-row align-items-center gap-3">
-                  {image !== "" ? (
+                  {image !== null ? (
                     <img
                       src={image}
                       alt={userInfo.name}
+                      id="ImageUser"
                       className="img-logo rounded-circle"
                       style={{ width: "60px", height: "60px" }}
                     ></img>
                   ) : (
-                    <Link to="/signin" style={{ textDecoration: "none" }}>
-                      <i
-                        class="fa-solid fa-circle-user fa-2xl"
-                        style={{ color: "#000000" }}
-                      ></i>
-                    </Link>
+                    <i class="fa-solid fa-circle-user fa-2xl"></i>
                   )}
-                  <p></p>
-                  <NavDropdown
-                    className="bg-black"
-                    color="white"
-                    title={userInfo.name}
-                    id="basic-nav-dropdown"
-                  >
-                    <LinkContainer to="/profile">
-                      <NavDropdown.Item>Profile</NavDropdown.Item>
-                    </LinkContainer>
-
-                    {userInfo && userInfo.isAdmin ? (
-                      <div>
-                        <LinkContainer to="/admin/add">
-                          <NavDropdown.Item>Ajout Produits</NavDropdown.Item>
-                        </LinkContainer>
-
-                        <LinkContainer to="/admin/commandes">
-                          <NavDropdown.Item>
-                            Toutes les Commandes
-                          </NavDropdown.Item>
-                        </LinkContainer>
-
-                        <LinkContainer to="/admin/donnees">
-                          <NavDropdown.Item>Données</NavDropdown.Item>
-                        </LinkContainer>
-
-                        <LinkContainer to="/admin/products">
-                          <NavDropdown.Item>Tous les Produits</NavDropdown.Item>
-                        </LinkContainer>
-
-                        <LinkContainer to="/admin/users">
-                          <NavDropdown.Item>Tous les Clients</NavDropdown.Item>
-                        </LinkContainer>
-                      </div>
-                    ) : (
-                      <LinkContainer to="/orderhistory">
-                        <NavDropdown.Item>
-                          Historique de commandes
-                        </NavDropdown.Item>
-                      </LinkContainer>
-                    )}
-                    <Link
-                      className="dropdown-item"
-                      to="#signout"
-                      onClick={signoutHandler}
-                    >
-                      Sign Out
-                    </Link>
-                  </NavDropdown>
+                  <p className="my-auto"> {userInfo.name}</p>
                 </div>
               ) : (
                 <>
-                  <NavDropdown.Divider />
-                  <Link
-                    onClick={handleClose}
-                    to="/signin"
-                    className="text-black"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <h1>SIGN UP</h1>{" "}
-                  </Link>
-
-                  <h1 className="position-absolute end-0">
-                    <i
-                      class="fa-solid fa-circle-user fa-lg"
-                      style={{ color: "#000000" }}
-                    ></i>
-                  </h1>
+                  <p className="my-auto">SIGN-IN</p>
                 </>
               )}
             </Offcanvas.Title>
             <Button
               onClick={() => {
                 setShow(!show);
-                console.log(2);
               }}
               className="position-absolute z-0 right-0 bg-black border-white me-2"
             >
@@ -323,72 +366,7 @@ function App() {
                     )}
                   </Nav.Item>
                   <Nav.Item>
-                    {userInfo ? (
-                      <NavDropdown
-                        title={userInfo.name}
-                        id="basic-nav-dropdown"
-                      >
-                        <LinkContainer to="/profile">
-                          <NavDropdown.Item>Profile</NavDropdown.Item>
-                        </LinkContainer>
-
-                        {userInfo && userInfo.isAdmin ? (
-                          <div>
-                            <LinkContainer to="/admin/add">
-                              <NavDropdown.Item>
-                                Ajout Produits
-                              </NavDropdown.Item>
-                            </LinkContainer>
-
-                            <LinkContainer to="/admin/commandes">
-                              <NavDropdown.Item>
-                                Toutes les Commandes
-                              </NavDropdown.Item>
-                            </LinkContainer>
-
-                            <LinkContainer to="/admin/donnees">
-                              <NavDropdown.Item>Données</NavDropdown.Item>
-                            </LinkContainer>
-
-                            <LinkContainer to="/admin/products">
-                              <NavDropdown.Item>
-                                Tous les Produits
-                              </NavDropdown.Item>
-                            </LinkContainer>
-
-                            <LinkContainer to="/admin/users">
-                              <NavDropdown.Item>
-                                Tous les Clients
-                              </NavDropdown.Item>
-                            </LinkContainer>
-                            <NavDropdown.Divider />
-                            <Link
-                              className="dropdown-item"
-                              to="#signout"
-                              onClick={signoutHandler}
-                            >
-                              Sign Out
-                            </Link>
-                          </div>
-                        ) : (
-                          <LinkContainer to="/orderhistory">
-                            <NavDropdown.Item>
-                              Historique de commandes
-                            </NavDropdown.Item>
-                          </LinkContainer>
-                        )}
-                        <NavDropdown.Divider />
-                        <Link
-                          className="dropdown-item"
-                          to="#signout"
-                          onClick={signoutHandler}
-                        >
-                          Sign Out
-                        </Link>
-                      </NavDropdown>
-                    ) : (
-                      <></>
-                    )}
+                    
                   </Nav.Item>
                 </Navbar>
               </div>
@@ -402,14 +380,7 @@ function App() {
             <Route path="/produits" element={<Product />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/infos" element={<Infos />}></Route>
-            <Route
-              path="/cart"
-              element={
-                <ProtectedRoute>
-                  <CartScreen />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/cart" element={<CartScreen />} />
             <Route
               path="/placeorder"
               element={
@@ -520,7 +491,7 @@ function App() {
               <div class="dark:text-white">
                 <img
                   loading="lazy"
-                  src="/Images/athlima_logo2.webp"
+                  src="/Images/logo_athlima.png"
                   alt="Athlima Plug"
                   className="img-logo"
                 ></img>
@@ -634,35 +605,7 @@ function App() {
                 Contactez-Nous
               </a>
             </div>
-            <div class="flex flex-col">
-              <h2 class="text-base font-semibold leading-4 text-white dark:text-white">
-                Support
-              </h2>
-              <a
-                href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-white dark:text-white cursor-pointer"
-              >
-                Politique Légal
-              </a>
-              <a
-                href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-white dark:text-white cursor-pointer"
-              >
-                Politique de Status
-              </a>
-              <a
-                href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-white dark:text-white cursor-pointer"
-              >
-                Politique Privé
-              </a>
-              <a
-                href="javascript:void(0)"
-                class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-white dark:text-white cursor-pointer"
-              >
-                Terme de Service
-              </a>
-            </div>
+
             <div class="mt-10 lg:block hidden">
               <label class="text-xl font-medium leading-5 text-white dark:text-white">
                 Soyez à Jour !

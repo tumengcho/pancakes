@@ -45,15 +45,36 @@ export default function HomeScreen() {
   }, []);
   return (
     <main>
-      <div class="section-one text-white">
-        <div class="jumbotron shadow row text-center px-5 align-items-center h-100">
+      <div class="section-one px-3 text-white">
+        <OwlCarousel
+          className=" owl-carousel h-100"
+          autoplay
+          loop
+          center
+          rewind={false}
+          dots={true}
+          navText={[
+            "<i class='fa fa-angle-left'></i>",
+            "<i class='fa fa-angle-right'></i>",
+          ]}
+          responsive={{
+            0: { items: 1, margin: 10 },
+            576: { nav: true, items: 1 },
+          }}
+        >
+          <img src="Images/section1.jpg" className="w-100"></img>
+          <img src="Images/promo_corteiz.webp" className="w-100"></img>
+          <img src="Images/corteiz-promo.webp" className="w-100"></img>
+        </OwlCarousel>
+        {/*
+        <div class="jumbotron shadow row text-center px-5 align-items-center h-100 w-100 m-0">
           <div>
             <h1 class="display-7 display-md-4">Step into Excellence.</h1>
             <p class="lead text-light">
               Where Comfort Meets Style, Every Stride Tells a Story!
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div class="section-video row bg-light mx-md-5 mx-1 align-items-center">

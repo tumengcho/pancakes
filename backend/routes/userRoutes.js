@@ -1,14 +1,14 @@
-import express from 'express';
-import User from '../models/userModel.js';
-import bcrypt from 'bcryptjs';
-import expressAsyncHandler from 'express-async-handler';
-import { generateToken, isAdmin, isAuth } from '../utils.js';
-import { v2 as cloudinary } from 'cloudinary';
+import express from "express";
+import User from "../models/userModel.js";
+import bcrypt from "bcryptjs";
+import expressAsyncHandler from "express-async-handler";
+import { generateToken, isAdmin, isAuth } from "../utils.js";
+import { v2 as cloudinary } from "cloudinary";
 
 const userRouter = express.Router();
 
 userRouter.get(
-  '/',
+  "/",
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
@@ -18,7 +18,7 @@ userRouter.get(
 );
 
 userRouter.put(
-  '/profile',
+  "/profile",
   isAuth,
   expressAsyncHandler(async (req, res) => {
     cloudinary.config({
@@ -37,14 +37,14 @@ userRouter.put(
         try {
           const cloudImage = cloudinary.uploader.upload(req.body.image, {
             public_id: user.name,
-            upload_preset: 'users',
+            upload_preset: "users",
           });
           user.image = (await cloudImage).secure_url;
         } catch (error) {
-          res.send({ message: 'Erreur' });
+          res.send({ message: "Erreur" });
         }
       }
-      user.mobile = req.body.mobile || '';
+      user.mobile = req.body.mobile || "";
       console.log(user.image, user.mobile);
 
       const updatedUser = await user.save();
@@ -58,13 +58,13 @@ userRouter.put(
         token: generateToken(updatedUser),
       });
     } else {
-      res.status(404).send({ message: 'User not found' });
+      res.status(404).send({ message: "User not found" });
     }
   })
 );
 
 userRouter.post(
-  '/signin',
+  "/signin",
   expressAsyncHandler(async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     if (user) {
@@ -74,17 +74,18 @@ userRouter.post(
           name: user.name,
           email: user.email,
           isAdmin: user.isAdmin,
+          image: user.image,
           tokken: generateToken(user),
         });
         return;
       }
     }
-    res.status(401).send({ message: 'Invalid password or username' });
+    res.status(401).send({ message: "Invalid password or username" });
   })
 );
 
 userRouter.post(
-  '/signup',
+  "/signup",
   expressAsyncHandler(async (req, res) => {
     const newUser = new User({
       name: req.body.name,

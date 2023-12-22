@@ -694,7 +694,7 @@ ul.summary-list > li:last-child {
   width: 10px;
   height: 10px;
   margin: 5px 7px;
-  background: black !important;
+  background: rgb(255, 255, 255) !important;
   display: block;
   -webkit-backface-visibility: visible;
   -webkit-transition: opacity 200ms ease;

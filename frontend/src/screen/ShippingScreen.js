@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { Link, useNavigate } from 'react-router-dom';
-import { Store } from '../Store';
-import CheckoutSteps from '../components/CheckoutSteps';
-import Container from 'react-bootstrap/esm/Container';
+import React, { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import { Link, useNavigate } from "react-router-dom";
+import { Store } from "../Store";
+import CheckoutSteps from "../components/CheckoutSteps";
+import Container from "react-bootstrap/esm/Container";
 
 export default function ShippingScreen() {
   const navigate = useNavigate();
@@ -16,22 +16,22 @@ export default function ShippingScreen() {
   } = state;
   useEffect(() => {
     if (!userInfo) {
-      navigate('/signin?redirect=/shipping');
+      navigate("/signin?redirect=/shipping");
     }
   }, [userInfo, navigate]);
 
-  const [fullName, setFullName] = useState(shippingAddress.fullName || '');
-  const [address, setAdress] = useState(shippingAddress.address || '');
-  const [city, setCity] = useState(shippingAddress.city || '');
+  const [fullName, setFullName] = useState(shippingAddress.fullName || "");
+  const [address, setAdress] = useState(shippingAddress.address || "");
+  const [city, setCity] = useState(shippingAddress.city || "");
   const [postalCode, setPostalCode] = useState(
-    shippingAddress.postalCode || ''
+    shippingAddress.postalCode || ""
   );
-  const [country, setCountry] = useState(shippingAddress.country || '');
+  const [country, setCountry] = useState(shippingAddress.country || "");
 
   const submitHandler = (e) => {
     e.preventDefault();
     ctxDispatch({
-      type: 'SAVE_SHIPPING_ADDRESS',
+      type: "SAVE_SHIPPING_ADDRESS",
       payload: {
         fullName,
         country,
@@ -42,7 +42,7 @@ export default function ShippingScreen() {
     });
 
     localStorage.setItem(
-      'shippingAddress',
+      "shippingAddress",
       JSON.stringify({
         fullName,
         country,
@@ -51,11 +51,11 @@ export default function ShippingScreen() {
         city,
       })
     );
-    navigate('/payment');
+    navigate("/payment");
   };
 
   return (
-    <div className="mb-5 pb-5">
+    <div className="mb-5 pb-5 text-white px-md-3">
       <Helmet>
         <title>Shipping Adress</title>
       </Helmet>
@@ -66,11 +66,11 @@ export default function ShippingScreen() {
       <h1 className="py-5 text-center">Shipping Address</h1>
       <div
         class="row mt-3 mx-0 py-5 w-100 gradient-custom"
-        style={{ marginTop: '25px' }}
+        style={{ marginTop: "25px" }}
       >
         <div class="col-md-3">
           <div
-            style={{ marginTop: '50px', marginLeft: '10px;' }}
+            style={{ marginTop: "50px", marginLeft: "10px;" }}
             class="text-center"
           >
             <i
@@ -102,8 +102,8 @@ export default function ShippingScreen() {
           <div
             class="card pb-4"
             style={{
-              borderBottomLeftRadius: '10% 50%',
-              borderTopLeftRadius: '10% 50%',
+              borderBottomLeftRadius: "10% 50%",
+              borderTopLeftRadius: "10% 50%",
             }}
           >
             <div class="card-body mt-0 mx-5">
