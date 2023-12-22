@@ -25,7 +25,7 @@ const reducer = (state, action) => {
 };
 
 var imageBasePath =
-  window.location.protocol + "//" + window.location.host + "/images/";
+  window.location.protocol + "//" + window.location.host + "/Images/";
 export default function HomeScreen() {
   const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
     products: [],

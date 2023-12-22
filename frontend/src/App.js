@@ -42,7 +42,7 @@ window.onload = function () {
   window.scrollTo(0, 0);
 };
 var imageBasePath =
-  window.location.protocol + "//" + window.location.host + "/images/";
+  window.location.protocol + "//" + window.location.host + "/Images/";
 function App() {
   const [show, setShow] = useState(false);
 
