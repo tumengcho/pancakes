@@ -57,10 +57,10 @@ export default function Products() {
                 ) : error ? (
                   <MessageBox variant="danger">{error}</MessageBox>
                 ) : (
-                  <div className="d-flex text-black text-center border border-2 border-danger rounded-4 bg-white">
+                  <div className="d-flex text-white text-center border border-2 border-white rounded-4 bg-black">
                     <Link
                       to={`/products/${produit.slug}`}
-                      className="text-black"
+                      className="text-white"
                       style={{ textDecoration: "none" }}
                     >
                       <div className="card-img" style={{ height: "auto" }}>
@@ -97,7 +97,7 @@ export default function Products() {
             .map((produit) => (
               <Col xs={12} sm={4} md={3} className="mt-5 d-grid">
                 {loading ? (
-                  <div className="text-black">
+                  <div className="text-white">
                     <h1>Loading...</h1>
                   </div>
                 ) : error ? (
@@ -108,7 +108,7 @@ export default function Products() {
                     className="d-flex"
                     style={{ textDecoration: "none" }}
                   >
-                    <div className="text-black row align-items-center bg-white border mx-2 border-2 border-danger rounded-4 text-center">
+                    <div className="text-white row align-items-center bg-black border mx-2 border-2 border-white rounded-4 text-center">
                       {produit.new ? <Badge>NEW</Badge> : ""}
                       {produit.promo ? <Badge bg="danger">PROMO</Badge> : ""}
                       <img
@@ -145,7 +145,7 @@ export default function Products() {
                     className="text-black d-flex"
                     style={{ textDecoration: "none" }}
                   >
-                    <div className="text-black bg-white border border-2 border-danger rounded-4 text-center">
+                    <div className="text-white bg-black border border-2 border-white rounded-4 text-center">
                       {produit.new ? <Badge>NEW</Badge> : ""}
                       {produit.promo ? (
                         <Badge pill bg="danger">

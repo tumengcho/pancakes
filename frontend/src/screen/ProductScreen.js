@@ -111,8 +111,8 @@ function ProductScreen() {
         {product.category} {">"} {product.description} {"> "}
         {product.name}
       </p>
-      <Row className=" text-md-start border border-3 border-danger rounded-4 bg-white text-center pt-5">
-        <Col md={6} className="bg-white">
+      <Row className=" text-md-start border border-3 border-white rounded-2 bg-black text-center pt-5">
+        <Col md={6} className="bg-black">
           {product.new ? <Badge pill>NEW</Badge> : ""}
           {product.promo ? (
             <Badge pill bg="danger">
@@ -125,7 +125,7 @@ function ProductScreen() {
           <Card.Img
             variant="top"
             src={image || product.image}
-            className="img-fluid rounded img-thumbnail border-0"
+            className="img-fluid rounded bg-black img-thumbnail border-0"
           />
           {product.images.length === 0 ? (
             ""
@@ -137,8 +137,8 @@ function ProductScreen() {
                   nav
                   dots={false}
                   navText={[
-                    "<i class='fa fa-angle-left' style='color:black;'></i>",
-                    "<i class='fa fa-angle-right' style='color:black;'></i>",
+                    "<i class='fa fa-angle-left' style='color:white;'></i>",
+                    "<i class='fa fa-angle-right' style='color:white;'></i>",
                   ]}
                   responsive={{
                     0: { items: 3 },
@@ -163,24 +163,24 @@ function ProductScreen() {
             </div>
           )}
         </Col>
-        <Col md={6} className="bg-white row align-items-center pt-5 px-md-5">
+        <Col md={6} className="bg-black row align-items-center pt-5 px-md-5">
           <ListGroup variant="flush h-100">
-            <ListGroup.Item className="py-3 px-0 border-0">
+            <ListGroup.Item className="py-3 px-0 border-0 text-white bg-black">
               <Card.Title>
                 <h1 className="">{product.name}</h1>{" "}
               </Card.Title>
             </ListGroup.Item>
-            <ListGroup.Item className="border-0">
+            <ListGroup.Item className="border-0 text-white bg-black">
               <h3 className="fw-normal">{product.price} $</h3>
             </ListGroup.Item>
-            <ListGroup.Item className="my-2">
+            <ListGroup.Item className="my-2 text-white bg-black">
               <p>select size:</p>
               {product.category === "shoes" ? (
                 <div className="size">
                   <input
                     name="7"
                     value="7"
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-light border border-light"
                     onClick={(e) => setTaille(e.target.value)}
                     id="7"
                     readOnly
@@ -188,7 +188,7 @@ function ProductScreen() {
                   <input
                     name="8"
                     value="8"
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-light border border-light"
                     onClick={(e) => setTaille(e.target.value)}
                     id="8"
                     readOnly
@@ -196,7 +196,7 @@ function ProductScreen() {
                   <input
                     name="9"
                     value="9"
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-light border border-light"
                     onClick={(e) => setTaille(e.target.value)}
                     id="9"
                     readOnly
@@ -204,7 +204,7 @@ function ProductScreen() {
                   <input
                     name="10"
                     value="10"
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-light border border-light"
                     onClick={(e) => setTaille(e.target.value)}
                     id="10"
                     readOnly
@@ -212,7 +212,7 @@ function ProductScreen() {
                   <input
                     name="11"
                     value="11"
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-light border border-light"
                     onClick={(e) => setTaille(e.target.value)}
                     id="11"
                     readOnly
@@ -220,7 +220,7 @@ function ProductScreen() {
                   <input
                     name="12"
                     value="12"
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-light border border-light"
                     onClick={(e) => setTaille(e.target.value)}
                     id="12"
                     readOnly
@@ -232,7 +232,7 @@ function ProductScreen() {
                   <input
                     name="S"
                     value="S"
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-light border border-light"
                     onClick={(e) => setTaille(e.target.value)}
                     id="S"
                     readOnly
@@ -240,7 +240,7 @@ function ProductScreen() {
                   <input
                     name="M"
                     value="M"
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-light border border-light"
                     onClick={(e) => setTaille(e.target.value)}
                     id="M"
                     readOnly
@@ -248,7 +248,7 @@ function ProductScreen() {
                   <input
                     name="L"
                     value="L"
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-light border border-light"
                     onClick={(e) => setTaille(e.target.value)}
                     id="L"
                     readOnly
@@ -256,7 +256,7 @@ function ProductScreen() {
                   <input
                     name="XL"
                     value="XL"
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-light border border-light"
                     onClick={(e) => setTaille(e.target.value)}
                     id="XL"
                     readOnly
@@ -266,21 +266,23 @@ function ProductScreen() {
                 </div>
               )}
             </ListGroup.Item>
-            <ListGroup.Item className="py-4">
+            <ListGroup.Item className="py-4 text-white bg-black">
               <Row className="align-items-center text-center ">
                 <Col md={6}>
                   <button
                     type="button"
-                    className="w-100 pt-3 text-white btn bg-black"
+                    className="w-100 pt-3 text-white btn bg-white "
                     onClick={addToCartHandler}
                   >
-                    <p className="btn-submit text-uppercase">Add cart</p>
+                    <p className="btn-submit text-black text-uppercase">
+                      Add cart
+                    </p>
                   </button>
                 </Col>
                 <Col md={6} className="mt-3 mt-md-0">
                   <button
                     type="button"
-                    className="w-100 h-100  pt-3 btn btn-outline-dark "
+                    className="w-100 h-100  pt-3 btn btn-outline-light border border-light "
                     onClick={buyNowHandler}
                   >
                     <p className="btn-submit text-uppercase">Buy Now</p>

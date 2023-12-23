@@ -65,7 +65,7 @@ export default function Recommendation({ description, id }) {
         }}
       >
         {produitFiltres.map((produit) => (
-          <div className="bg-white text-center border border-2 border-danger rounded-4 text-dark w-100">
+          <div className="bg-black text-center border border-2 border-white rounded-4 text-white w-100">
             <Link
               to={`/products/${produit.slug}`}
               className=" bg-white"

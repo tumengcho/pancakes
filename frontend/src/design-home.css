@@ -97,6 +97,14 @@ nav {
 
 .price {
   font-family: Ropa;
+  opacity: 0;
+  height: 0;
+  transition: all 3s ease;
+}
+
+.price.show {
+  opacity: 1;
+  height: auto;
 }
 
 nav li {
@@ -335,5 +343,16 @@ nav li img {
 
   .nav-mobile {
     display: none;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .section-one {
+    height: fit-content;
+    width: 100%;
+    margin-bottom: 60%;
+  }
+  .section-one .owl-carousel img {
+    max-height: 950px;
+    min-height: 1500px;
   }
 }

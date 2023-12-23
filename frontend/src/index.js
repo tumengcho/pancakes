@@ -12,6 +12,7 @@ window.onload = function () {
   itemClick(".btn-payment");
   itemClick(".nav-item");
 };
+window.addEventListener("scroll", priceLoad);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -38,10 +39,19 @@ function itemClick(className) {
   });
 }
 
-function itemChange(element) {
-  const navItems = document.getElementsByClassName("nav-item");
+function priceLoad() {
+  var elementsArray = document.querySelectorAll(".price");
+  for (let index = 0; index < elementsArray.length; index++) {
+    var windowHeight = window.innerHeight;
+    var revealTop = elementsArray[index].getBoundingClientRect().top;
+    var revealPoint = 125;
 
-  element.classList.add("active");
+    if (revealTop < windowHeight - revealPoint) {
+      elementsArray[index].classList.add("show");
+    } else {
+      elementsArray[index].classList.remove("show");
+    }
+  }
 }
 
 // If you want to start measuring performance in your app, pass a function
